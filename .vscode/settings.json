@@ -19,7 +19,8 @@
     "build.gradle": true,
     "build\\libs\\kairyou-0.1.0-sources.jar": true,
     "build\\libs\\kairyou-0.1.0-sources-dev.jar": true,
-    "build\\libs\\kairyou-0.1.0-dev.jar": true
+    "build\\libs\\kairyou-0.1.0-dev.jar": true,
+    ".vscode": true
   },
   "java.dependency.packagePresentation": "hierarchical",
   "java.configuration.updateBuildConfiguration": "automatic"
