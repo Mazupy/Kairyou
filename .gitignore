@@ -1,0 +1,18 @@
+# gradle
+.gradle/
+build/
+out/
+classes/
+
+# vscode
+.settings/
+.vscode/launch.json
+bin/
+.classpath
+.project
+
+# fabric
+run/
+
+# notes
+Notes.txt

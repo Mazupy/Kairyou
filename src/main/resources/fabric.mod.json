@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "kairyou",
+  "version": "${version}",
+
+  "name": "Kairyō",
+  "description": "This is a Minecraft utility client",
+  "authors": [
+    "Mazupy"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Mazupy/kairyou-client",
+    "sources": "https://github.com/Mazupy/kairyou-client.git"
+  },
+
+  "license": "MIT",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.fabricmc.example.ExampleMod"
+    ]
+  },
+  "mixins": [
+    "modid.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}

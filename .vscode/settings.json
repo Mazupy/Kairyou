@@ -1,0 +1,27 @@
+{
+  "files.exclude": {
+    "settings.gradle": true,
+    "gradlew.bat": true,
+    "gradle": true,
+    ".gradle": true,
+    "gradlew": true,
+    "build\\generated": true,
+    "build\\classes\\java\\main\\net\\fabricmc": true,
+    "build\\classes\\java\\main": true,
+    "build\\classes\\java": true,
+    "build\\classes": true,
+    "build\\loom-cache": true,
+    "build\\tmp": true,
+    "bin\\main": true,
+    "bin": true,
+    ".vscode": true,
+    "build\\libs\\fabric-example-mod-1.0.0-sources.jar": true,
+    "build\\libs\\fabric-example-mod-1.0.0-sources-dev.jar": true,
+    "build\\libs\\fabric-example-mod-1.0.0-dev.jar": true,
+    "run": true,
+    "logs": true,
+    "build.gradle": true
+  },
+  "java.dependency.packagePresentation": "hierarchical",
+  "java.configuration.updateBuildConfiguration": "automatic"
+}
