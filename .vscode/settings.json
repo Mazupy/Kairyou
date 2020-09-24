@@ -14,13 +14,12 @@
     "build\\tmp": true,
     "bin\\main": true,
     "bin": true,
-    ".vscode": true,
-    "build\\libs\\fabric-example-mod-1.0.0-sources.jar": true,
-    "build\\libs\\fabric-example-mod-1.0.0-sources-dev.jar": true,
-    "build\\libs\\fabric-example-mod-1.0.0-dev.jar": true,
     "run": true,
     "logs": true,
-    "build.gradle": true
+    "build.gradle": true,
+    "build\\libs\\kairyou-0.1.0-sources.jar": true,
+    "build\\libs\\kairyou-0.1.0-sources-dev.jar": true,
+    "build\\libs\\kairyou-0.1.0-dev.jar": true
   },
   "java.dependency.packagePresentation": "hierarchical",
   "java.configuration.updateBuildConfiguration": "automatic"
