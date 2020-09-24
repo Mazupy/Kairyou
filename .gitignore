@@ -6,7 +6,7 @@ classes/
 
 # vscode
 .settings/
-.vscode/launch.json
+.vscode/
 bin/
 .classpath
 .project
