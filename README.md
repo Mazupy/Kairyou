@@ -11,6 +11,8 @@ Start Git bash where you want to try it:
 ```bash
 # Clone this repository (creates a kairyou directory containing everything)
 git clone https://github.com/Mazupy/kairyou.git
+# Go into the repository
+cd kairyou
 # Build the jar
 gradle build
 ```
