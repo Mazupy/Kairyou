@@ -19,11 +19,11 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "com.mazupy.kairyou.KairyouInit"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "kairyou.mixins.json"
   ],
 
   "depends": {
