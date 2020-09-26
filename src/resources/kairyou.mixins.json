@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.mazupy.kairyou.mixin",
+  "package": "me.mazupy.kairyou.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],

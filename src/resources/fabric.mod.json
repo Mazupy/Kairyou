@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Kairyō",
-  "description": "This is a Minecraft utility client",
+  "description": "Kairyō [改良], a Minecraft utility client",
   "authors": [
     "Mazupy"
   ],
@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.mazupy.kairyou.KairyouInit"
+      "me.mazupy.kairyou.KairyouInit"
     ]
   },
   "mixins": [
@@ -29,7 +29,7 @@
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",
-    "minecraft": "1.16.x"
+    "minecraft": "1.16.3"
   },
   "suggests": {
     "flamingo": "*"

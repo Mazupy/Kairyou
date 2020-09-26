@@ -1,4 +1,4 @@
-package com.mazupy.kairyou.mixin;
+package me.mazupy.kairyou.mixin;
 
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;

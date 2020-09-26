@@ -1,4 +1,4 @@
-package com.mazupy.kairyou;
+package me.mazupy.kairyou;
 
 import net.fabricmc.api.ModInitializer;
 
