@@ -13,8 +13,10 @@ Start Git bash where you want to try it:
 git clone https://github.com/Mazupy/kairyou.git
 # Go into the repository
 cd kairyou
-# Build the jar
+# Build the jar (Windows)
 gradle build
+# Build the jar (Linux)
+./gradle build
 ```
 ### Installing
 In the directory `build/libs/` you will find `kairyou-#.#.#.jar`, _ignore any `-sources.jar` or `-dev.jar`_
