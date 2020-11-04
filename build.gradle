@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '0.4-SNAPSHOT'
 	id 'maven-publish'
+	id 'com.github.johnrengelman.shadow' version '6.0.0'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -10,8 +11,19 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+repositories {
+    // allow for maven to use github using jitpack.io
+	maven { url "https://jitpack.io" }
+}
+
 dependencies {
-	//to change the versions see the gradle.properties file
+    def dependency = {
+        id ->
+		    modImplementation id
+		    shadow id
+	}
+
+	// to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
@@ -21,6 +33,9 @@ dependencies {
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
+
+    // other helpers
+	dependency "com.github.ZeroMemes:Alpine:1.9"
 }
 
 processResources {

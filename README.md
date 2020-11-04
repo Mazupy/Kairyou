@@ -1,12 +1,13 @@
 # Kairyō client
+For Minecraft 1.16.4
 
 ## Setup
 
 ### Prerequisites
-* [Fabric Loader](https://fabricmc.net/use/)
-* [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
 * [Git](https://git-scm.com/downloads)
 * [Gradle](https://gradle.org/releases/)
+* [Fabric Loader](https://fabricmc.net/use/)
+* ~~[Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)~~ <sub>*(not yet)*</sub>
 
 ### Building
 Start Git bash where you want to try it:
