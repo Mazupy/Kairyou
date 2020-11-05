@@ -2,15 +2,20 @@ package me.mazupy.kairyou.module;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import me.mazupy.kairyou.Kairyou;
+import me.zero.alpine.listener.Listenable;
 import net.minecraft.client.MinecraftClient;
 
-public abstract class Module {
+public abstract class Module implements Listenable {
 
-    protected static final MinecraftClient mc = MinecraftClient.getInstance();
+    protected static final MinecraftClient mc = Kairyou.MC;
     
     protected final String name;
     protected final String description;
     protected final Category category;
+
+    private boolean active = false;
 
     // protected final Settings settings;
 
@@ -19,6 +24,15 @@ public abstract class Module {
         name = annotation.name();
         description = annotation.description();
         category = annotation.category();
+    }
+
+    public void toggle() {
+        if (active) {
+            Kairyou.EVENT_BUS.unsubscribe(this);
+        } else { // not active
+            Kairyou.EVENT_BUS.subscribe(this);
+        }
+        active = !active;
     }
 
     private Info getAnnotation() {
@@ -32,6 +46,10 @@ public abstract class Module {
         String name();
         String description() default "Descriptionless";
         Category category();
+    }
+
+    protected boolean getActive() {
+        return active;
     }
 
 }

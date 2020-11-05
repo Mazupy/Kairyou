@@ -9,8 +9,8 @@
     "Mazupy"
   ],
   "contact": {
-    "homepage": "https://github.com/Mazupy/kairyou-client",
-    "sources": "https://github.com/Mazupy/kairyou-client.git"
+    "homepage": "https://github.com/Mazupy/Kairyou",
+    "sources": "https://github.com/Mazupy/Kairyou.git"
   },
 
   "license": "MIT",
@@ -18,8 +18,8 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "me.mazupy.kairyou.KairyouInit"
+    "client": [
+      "me.mazupy.kairyou.Kairyou"
     ]
   },
   "mixins": [
@@ -29,7 +29,7 @@
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",
-    "minecraft": "1.16.3"
+    "minecraft": "1.16.4"
   },
   "suggests": {
     "flamingo": "*"

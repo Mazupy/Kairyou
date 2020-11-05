@@ -38,6 +38,10 @@ dependencies {
 	dependency "com.github.ZeroMemes:Alpine:1.9"
 }
 
+shadowJar {
+	configurations = [ project.configurations.shadow ]
+}
+
 processResources {
 	inputs.property "version", project.version
 
@@ -66,27 +70,43 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 	from sourceSets.main.allSource
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/java']
+        }
+        resources {
+            srcDirs = ['src/resources']
+        }
+    }
+}
+
 jar {
 	from "LICENSE"
 }
 
-// configure the maven publication
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			// add all the jars that should be included when publishing to maven
-			artifact(remapJar) {
-				builtBy remapJar
-			}
-			artifact(sourcesJar) {
-				builtBy remapSourcesJar
-			}
-		}
-	}
-
-	// select the repositories you want to publish to
-	repositories {
-		// uncomment to publish to the local maven
-		// mavenLocal()
-	}
+remapJar {
+	dependsOn shadowJar
+	input.set(shadowJar.archiveFile)
 }
+
+// configure the maven publication
+// publishing {
+// 	publications {
+// 		mavenJava(MavenPublication) {
+// 			// add all the jars that should be included when publishing to maven
+// 			artifact(remapJar) {
+// 				builtBy remapJar
+// 			}
+// 			artifact(sourcesJar) {
+// 				builtBy remapSourcesJar
+// 			}
+// 		}
+// 	}
+
+// 	// select the repositories you want to publish to
+// 	repositories {
+// 		// uncomment to publish to the local maven
+// 		// mavenLocal()
+// 	}
+// }

@@ -2,6 +2,7 @@ package me.mazupy.kairyou.module.movement;
 
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
+
 import me.mazupy.kairyou.event.TickEvent;
 import me.mazupy.kairyou.module.Category;
 import me.mazupy.kairyou.module.Module;

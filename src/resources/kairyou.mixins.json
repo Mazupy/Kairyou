@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "InitMixin"
+    "KeyMixin",
+    "MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

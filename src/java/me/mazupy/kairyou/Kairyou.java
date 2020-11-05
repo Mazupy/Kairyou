@@ -1,12 +1,15 @@
 package me.mazupy.kairyou;
 
+import me.mazupy.kairyou.module.ModuleManager;
 import me.zero.alpine.bus.EventBus;
 import me.zero.alpine.bus.EventManager;
 import net.fabricmc.api.ClientModInitializer;
+import net.minecraft.client.MinecraftClient;
 
-public class KairyouInit implements ClientModInitializer {
+public class Kairyou implements ClientModInitializer {
 
     public static final EventBus EVENT_BUS = new EventManager();
+    public static final MinecraftClient MC = MinecraftClient.getInstance();
 
 	@Override
 	public void onInitializeClient() {
@@ -14,7 +17,11 @@ public class KairyouInit implements ClientModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		
+        System.out.println("Client init");
+
+        new ModuleManager();
+
+        // Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
 	}
 
 }
