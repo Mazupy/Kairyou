@@ -7,7 +7,7 @@ For Minecraft 1.16.4
 * [Git](https://git-scm.com/downloads)
 * [Gradle](https://gradle.org/releases/)
 * [Fabric Loader](https://fabricmc.net/use/)
-* ~~[Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)~~ <sub>*(not yet)*</sub>
+* [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
 
 ### Building
 Start Git bash where you want to try it:
