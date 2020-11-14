@@ -40,5 +40,6 @@ public class ModuleManager implements Listenable {
 
     private void addModules() {
         modules.add(new AutoSprint());
+        modules.add(new NoFall());
     }
 }

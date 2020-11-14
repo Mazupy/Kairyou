@@ -3,11 +3,12 @@
   "minVersion": "0.8",
   "package": "me.mazupy.kairyou.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [
-  ],
+  "mixins": [],
   "client": [
     "KeyMixin",
-    "MinecraftClientMixin"
+    "MinecraftClientMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "PlayerMoveC2SPacketMixin"
   ],
   "injectors": {
     "defaultRequire": 1
