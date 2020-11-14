@@ -8,7 +8,7 @@
     "KeyMixin",
     "MinecraftClientMixin",
     "ClientPlayNetworkHandlerMixin",
-    "PlayerMoveC2SPacketMixin"
+    "interfaces.IPlayerMoveC2SPacket"
   ],
   "injectors": {
     "defaultRequire": 1

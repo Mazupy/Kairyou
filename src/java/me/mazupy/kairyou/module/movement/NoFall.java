@@ -5,7 +5,7 @@ import me.zero.alpine.listener.Listener;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
 import me.mazupy.kairyou.event.SendPacketEvent;
-import me.mazupy.kairyou.mixininterfaces.IPlayerMoveC2SPacket;
+import me.mazupy.kairyou.mixin.interfaces.IPlayerMoveC2SPacket;
 import me.mazupy.kairyou.module.Category;
 import me.mazupy.kairyou.module.Module;
 import me.mazupy.kairyou.utils.Utils;
