@@ -15,7 +15,7 @@ import me.mazupy.kairyou.utils.KeyState;
 public abstract class KeyMixin {
 
     @Inject(method = "onKey", at = @At("HEAD"))
-	private void onKey(long window, int key, int scancode, int pressType, int modifier, CallbackInfo cbInfo) {
+	private void onKey(long window, int key, int scancode, int pressType, int modifier, CallbackInfo info) {
         KeyState.setPressed(key, pressType != GLFW.GLFW_RELEASE);
 
         Kairyou.EVENT_BUS.post(EventProvider.keyEvent(key, pressType));
