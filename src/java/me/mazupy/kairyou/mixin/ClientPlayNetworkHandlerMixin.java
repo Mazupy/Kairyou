@@ -18,4 +18,9 @@ public abstract class ClientPlayNetworkHandlerMixin {
         Kairyou.EVENT_BUS.post(EventProvider.sendPacketEvent(packet));
     }
 
+    @Inject(method = "onGameJoin", at = @At("TAIL"))
+    private void onGameJoin(CallbackInfo info) {
+        Kairyou.EVENT_BUS.post(EventProvider.gameJoinedEvent());
+    }
+
 }

@@ -16,6 +16,7 @@ public abstract class Module implements Listenable {
     protected final Category category;
 
     private boolean active = false;
+    private boolean enabled = false;
 
     // protected final Settings settings;
 
@@ -27,10 +28,20 @@ public abstract class Module implements Listenable {
     }
 
     public void toggle() {
+        enabled = !enabled;
+        toggleActive();
+    }
+
+    public void toggleActive() {
         if (active) {
+            ModuleManager.INSTANCE.removeActive(this);
             Kairyou.EVENT_BUS.unsubscribe(this);
+            onDeactivate();
         } else { // not active
+            ModuleManager.INSTANCE.addActive(this);
             Kairyou.EVENT_BUS.subscribe(this);
+            onActivate();
+            enabled = true;
         }
         active = !active;
     }
@@ -48,8 +59,15 @@ public abstract class Module implements Listenable {
         Category category();
     }
 
-    protected boolean getActive() {
+    public boolean getActive() {
         return active;
     }
+
+    public boolean getEnabled() {
+        return enabled;
+    }
+
+    protected void onActivate() {}
+    protected void onDeactivate() {}
 
 }
