@@ -1,5 +1,6 @@
 package me.mazupy.kairyou.mixin;
 
+import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -9,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.EventProvider;
 import me.mazupy.kairyou.utils.Utils;
-import net.minecraft.client.MinecraftClient;
 
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin {

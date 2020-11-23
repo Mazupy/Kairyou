@@ -3,13 +3,13 @@
   "minVersion": "0.8",
   "package": "me.mazupy.kairyou.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [],
   "client": [
     "KeyMixin",
     "MinecraftClientMixin",
     "ClientPlayNetworkHandlerMixin",
     "interfaces.IPlayerMoveC2SPacket",
-    "ClientConnectionMixin"
+    "ClientConnectionMixin",
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

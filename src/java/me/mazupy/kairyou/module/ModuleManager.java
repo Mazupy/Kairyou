@@ -2,19 +2,14 @@ package me.mazupy.kairyou.module;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.lwjgl.glfw.GLFW;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listenable;
+import me.zero.alpine.listener.Listener;
 
 import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.GameDisconnectedEvent;
 import me.mazupy.kairyou.event.GameJoinedEvent;
-import me.mazupy.kairyou.event.KeyEvent;
 import me.mazupy.kairyou.module.movement.*;
-import me.mazupy.kairyou.utils.Chat;
-import me.mazupy.kairyou.utils.Utils;
-import me.zero.alpine.listener.EventHandler;
-import me.zero.alpine.listener.Listenable;
-import me.zero.alpine.listener.Listener;
 
 public class ModuleManager implements Listenable {
     
@@ -30,17 +25,6 @@ public class ModuleManager implements Listenable {
 
         Kairyou.EVENT_BUS.subscribe(this);
     }
-
-    @EventHandler
-    private final Listener<KeyEvent> onKey = new Listener<>(event -> {
-        if (event.type != GLFW.GLFW_PRESS || Utils.notInGame()) return;
-        if (event.key == GLFW.GLFW_KEY_RIGHT_SHIFT) {
-            for (Module module : modules) {
-                module.toggle();
-                Chat.playerChat(module.name + " is now " + module.getEnabled() + " | " + module.getActive());
-            }
-        }
-    });
 
     public void addActive(Module module) {
         activeModules.add(module);
@@ -68,5 +52,17 @@ public class ModuleManager implements Listenable {
         modules.add(new AutoSprint());
         modules.add(new NoFall());
         modules.add(new Step());
+    }
+
+    public Module getModule(String name) { // TODO: map or whatever
+        for (Module module : modules) {
+            if (module.name.equalsIgnoreCase(name)) return module;
+        }
+
+        return null;
+    }
+
+    public List<Module> getModules() {
+        return modules;
     }
 }

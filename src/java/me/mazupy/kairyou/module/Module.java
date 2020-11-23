@@ -4,6 +4,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import me.mazupy.kairyou.Kairyou;
+import me.mazupy.kairyou.utils.Chat;
 import me.zero.alpine.listener.Listenable;
 import net.minecraft.client.MinecraftClient;
 
@@ -44,6 +45,8 @@ public abstract class Module implements Listenable {
             enabled = true;
         }
         active = !active;
+
+        Chat.playerChat(name + " is now " + enabled + " | " + active);
     }
 
     private Info getAnnotation() {
@@ -57,6 +60,18 @@ public abstract class Module implements Listenable {
         String name();
         String description() default "Descriptionless";
         Category category();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 
     public boolean getActive() {
