@@ -4,7 +4,6 @@ import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listenable;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.render.VertexFormats;
-
 import org.lwjgl.opengl.GL11;
 
 import me.mazupy.kairyou.event.Render2DEvent;

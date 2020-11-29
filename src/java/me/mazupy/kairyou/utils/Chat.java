@@ -1,7 +1,8 @@
 package me.mazupy.kairyou.utils;
 
-import me.mazupy.kairyou.Kairyou;
 import net.minecraft.text.LiteralText;
+
+import me.mazupy.kairyou.Kairyou;
 
 public class Chat {
     

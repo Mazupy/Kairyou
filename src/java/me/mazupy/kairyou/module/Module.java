@@ -3,10 +3,11 @@ package me.mazupy.kairyou.module;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import me.mazupy.kairyou.Kairyou;
-import me.mazupy.kairyou.utils.Chat;
 import me.zero.alpine.listener.Listenable;
 import net.minecraft.client.MinecraftClient;
+
+import me.mazupy.kairyou.Kairyou;
+import me.mazupy.kairyou.utils.Chat;
 
 public abstract class Module implements Listenable {
 

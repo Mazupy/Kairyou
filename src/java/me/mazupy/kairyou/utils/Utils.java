@@ -3,6 +3,7 @@ package me.mazupy.kairyou.utils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Items;
+
 import me.mazupy.kairyou.Kairyou;
 
 public class Utils {
