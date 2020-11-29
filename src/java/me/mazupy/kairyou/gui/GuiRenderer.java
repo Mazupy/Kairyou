@@ -4,8 +4,10 @@ import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listenable;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.render.VertexFormats;
+import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.opengl.GL11;
 
+import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.Render2DEvent;
 import me.mazupy.kairyou.rendering.MeshBuilder;
 import me.mazupy.kairyou.utils.Color;
@@ -15,6 +17,7 @@ public class GuiRenderer implements Listenable {
     public static final GuiRenderer INSTANCE = new GuiRenderer();
 
     private static final Color WHITE = new Color(255, 255, 255); // TODO: testing
+    private static final Color RED = new Color(255, 0, 0);
 
     private final MeshBuilder mb = new MeshBuilder();
 
@@ -36,6 +39,8 @@ public class GuiRenderer implements Listenable {
         mb.vertex(X + W, Y + H, 0).endColor(WHITE);
 
         mb.end(false);
+
+        Kairyou.MC.textRenderer.draw(new MatrixStack(), "text test", 100, 100, RED.asARGB());
     });
     
 }

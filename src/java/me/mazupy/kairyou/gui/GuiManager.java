@@ -38,7 +38,7 @@ public class GuiManager implements Listenable {
             Chat.playerChat("GUI is now " + (guiVisible ? "" : "not ") + "visible.");
         }
         else if (event.key == GLFW.GLFW_KEY_1) {
-            Module stepMod = ModuleManager.INSTANCE.getModule("step");
+            Module stepMod = ModuleManager.INSTANCE.getModule("Step");
             if (stepMod != null) stepMod.toggle();
         }
     });

@@ -14,5 +14,14 @@ public class Color {
         g = green;
         b = blue;
     }
+
+    public int asARGB() {
+        int argb = 0;
+        argb += a * 0x01000000;
+        argb += r * 0x00010000;
+        argb += g * 0x00000100;
+        argb += b * 0x00000001;
+        return argb;
+    }
     
 }
