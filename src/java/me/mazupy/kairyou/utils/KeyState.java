@@ -2,7 +2,7 @@ package me.mazupy.kairyou.utils;
 
 import org.lwjgl.glfw.GLFW;
 
-public class KeyState {
+public class KeyState { // TODO: unused
     
     private static final boolean[] keyStates = new boolean[348]; // 348 is the hightest GLFW key code
     

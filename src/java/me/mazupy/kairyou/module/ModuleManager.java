@@ -1,7 +1,11 @@
 package me.mazupy.kairyou.module;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listenable;
 import me.zero.alpine.listener.Listener;
@@ -15,7 +19,7 @@ public class ModuleManager implements Listenable {
     
     public static ModuleManager INSTANCE;
 
-    private final List<Module> modules = new ArrayList<Module>();
+    private final Map<String, Module> modules = new HashMap<>();
     private final List<Module> activeModules = new ArrayList<Module>();
 
     public ModuleManager() {
@@ -36,7 +40,7 @@ public class ModuleManager implements Listenable {
 
     @EventHandler
     private final Listener<GameJoinedEvent> onGameJoin = new Listener<>(event -> {
-        for (Module module : modules) {
+        for (Module module : getModules()) {
             if (module.getEnabled()) module.toggleActive();
         }
     });
@@ -49,20 +53,20 @@ public class ModuleManager implements Listenable {
     });
 
     private void addModules() {
-        modules.add(new AutoSprint());
-        modules.add(new NoFall());
-        modules.add(new Step());
+        addModule(new AutoSprint());
+        addModule(new NoFall());
+        addModule(new Step());
     }
 
-    public Module getModule(String name) { // TODO: map or whatever
-        for (Module module : modules) {
-            if (module.name.equalsIgnoreCase(name)) return module;
-        }
-
-        return null;
+    private void addModule(Module module) {
+        modules.put(module.getName(), module);
     }
 
-    public List<Module> getModules() {
-        return modules;
+    public Module getModule(String name) {
+        return modules.get(name);
+    }
+
+    public Collection<Module> getModules() {
+        return modules.values();
     }
 }

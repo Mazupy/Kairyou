@@ -13,7 +13,7 @@ import me.mazupy.kairyou.utils.Color;
 
 public class MeshBuilder {
 
-    private static final int DEFAULT_BUFFER_CAPACITY = 1048576; // 1MB (2^20)
+    private static final int DEFAULT_BUFFER_CAPACITY = 0x100000; // 1MB (2^20)
     private final BufferBuilder buffer;
 
     public MeshBuilder(int capacity) {
