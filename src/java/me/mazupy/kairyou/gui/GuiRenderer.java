@@ -30,13 +30,13 @@ public class GuiRenderer implements Listenable {
         final double W = 400;
         final double H = 400;
 
-        mb.vertex(X, Y, 0).endColor(WHITE);
-        mb.vertex(X + W, Y, 0).endColor(WHITE);
-        mb.vertex(X + W, Y + H, 0).endColor(WHITE);
+        mb.vertex(X, Y, 0).colorNext(WHITE);
+        mb.vertex(X + W, Y, 0).colorNext(WHITE);
+        mb.vertex(X + W, Y + H, 0).colorNext(WHITE);
 
-        mb.vertex(X, Y, 0).endColor(WHITE);
-        mb.vertex(X, Y + H, 0).endColor(WHITE);
-        mb.vertex(X + W, Y + H, 0).endColor(WHITE);
+        mb.vertex(X, Y, 0).colorNext(WHITE);
+        mb.vertex(X, Y + H, 0).colorNext(WHITE);
+        mb.vertex(X + W, Y + H, 0).colorNext(WHITE);
 
         mb.end(false);
 

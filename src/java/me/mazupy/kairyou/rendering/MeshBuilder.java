@@ -36,12 +36,12 @@ public class MeshBuilder {
         return this;
     }
 
-    public void endColor(Color color) {
+    public void colorNext(Color color) {
         color(color);
         buffer.next();
     }
 
-    public void endTexture(float u, float v) {
+    public void textureNext(float u, float v) {
         buffer.texture(u, v);
         buffer.next();
     }
