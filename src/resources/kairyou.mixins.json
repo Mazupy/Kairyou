@@ -4,7 +4,7 @@
   "package": "me.mazupy.kairyou.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "KeyMixin",
+    "KeyboardMixin",
     "MinecraftClientMixin",
     "ClientPlayNetworkHandlerMixin",
     "interfaces.IPlayerMoveC2SPacket",

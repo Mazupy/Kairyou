@@ -12,7 +12,7 @@ import me.mazupy.kairyou.event.EventProvider;
 import me.mazupy.kairyou.utils.KeyState;
 
 @Mixin(Keyboard.class)
-public abstract class KeyMixin {
+public abstract class KeyboardMixin {
 
     @Inject(method = "onKey", at = @At("HEAD"))
 	private void onKey(long window, int key, int scancode, int pressType, int modifier, CallbackInfo info) {
