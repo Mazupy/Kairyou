@@ -29,15 +29,13 @@ public class GuiManager implements Listenable {
         if (event.type != GLFW.GLFW_PRESS || Utils.notInGame()) return;
         if (event.key == GLFW.GLFW_KEY_F6) { // FIXME: just testing
             for (Module module : ModuleManager.INSTANCE.getModules()) module.toggle();
-        } else if (event.key == GLFW.GLFW_KEY_RIGHT_SHIFT) { // TODO: Make modular
-            if (guiVisible) Kairyou.EVENT_BUS.unsubscribe(GuiRenderer.INSTANCE);
-            else Kairyou.EVENT_BUS.subscribe(GuiRenderer.INSTANCE);
-
+        } else if (event.key == GLFW.GLFW_KEY_RIGHT_SHIFT || (event.key == GLFW.GLFW_KEY_ESCAPE && guiVisible)) { // TODO: Make modular
             guiVisible = !guiVisible;
 
+            Kairyou.MC.openScreen(guiVisible ? new GuiScreen() : null);
+
             Chat.playerChat("GUI is now " + (guiVisible ? "" : "not ") + "visible.");
-        }
-        else if (event.key == GLFW.GLFW_KEY_1) {
+        } else if (event.key == GLFW.GLFW_KEY_1) {
             Module stepMod = ModuleManager.INSTANCE.getModule("Step");
             if (stepMod != null) stepMod.toggle();
         }

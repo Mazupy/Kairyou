@@ -2,19 +2,23 @@ package me.mazupy.kairyou.gui;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
+import net.minecraft.text.LiteralText;
+import me.zero.alpine.listener.Listenable;
 
+import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.utils.Utils;
 
-public class GuiScreen extends Screen { // FIXME: unused
+public class GuiScreen extends Screen implements Listenable {
 
-    public GuiScreen(Text title) {
-        super(title);
+    private final GuiRenderer RENDERER = new GuiRenderer();
+
+    public GuiScreen() {
+        super(LiteralText.EMPTY);
     }
 
     @Override
     protected void init() {
-        
+        Kairyou.EVENT_BUS.subscribe(this);
     }
 
     // @Override
@@ -60,9 +64,7 @@ public class GuiScreen extends Screen { // FIXME: unused
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         if (Utils.notInGame()) renderBackground(matrices);
 
-        // GuiRenderer.INSTANCE.begin();
-        // root.render(GuiRenderer.INSTANCE, mouseX, mouseY, delta);
-        // GuiRenderer.INSTANCE.end();
+        RENDERER.render();
     }
 
     // @Override
@@ -70,14 +72,20 @@ public class GuiScreen extends Screen { // FIXME: unused
         
     // }
 
-    // @Override
-    // public void onClose() {
-        
-    // }
+    @Override
+    public boolean shouldCloseOnEsc() { // GuiManager already handles esc
+        return false;
+    }
+
+    @Override
+    public void onClose() {
+        Kairyou.EVENT_BUS.unsubscribe(this);
+        super.onClose();
+    }
 
     @Override
     public boolean isPauseScreen() {
-        return false;
+        return true;
     }
 
 }
