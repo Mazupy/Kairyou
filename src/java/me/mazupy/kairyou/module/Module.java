@@ -16,11 +16,10 @@ public abstract class Module implements Listenable {
     protected final String name;
     protected final String description;
     protected final Category category;
+    // protected final Settings settings;
 
     private boolean active = false;
     private boolean enabled = false;
-
-    // protected final Settings settings;
 
     protected Module() {
         final Info annotation = getAnnotation();

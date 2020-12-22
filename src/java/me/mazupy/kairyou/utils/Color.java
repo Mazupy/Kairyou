@@ -15,6 +15,15 @@ public class Color {
         b = blue;
     }
 
+    public Color(int greyscale, int alpha) { // TODO: unused
+        this(greyscale);
+        a = alpha;
+    }
+
+    public Color(int greyscale) {
+        r = g = b = greyscale;
+    }
+
     public int asARGB() {
         int argb = 0;
         argb += a * 0x01000000;
