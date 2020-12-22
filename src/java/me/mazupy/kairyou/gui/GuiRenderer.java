@@ -55,11 +55,11 @@ public class GuiRenderer implements Listenable {
     }
 
     private void rect(int x, int y, int w, int h, Color fillColor, Color edgeColor) {
-         rect(x, y, w, h, edgeColor);
-         rect(x + 1, y + 1, w - 2, h - 2, fillColor);
+         quad(x, y, w, h, edgeColor);
+         quad(x + 1, y + 1, w - 2, h - 2, fillColor);
     }
 
-    private void rect(int x, int y, int w, int h, Color color) {
+    private void quad(int x, int y, int w, int h, Color color) {
         final float X = convert(x);
         final float Y = convert(y);
         final float W = convert(w);
