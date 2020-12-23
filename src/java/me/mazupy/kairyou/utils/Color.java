@@ -15,13 +15,13 @@ public class Color {
         b = blue;
     }
 
-    public Color(int greyscale, int alpha) { // TODO: unused
-        this(greyscale);
+    public Color(int grayscale, int alpha) { // TODO: unused
+        this(grayscale);
         a = alpha;
     }
 
-    public Color(int greyscale) {
-        r = g = b = greyscale;
+    public Color(int grayscale) {
+        r = g = b = grayscale;
     }
 
     public int asARGB() {

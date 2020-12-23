@@ -14,8 +14,8 @@ import me.mazupy.kairyou.utils.Color;
 public class GuiRenderer implements Listenable {
 
     private static final Color WHITE = new Color(255);
-    private static final Color GREY = new Color(120);
-    private static final Color DARK_GREY = new Color(80);
+    private static final Color GRAY = new Color(120);
+    private static final Color DARK_GRAY = new Color(80);
     private static final Color DARK_BLUE = new Color(0, 0, 102);
 
     private final float VIRTUAL_HEIGHT = 1080F;
@@ -36,7 +36,7 @@ public class GuiRenderer implements Listenable {
         int modY = MARGIN;
 
         for (Module mod : ModuleManager.INSTANCE.getModules()) {
-            rect(modX, modY, WIDTH, HEIGHT, mod.getActive() ? DARK_BLUE : GREY, DARK_GREY);
+            rect(modX, modY, WIDTH, HEIGHT, mod.getActive() ? DARK_BLUE : GRAY, DARK_GRAY);
             text(mod.getName(), modX + 3, modY + 3, WHITE);
             modY += HEIGHT - 1;
         }
