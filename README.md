@@ -22,7 +22,7 @@ gradle build
 ./gradle build
 ```
 ### Installing
-In the directory `build/libs/` you will find `kairyou-#.#.#.jar`, _ignore any `-sources.jar` or `-dev.jar`_.  
+In the directory `build/libs/` you will find `kairyou-#.#.#.jar`, _ignore the `-all.jar`_.  
 Install the fabric loader and put the `fabric-api-[...].jar` and the `kairyou-#.#.#.jar` into the mods folder.
 
 ## **Plea**

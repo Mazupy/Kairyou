@@ -19,13 +19,13 @@ public class NoFall extends Module {
     private final Listener<SendPacketEvent> onPlayerMove = new Listener<>(event -> {
         if (!(event.packet instanceof PlayerMoveC2SPacket) || Utils.isUsingElytra()) return;
         //! Assumed setOnGround would spoof damage entirely
-        // int depth = (int) Math.ceil(-mc.player.getVelocity().y);
-        // if (depth >= 0 && mc.player.fallDistance > FALL_TOLERANCE && !Utils.hasSpaceBelow(depth)) {
-        //     ((IPlayerMoveC2SPacket) event.packet).setOnGround(true);
-        //     Chat.playerChat("depth: " + depth + "; fall dist: " + mc.player.fallDistance + "; hasSpace: "
-        //             + Utils.hasSpaceBelow(depth));
-        //     Chat.playerChat("setOnGround");
-        // }
+        /* int depth = (int) Math.ceil(-mc.player.getVelocity().y);
+        if (depth >= 0 && mc.player.fallDistance > FALL_TOLERANCE && !Utils.hasSpaceBelow(depth)) {
+            ((IPlayerMoveC2SPacket) event.packet).setOnGround(true);
+            Chat.playerChat("depth: " + depth + "; fall dist: " + mc.player.fallDistance + "; hasSpace: "
+                    + Utils.hasSpaceBelow(depth));
+            Chat.playerChat("setOnGround");
+        } */
 
         // Fall damage is applied when setOnGround switches from false to true
         final double nextMovement = Utils.PLAYER_DRAG * (mc.player.getVelocity().y + Utils.PLAYER_GRAVITY);

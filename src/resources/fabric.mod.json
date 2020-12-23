@@ -1,35 +1,41 @@
 {
-  "schemaVersion": 1,
-  "id": "kairyou",
-  "version": "${version}",
+    "schemaVersion": 1,
+    "id": "kairyou",
+    "version": "${version}",
 
-  "name": "Kairyō",
-  "description": "Kairyō [改良], a Minecraft utility client",
-  "authors": [
-    "Mazupy"
-  ],
-  "contact": {
-    "homepage": "https://github.com/Mazupy/Kairyou",
-    "sources": "https://github.com/Mazupy/Kairyou.git"
-  },
+    "name": "Kairyō",
+    "description": "Kairyō [改良], a Minecraft utility client",
+    "authors": [
+        "Mazupy"
+    ],
+    "contributors": [],
+    "contact": {
+        "homepage": "https://github.com/Mazupy/Kairyou",
+        "sources": "https://github.com/Mazupy/Kairyou.git",
+        "issues": "https://github.com/Mazupy/Kairyou/issues"
+    },
 
-  "license": "MIT",
-  "icon": "assets/icon.png",
+    "license": "MIT",
+    "icon": "assets/icon.png",
 
-  "environment": "*",
-  "entrypoints": {
-    "client": [
-      "me.mazupy.kairyou.Kairyou"
-    ]
-  },
-  "mixins": [
-    "kairyou.mixins.json"
-  ],
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "me.mazupy.kairyou.Kairyou"
+        ]
+    },
+    "mixins": [
+        "kairyou.mixins.json"
+    ],
 
-  "depends": {
-    "fabricloader": ">=0.7.4",
-    "fabric": "*",
-    "minecraft": "1.16.4"
-  },
-  "suggests": {}
+    "depends": {
+        "fabricloader": ">=0.10.8",
+        "fabric": ">=0.28.1",
+        "minecraft": "1.16.4"
+    },
+    "breaks": {},
+    "suggests": {
+        "phosphor-fabric": ">=0.7.0",
+        "sodium-fabric": ">=0.1.1"
+    }
 }

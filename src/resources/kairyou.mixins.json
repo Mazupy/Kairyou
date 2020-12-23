@@ -1,17 +1,17 @@
 {
-  "required": true,
-  "minVersion": "0.8",
-  "package": "me.mazupy.kairyou.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "client": [
-    "KeyboardMixin",
-    "MinecraftClientMixin",
-    "ClientPlayNetworkHandlerMixin",
-    "interfaces.IPlayerMoveC2SPacket",
-    "ClientConnectionMixin",
-    "InGameHudMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+    "required": true,
+    "minVersion": "0.8",
+    "package": "me.mazupy.kairyou.mixin",
+    "compatibilityLevel": "JAVA_8",
+    "client": [
+        "KeyboardMixin",
+        "MinecraftClientMixin",
+        "ClientPlayNetworkHandlerMixin",
+        "interfaces.IPlayerMoveC2SPacket",
+        "ClientConnectionMixin",
+        "InGameHudMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
 }

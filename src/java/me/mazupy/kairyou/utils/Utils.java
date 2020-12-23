@@ -29,23 +29,23 @@ public class Utils {
     }
 
     //! From old (broken) NoFall
-    // public static boolean hasSpaceBelow(int depth) {
-    //     final float HALF_W = mc.player.getWidth() / 2;
-    //     final int minX = (int) Math.floor(mc.player.getX() - HALF_W);
-    //     final int minZ = (int) Math.floor(mc.player.getZ() - HALF_W);
-    //     final int maxX = (int) Math.ceil(mc.player.getX() + HALF_W);
-    //     final int maxZ = (int) Math.ceil(mc.player.getZ() + HALF_W);
-    //     BlockPos pos;
+    /* public static boolean hasSpaceBelow(int depth) {
+        final float HALF_W = mc.player.getWidth() / 2;
+        final int minX = (int) Math.floor(mc.player.getX() - HALF_W);
+        final int minZ = (int) Math.floor(mc.player.getZ() - HALF_W);
+        final int maxX = (int) Math.ceil(mc.player.getX() + HALF_W);
+        final int maxZ = (int) Math.ceil(mc.player.getZ() + HALF_W);
+        BlockPos pos;
 
-    //     for (int x = minX; x <= maxX; x++) {
-    //         for (int z = minZ; z <= maxZ; z++) {
-    //             for (int yOff = 0; yOff <= depth; yOff++) {
-    //                 pos = new BlockPos(x, (int) mc.player.getY() - yOff, z);
-    //                 if (!mc.world.getBlockState(pos).getMaterial().isReplaceable()) return false;
-    //             }
-    //         }
-    //     }
-    //     return true;
-    // }
+        for (int x = minX; x <= maxX; x++) {
+            for (int z = minZ; z <= maxZ; z++) {
+                for (int yOff = 0; yOff <= depth; yOff++) {
+                    pos = new BlockPos(x, (int) mc.player.getY() - yOff, z);
+                    if (!mc.world.getBlockState(pos).getMaterial().isReplaceable()) return false;
+                }
+            }
+        }
+        return true;
+    } */
 
 }
