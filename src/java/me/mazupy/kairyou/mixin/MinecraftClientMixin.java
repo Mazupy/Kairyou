@@ -14,7 +14,13 @@ import me.mazupy.kairyou.utils.Utils;
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin {
 
-    @Redirect(method = "getWindowTitle", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;isModded()Z"))
+    @Redirect(
+        method = "getWindowTitle", 
+        at = @At( // isModded()
+            value = "INVOKE", 
+            target = "Lnet/minecraft/client/MinecraftClient;isModded()Z"
+        )
+    )
     private boolean isModded(MinecraftClient client) {
         return false;
     }

@@ -83,7 +83,8 @@ remapJar {
 
 // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task if it is present.
 // If you remove this task, sources will not be generated.
-// task sourcesJar(type: Jar, dependsOn: classes) {
-//     classifier = "sources"
-//     from sourceSets.main.allSource
-// }
+// It is useful for development but completely unnecessary for building
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = "sources"
+    from sourceSets.main.allSource
+}

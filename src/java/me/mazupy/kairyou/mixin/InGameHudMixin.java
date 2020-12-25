@@ -15,7 +15,7 @@ public abstract class InGameHudMixin {
     
     @Inject(
         method = "render", 
-        at = @At(
+        at = @At( // renderHotbar(float tickDelta, MatrixStack matrices);
             value = "INVOKE",
             target = "Lnet/minecraft/client/gui/hud/InGameHud;renderHotbar(FLnet/minecraft/client/util/math/MatrixStack;)V"
         )
