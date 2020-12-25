@@ -1,6 +1,13 @@
 # Kairyō client
 For Minecraft 1.16.4
 
+### Progress
+* Client: _1/10_
+* Modules: _3/121+_
+* Fixes: _72/∞_
+
+Expected the client to reach a mature state till September 2021
+
 ## Setup
 
 ### Prerequisites
@@ -22,7 +29,7 @@ gradle build
 ./gradle build
 ```
 ### Installing
-In the directory `build/libs/` you will find `kairyou-#.#.#.jar`, _ignore the `-all.jar`_.  
+In the directory `build/libs/` you will find `kairyou-#.#.#.jar`, _ignore any `-all.jar`, `-sources.jar` or `-dev.jar`_.  
 Install the fabric loader and put the `fabric-api-[...].jar` and the `kairyou-#.#.#.jar` into the mods folder.
 
 ## **Plea**
