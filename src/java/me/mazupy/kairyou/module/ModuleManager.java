@@ -20,7 +20,12 @@ public class ModuleManager implements Listenable {
     public static ModuleManager INSTANCE;
 
     private final Map<String, Module> modules = new HashMap<>();
-    private final List<Module> activeModules = new ArrayList<Module>();
+    private final List<Module> activeModules = new ArrayList<>();
+
+    // Module positions
+    public static final int MARGIN = 8;
+    public static final int MODULE_WIDTH = 57;
+    public static final int MODULE_HEIGHT = 12;
 
     public ModuleManager() {
         if (INSTANCE == null) INSTANCE = this;
@@ -52,6 +57,14 @@ public class ModuleManager implements Listenable {
         }
     });
 
+    public Module getModuleAt(int mX, int mY) {
+        for (Module module : getModules()) {
+            if (module.isAt(mX, mY)) return module;
+        }
+
+        return null;
+    }
+
     private void addModules() {
         addModule(new AutoSprint());
         addModule(new NoFall());
@@ -59,6 +72,10 @@ public class ModuleManager implements Listenable {
     }
 
     private void addModule(Module module) {
+        module.yOff = (MODULE_HEIGHT - 1) * module.getCategory().moduleCount++; // TODO: make more modular
+        module.w = MODULE_WIDTH;
+        module.h = MODULE_HEIGHT;
+
         modules.put(module.getName(), module);
     }
 

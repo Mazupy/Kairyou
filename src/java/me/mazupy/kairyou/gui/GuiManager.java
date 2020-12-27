@@ -7,8 +7,6 @@ import org.lwjgl.glfw.GLFW;
 
 import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.KeyEvent;
-import me.mazupy.kairyou.module.Module;
-import me.mazupy.kairyou.module.ModuleManager;
 import me.mazupy.kairyou.utils.Chat;
 import me.mazupy.kairyou.utils.Utils;
 
@@ -27,17 +25,13 @@ public class GuiManager implements Listenable {
     @EventHandler
     private final Listener<KeyEvent> onKey = new Listener<>(event -> {
         if (event.type != GLFW.GLFW_PRESS || Utils.notInGame()) return;
-        if (event.key == GLFW.GLFW_KEY_F6) { // FIXME: just testing
-            for (Module module : ModuleManager.INSTANCE.getModules()) module.toggle();
-        } else if (event.key == GLFW.GLFW_KEY_RIGHT_SHIFT || (event.key == GLFW.GLFW_KEY_ESCAPE && guiVisible)) { // TODO: Make modular
+
+        if (event.key == GLFW.GLFW_KEY_RIGHT_SHIFT || (event.key == GLFW.GLFW_KEY_ESCAPE && guiVisible)) { // TODO: Make modular
             guiVisible = !guiVisible;
 
             Kairyou.MC.openScreen(guiVisible ? new GuiScreen() : null);
 
             Chat.playerChat("GUI is now " + (guiVisible ? "" : "not ") + "visible.");
-        } else if (event.key == GLFW.GLFW_KEY_1) {
-            Module stepMod = ModuleManager.INSTANCE.getModule("Step");
-            if (stepMod != null) stepMod.toggle();
         }
     });
 

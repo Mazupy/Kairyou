@@ -1,13 +1,15 @@
 package me.mazupy.kairyou.gui;
 
+import me.zero.alpine.listener.Listenable;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
-import me.zero.alpine.listener.Listenable;
+import org.lwjgl.glfw.GLFW;
 
 import me.mazupy.kairyou.Kairyou;
+import me.mazupy.kairyou.module.Module;
+import me.mazupy.kairyou.module.ModuleManager;
 import me.mazupy.kairyou.rendering.ShapeRenderer;
-import me.mazupy.kairyou.utils.Chat;
 import me.mazupy.kairyou.utils.Utils;
 
 public class GuiScreen extends Screen implements Listenable {
@@ -33,7 +35,14 @@ public class GuiScreen extends Screen implements Listenable {
         final int mX = ShapeRenderer.reverseConvert(mouseX);
         final int mY = ShapeRenderer.reverseConvert(mouseY);
 
-        Chat.playerChat("x: " + mX + " | y: " + mY + " | button: " + button);
+        switch (button) { // TODO: make modular
+            case GLFW.GLFW_MOUSE_BUTTON_1:
+                Module mod = ModuleManager.INSTANCE.getModuleAt(mX, mY);
+                if (mod != null) mod.toggle();
+                break;
+            default:
+                // Nothing
+        }
 
         return true;
     }

@@ -2,6 +2,7 @@ package me.mazupy.kairyou.gui;
 
 import me.zero.alpine.listener.Listenable;
 
+import me.mazupy.kairyou.module.Category;
 import me.mazupy.kairyou.module.Module;
 import me.mazupy.kairyou.module.ModuleManager;
 import me.mazupy.kairyou.rendering.ShapeRenderer;
@@ -14,20 +15,21 @@ public class GuiRenderer implements Listenable {
     private static final Color DARK_GRAY = new Color(80);
     private static final Color DARK_BLUE = new Color(0, 0, 102);
 
+    private static final int TEXT_INSET = 3;
+
     public void render() {
         ShapeRenderer.updateConversion();
 
-        // Render modules
-        final int MARGIN = 8;
-        final int WIDTH = 60;
-        final int HEIGHT = 12;
-        int modX = MARGIN;
-        int modY = MARGIN;
+        // Render categories
+        for (Category c : Category.values()) {
+            ShapeRenderer.rect(c.x, c.y, ModuleManager.MODULE_WIDTH, ModuleManager.MODULE_HEIGHT, DARK_GRAY, GRAY);
+            ShapeRenderer.text(c.name(), c.x + TEXT_INSET, c.y + TEXT_INSET, WHITE);
+        }
 
+        // Render modules
         for (Module mod : ModuleManager.INSTANCE.getModules()) {
-            ShapeRenderer.rect(modX, modY, WIDTH, HEIGHT, mod.getActive() ? DARK_BLUE : GRAY, DARK_GRAY);
-            ShapeRenderer.text(mod.getName(), modX + 3, modY + 3, WHITE);
-            modY += HEIGHT - 1;
+            ShapeRenderer.rect(mod.getX(), mod.getY(), mod.w, mod.h, mod.getActive() ? DARK_BLUE : GRAY, DARK_GRAY);
+            ShapeRenderer.text(mod.getName(), mod.getX() + TEXT_INSET, mod.getY() + TEXT_INSET, WHITE);
         }
     }
     
