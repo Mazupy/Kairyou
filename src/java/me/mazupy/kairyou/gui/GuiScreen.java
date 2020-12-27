@@ -6,6 +6,8 @@ import net.minecraft.text.LiteralText;
 import me.zero.alpine.listener.Listenable;
 
 import me.mazupy.kairyou.Kairyou;
+import me.mazupy.kairyou.rendering.ShapeRenderer;
+import me.mazupy.kairyou.utils.Chat;
 import me.mazupy.kairyou.utils.Utils;
 
 public class GuiScreen extends Screen implements Listenable {
@@ -26,10 +28,15 @@ public class GuiScreen extends Screen implements Listenable {
         
     // }
 
-    // @Override
-    // public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        
-    // }
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        final int mX = ShapeRenderer.reverseConvert(mouseX);
+        final int mY = ShapeRenderer.reverseConvert(mouseY);
+
+        Chat.playerChat("x: " + mX + " | y: " + mY + " | button: " + button);
+
+        return true;
+    }
 
     // @Override
     // public boolean mouseReleased(double mouseX, double mouseY, int button) {
