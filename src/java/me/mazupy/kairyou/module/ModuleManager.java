@@ -53,10 +53,14 @@ public class ModuleManager implements Listenable {
 
     @EventHandler
     private final Listener<GameDisconnectedEvent> onGameDisconnect = new Listener<>(event -> {
+        deactivateAll();
+    });
+
+    public void deactivateAll() {
         for (int i = activeModules.size() - 1; i >= 0; i--) {
             activeModules.get(i).toggleActive();
         }
-    });
+    }
 
     public Module getModuleAt(int mX, int mY) {
         for (Module module : getModules()) {
@@ -71,6 +75,7 @@ public class ModuleManager implements Listenable {
         addModule(new NoFall());
         addModule(new Step());
         addModule(new Hud());
+        addModule(new FullBright());
     }
 
     private void addModule(Module module) {

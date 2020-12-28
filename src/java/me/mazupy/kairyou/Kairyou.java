@@ -24,12 +24,16 @@ public class Kairyou implements ClientModInitializer {
         // However, some things (like resources) may still be uninitialized.
         // Proceed with mild caution.
 
-        System.out.println("Client init");
+        System.out.println("Kairyou client v" + VERSION + " init");
 
         new ModuleManager();
         new GuiManager();
 
-        // Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
+        Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
+    }
+
+    private void stop() {
+        ModuleManager.INSTANCE.deactivateAll();
     }
 
     private static String getVersion() {
