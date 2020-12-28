@@ -7,7 +7,6 @@ import org.lwjgl.glfw.GLFW;
 
 import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.KeyEvent;
-import me.mazupy.kairyou.utils.Chat;
 import me.mazupy.kairyou.utils.Utils;
 
 public class GuiManager implements Listenable {
@@ -30,8 +29,6 @@ public class GuiManager implements Listenable {
             guiVisible = !guiVisible;
 
             Kairyou.MC.openScreen(guiVisible ? new GuiScreen() : null);
-
-            Chat.playerChat("GUI is now " + (guiVisible ? "" : "not ") + "visible.");
         }
     });
 

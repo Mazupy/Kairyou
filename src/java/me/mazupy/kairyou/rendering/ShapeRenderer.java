@@ -2,7 +2,6 @@ package me.mazupy.kairyou.rendering;
 
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
-
 import org.lwjgl.opengl.GL11;
 
 import me.mazupy.kairyou.Kairyou;

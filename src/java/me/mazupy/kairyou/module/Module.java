@@ -7,7 +7,6 @@ import me.zero.alpine.listener.Listenable;
 import net.minecraft.client.MinecraftClient;
 
 import me.mazupy.kairyou.Kairyou;
-import me.mazupy.kairyou.utils.Chat;
 
 public abstract class Module implements Listenable {
 
@@ -62,8 +61,6 @@ public abstract class Module implements Listenable {
             enabled = true;
         }
         active = !active;
-
-        Chat.playerChat(name + " is now " + enabled + " | " + active);
     }
 
     private Info getAnnotation() {
