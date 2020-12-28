@@ -4,7 +4,7 @@ For Minecraft 1.16.4
 ### Progress
 * Client: _2/10_
 * Modules: _4/121+_
-* Fixes: _96/∞_
+* Fixes: _97/∞_
 
 Expected the client to reach a mature state till September 2021
 

@@ -38,7 +38,7 @@ public class Kairyou implements ClientModInitializer {
             File modsFolder = new File("mods");
             String kairyouJarName = modsFolder.list((File dir, String name) -> name.startsWith("Kairyou-") && name.endsWith(".jar"))[0];
 
-            Pattern versionPattern = Pattern.compile("\\d(\\.\\d)+(-[A-z_]+)?(\\+[0-9A-z_]+)?"); // \d(\.\d)+(-[A-z_]+)?(\+[0-9A-z_]+)?
+            Pattern versionPattern = Pattern.compile("\\d+(\\.\\d+)+(-[A-z_]+)?(\\+[0-9A-z_]+)?"); // \d+(\.\d+)+(-[A-z_]+)?(\+[0-9A-z_]+)?
             Matcher matcher = versionPattern.matcher(kairyouJarName);
             if (matcher.find()) return matcher.group(0);
         } catch (Exception e) {}
