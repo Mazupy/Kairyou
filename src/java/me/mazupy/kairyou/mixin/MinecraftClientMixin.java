@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.EventProvider;
+import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.utils.Utils;
 
 @Mixin(MinecraftClient.class)
@@ -27,6 +28,9 @@ public abstract class MinecraftClientMixin {
 
     @Inject(method = "tick", at = @At("TAIL"))
     private void onTick(CallbackInfo info) {
+        // The conversion doesn't need to be updated every render call. Every tick should be enough
+        ShapeRenderer.updateConversion();
+
         if (Utils.notInGame()) return;
         Kairyou.EVENT_BUS.post(EventProvider.tickEvent());
     }

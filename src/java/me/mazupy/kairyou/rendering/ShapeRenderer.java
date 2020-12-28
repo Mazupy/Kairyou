@@ -18,7 +18,6 @@ public class ShapeRenderer {
 
     public static void updateConversion() {
         conversion_factor = Kairyou.MC.getWindow().getFramebufferHeight() / VIRTUAL_HEIGHT;
-        // Scaled resolutions | guiScale: WxH | 1: 1920x1080; 2: 960x540; 3: 640x360; 4: 480x270; auto (5?): 320x180
     }
 
     private static float convert(int n) { // Uses 1920x1080 scaled by height
@@ -29,11 +28,22 @@ public class ShapeRenderer {
         return MathUtils.round(n / conversion_factor);
     }
 
+    public static int maxY() {
+        return MathUtils.round(VIRTUAL_HEIGHT / Kairyou.MC.getWindow().getScaleFactor());
+    }
+
     public static void text(String text, int x, int y, Color color) {
         final float X = convert(x);
         final float Y = convert(y);
 
         Kairyou.MC.textRenderer.draw(new MatrixStack(), text, X, Y, color.asARGB());
+    }
+
+    public static void shadowedText(String text, int x, int y, Color color) {
+        final float X = convert(x);
+        final float Y = convert(y);
+
+        Kairyou.MC.textRenderer.drawWithShadow(new MatrixStack(), text, X, Y, color.asARGB());
     }
 
     public static void rect(int x, int y, int w, int h, Color fillColor, Color edgeColor) {

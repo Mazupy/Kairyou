@@ -3,8 +3,8 @@ For Minecraft 1.16.4
 
 ### Progress
 * Client: _2/10_
-* Modules: _3/121+_
-* Fixes: _87/∞_
+* Modules: _4/121+_
+* Fixes: _96/∞_
 
 Expected the client to reach a mature state till September 2021
 
@@ -29,7 +29,7 @@ gradle build
 ./gradle build
 ```
 ### Installing
-In the directory `build/libs/` you will find `kairyou-#.#.#.jar`, _ignore any `-all.jar`, `-sources.jar` or `-dev.jar`_.  
+In the directory `build/libs/` you will find `kairyou-#.#.#-alpha.jar`, _ignore any `-all.jar`, `-sources.jar` or `-dev.jar`_.  
 Install the fabric loader and put the `fabric-api-[...].jar` and the `kairyou-#.#.#.jar` into the mods folder.
 
 ## **Plea**

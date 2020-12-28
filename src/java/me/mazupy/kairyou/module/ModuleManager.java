@@ -14,6 +14,7 @@ import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.GameDisconnectedEvent;
 import me.mazupy.kairyou.event.GameJoinedEvent;
 import me.mazupy.kairyou.module.movement.*;
+import me.mazupy.kairyou.module.render.*;
 
 public class ModuleManager implements Listenable {
     
@@ -69,6 +70,7 @@ public class ModuleManager implements Listenable {
         addModule(new AutoSprint());
         addModule(new NoFall());
         addModule(new Step());
+        addModule(new Hud());
     }
 
     private void addModule(Module module) {
@@ -85,5 +87,9 @@ public class ModuleManager implements Listenable {
 
     public Collection<Module> getModules() {
         return modules.values();
+    }
+
+    public List<Module> getActiveModules() {
+        return activeModules;
     }
 }

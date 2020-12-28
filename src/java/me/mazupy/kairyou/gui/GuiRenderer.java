@@ -13,8 +13,6 @@ public class GuiRenderer implements Listenable {
     private static final int TEXT_INSET = 3;
 
     public void render() {
-        ShapeRenderer.updateConversion();
-
         // Render categories
         for (Category c : Category.values()) {
             ShapeRenderer.rect(c.x, c.y, ModuleManager.MODULE_WIDTH, ModuleManager.MODULE_HEIGHT, Color.DARK_GRAY, Color.GRAY);

@@ -36,7 +36,7 @@ public class EventProvider {
         return gameDisconnectedEvent;
     }
 
-    public static Render2DEvent render2DEvent(MatrixStack matrixStack, float tickDelta) { // TODO: unused
+    public static Render2DEvent render2DEvent(MatrixStack matrixStack, float tickDelta) {
         render2DEvent.matrixStack = matrixStack;
         render2DEvent.tickDelta = tickDelta;
         return render2DEvent;
