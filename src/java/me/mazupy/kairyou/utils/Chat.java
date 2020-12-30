@@ -4,7 +4,7 @@ import net.minecraft.text.LiteralText;
 
 import me.mazupy.kairyou.Kairyou;
 
-public class Chat {
+public abstract class Chat {
     
     public static void playerChat(String msg) {
         if (Utils.notInGame()) return;

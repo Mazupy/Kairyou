@@ -11,6 +11,7 @@ import net.minecraft.client.MinecraftClient;
 
 import me.mazupy.kairyou.gui.GuiManager;
 import me.mazupy.kairyou.module.ModuleManager;
+import me.mazupy.kairyou.rendering.OverlayProjector;
 
 public class Kairyou implements ClientModInitializer {
 
@@ -28,6 +29,8 @@ public class Kairyou implements ClientModInitializer {
 
         new ModuleManager();
         new GuiManager();
+
+        EVENT_BUS.subscribe(new OverlayProjector());
 
         Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
     }

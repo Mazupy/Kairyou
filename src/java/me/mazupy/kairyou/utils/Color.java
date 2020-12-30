@@ -6,7 +6,8 @@ public enum Color {
     GRAY(120),
     DARK_GRAY(80),
     BLACK(0),
-    DARK_BLUE(0, 0, 102);
+    DARK_BLUE(0, 0, 102),
+    BLUE(0, 0, 150);
 
     public int r, g, b, a = 255;
 

@@ -6,9 +6,9 @@ import net.minecraft.item.Items;
 
 import me.mazupy.kairyou.Kairyou;
 
-public class Utils {
+public abstract class Utils {
 
-    public static final int TPS = 20;
+    public static final int TPS = 20; // TODO: unused
     public static final double EPSILON = 1e-7;
     // 2 constants taken from https://minecraft.gamepedia.com/Entity#Motion_of_entities
     public static final double PLAYER_GRAVITY = 0.08;

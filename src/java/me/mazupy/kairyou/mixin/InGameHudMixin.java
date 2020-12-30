@@ -21,7 +21,7 @@ public abstract class InGameHudMixin {
         )
     )
     private void onRender(MatrixStack matrixStack, float tickDelta, CallbackInfo info) {
-        Kairyou.EVENT_BUS.post(EventProvider.render2DEvent(matrixStack, tickDelta));
+        Kairyou.EVENT_BUS.post(EventProvider.render2DEvent(tickDelta, matrixStack));
     }
 
 }
