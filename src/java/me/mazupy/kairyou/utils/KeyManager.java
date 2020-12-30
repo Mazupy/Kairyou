@@ -1,4 +1,4 @@
-package me.mazupy.kairyou.gui;
+package me.mazupy.kairyou.utils;
 
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listenable;
@@ -7,27 +7,19 @@ import org.lwjgl.glfw.GLFW;
 
 import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.KeyEvent;
-import me.mazupy.kairyou.utils.Utils;
+import me.mazupy.kairyou.gui.GuiManager;
 
-public class GuiManager implements Listenable {
+public class KeyManager implements Listenable {
 
-    public static boolean guiVisible = false;
-
-    public GuiManager() {
+    public KeyManager() {
         Kairyou.EVENT_BUS.subscribe(this);
     }
 
-    public static void toggleGui() {
-        guiVisible = !guiVisible;
-
-        Kairyou.MC.openScreen(guiVisible ? new GuiScreen() : null);
-    }
-    
     @EventHandler
     private final Listener<KeyEvent> onKey = new Listener<>(event -> {
         if (event.type != GLFW.GLFW_PRESS || Utils.notInGame()) return;
 
-        if (event.key == GLFW.GLFW_KEY_ESCAPE && guiVisible) GuiManager.toggleGui();
+        if (event.key == GLFW.GLFW_KEY_RIGHT_SHIFT) GuiManager.toggleGui(); // TODO: make modular
     });
-
+    
 }

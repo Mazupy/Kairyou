@@ -22,6 +22,10 @@ public class OverlayProjector implements Listenable {
      * If you know why/how, please tell me, thank you in advance!
      */
 
+    public OverlayProjector() {
+        Kairyou.EVENT_BUS.subscribe(this);
+    }
+
     private static float cameraYaw() {
         final float rawYaw = Kairyou.MC.gameRenderer.getCamera().getYaw();
         final float modYaw = Math.signum(rawYaw) * Math.abs(rawYaw) % 360;
