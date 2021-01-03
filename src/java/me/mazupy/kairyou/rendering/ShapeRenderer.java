@@ -7,13 +7,18 @@ import org.lwjgl.opengl.GL11;
 import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.utils.Color;
 import me.mazupy.kairyou.utils.MathUtils;
+import me.mazupy.kairyou.utils.Rectangle;
+import me.mazupy.kairyou.utils.Utils;
 
 public class ShapeRenderer { // TODO: clean up entire file
     
     private static final float VIRTUAL_HEIGHT = 1080f;
+    private static final int TEXT_INSET = 2;
     private static double conversion_factor = 1d;
     
     private static final MeshBuilder mb = new MeshBuilder();
+
+    public static int xOffset = 0, yOffset = 0;
 
     public static void updateConversion() {
         conversion_factor = Kairyou.MC.getWindow().getFramebufferHeight() / VIRTUAL_HEIGHT;
@@ -39,30 +44,36 @@ public class ShapeRenderer { // TODO: clean up entire file
         return MathUtils.round(VIRTUAL_HEIGHT / Kairyou.MC.getWindow().getScaleFactor());
     }
 
+	public static void text(String text, Rectangle dim, Color color) {
+        final int X = dim.x + TEXT_INSET;
+        final int Y = dim.y + (dim.h - Utils.height(text)) / 2 + TEXT_INSET;
+        text(text, X, Y, color);
+	}
+
     public static void text(String text, int x, int y, Color color) {
-        final float X = (float) convert(x);
-        final float Y = (float) convert(y);
+        final float X = (float) convert(x + xOffset);
+        final float Y = (float) convert(y + yOffset);
 
         Kairyou.MC.textRenderer.draw(new MatrixStack(), text, X, Y, color.asARGB());
     }
 
     public static void shadowedText(String text, int x, int y, Color color) {
-        final float X = (float) convert(x);
-        final float Y = (float) convert(y);
+        final float X = (float) convert(x + xOffset);
+        final float Y = (float) convert(y + yOffset);
 
         Kairyou.MC.textRenderer.drawWithShadow(new MatrixStack(), text, X, Y, color.asARGB());
     }
 
-    public static void rect(int x, int y, int w, int h, Color fillColor, Color edgeColor) {
-        quad(x, y, w, h, edgeColor);
-        quad(x + 1, y + 1, w - 2, h - 2, fillColor);
-    }
+	public static void rect(Rectangle dim, Color fillColor, Color edgeColor) {
+        quad(dim.x, dim.y, dim.w, dim.h, edgeColor);
+        quad(dim.x + 1, dim.y + 1, dim.w - 2, dim.h - 2, fillColor);
+	}
 
-    private static void quad(double x, double y, double w, double h, Color color) {
+    public static void quad(double x, double y, double w, double h, Color color) {
         mb.begin(GL11.GL_QUADS, VertexFormats.POSITION_COLOR);
 
-        final double X = convert(x);
-        final double Y = convert(y);
+        final double X = convert(x + xOffset);
+        final double Y = convert(y + yOffset);
         final double W = convert(w);
         final double H = convert(h);
 
@@ -97,10 +108,10 @@ public class ShapeRenderer { // TODO: clean up entire file
     public static void line(double x0, double y0, double x1, double y1, Color color) {
         mb.begin(GL11.GL_LINES, VertexFormats.POSITION_COLOR);
 
-        final double X0 = convert(x0);
-        final double Y0 = convert(y0);
-        final double X1 = convert(x1);
-        final double Y1 = convert(y1);
+        final double X0 = convert(x0 + xOffset);
+        final double Y0 = convert(y0 + yOffset);
+        final double X1 = convert(x1 + xOffset);
+        final double Y1 = convert(y1 + yOffset);
 
         mb.vertex(X0, Y0, 0).colorNext(color);
         mb.vertex(X1, Y1, 0).colorNext(color);

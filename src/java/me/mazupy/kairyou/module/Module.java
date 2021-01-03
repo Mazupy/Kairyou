@@ -20,28 +20,11 @@ public abstract class Module implements Listenable {
     private boolean active = false;
     private boolean enabled = false;
 
-    public int yOff, w, h;
-
     protected Module() {
         final Info annotation = getAnnotation();
         name = annotation.name();
         description = annotation.description();
         category = annotation.category();
-    }
-
-    public int getX() {
-        return getCategory().x;
-    }
-
-    public int getY() {
-        return getCategory().y + ModuleManager.MODULE_HEIGHT + yOff;
-    }
-
-    public boolean isAt(int mX, int mY) {
-        return mX >= getX() &&
-               mX <= getX() + w &&
-               mY >= getY() &&
-               mY <= getY() + h;
     }
 
     public void toggle() {

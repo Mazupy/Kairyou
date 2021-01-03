@@ -10,6 +10,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
 
 import me.mazupy.kairyou.gui.GuiManager;
+import me.mazupy.kairyou.gui.GuiScreen;
 import me.mazupy.kairyou.module.ModuleManager;
 import me.mazupy.kairyou.rendering.OverlayProjector;
 import me.mazupy.kairyou.utils.KeyManager;
@@ -32,6 +33,7 @@ public class Kairyou implements ClientModInitializer {
         new GuiManager();
         new OverlayProjector();
         new KeyManager();
+        new GuiScreen();
 
         Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
     }

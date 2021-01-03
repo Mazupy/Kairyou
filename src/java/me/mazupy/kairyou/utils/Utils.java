@@ -25,6 +25,14 @@ public abstract class Utils {
         return MC.player.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA;
     }
 
+    public static int width(String text) {
+        return MC.textRenderer.getWidth(text);
+    }
+
+    public static int height(String text) {
+        return MC.textRenderer.fontHeight;
+    }
+
     //! From old (broken) NoFall
     /* public static boolean hasSpaceBelow(int depth) {
         final float HALF_W = mc.player.getWidth() / 2;

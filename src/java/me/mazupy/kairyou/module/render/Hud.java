@@ -6,6 +6,7 @@ import me.zero.alpine.listener.Listener;
 import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.Render2DEvent;
 import me.mazupy.kairyou.gui.GuiManager;
+import me.mazupy.kairyou.gui.GuiScreen;
 import me.mazupy.kairyou.module.Category;
 import me.mazupy.kairyou.module.Module;
 import me.mazupy.kairyou.module.ModuleManager;
@@ -14,8 +15,6 @@ import me.mazupy.kairyou.utils.Color;
 
 @Module.Info(name = "HUD", description = "Shows HUD", category = Category.RENDER)
 public class Hud extends Module {
-
-    private static final int TEXT_YDIFF = 7;
     
     @EventHandler
     private final Listener<Render2DEvent> on2DRender = new Listener<>(event -> {
@@ -28,7 +27,8 @@ public class Hud extends Module {
     });
     
     private void textBottomLeft(String text, int index) {
-        ShapeRenderer.shadowedText(text, ModuleManager.MARGIN, ShapeRenderer.maxY() - ModuleManager.MARGIN - ++index * TEXT_YDIFF, Color.WHITE);
+        int y = ShapeRenderer.maxY() - GuiScreen.MARGIN - ++index * Kairyou.MC.textRenderer.fontHeight;
+        ShapeRenderer.shadowedText(text, GuiScreen.MARGIN, y, Color.TEXT);
     }
 
 }
