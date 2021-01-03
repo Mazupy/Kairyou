@@ -18,7 +18,10 @@ public class GuiManager implements Listenable {
 
     public static void toggleGui() {
         if (guiVisible) Kairyou.MC.currentScreen.onClose();
-        else Kairyou.MC.openScreen(GuiScreen.INSTANCE);
+        else {
+            GuiScreen.INSTANCE.setParent();
+            Kairyou.MC.openScreen(GuiScreen.INSTANCE);
+        }
         
         guiVisible = !guiVisible;
     }

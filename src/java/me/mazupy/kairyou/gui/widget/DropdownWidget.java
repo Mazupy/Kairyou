@@ -30,6 +30,8 @@ public class DropdownWidget extends Widget {
     @Override
     public void render() {
         super.render();
+        
+        // Dropdown arrow with background
         final int QY = dim.y + 1;
         final int QH = dim.h - 2;
         final int QX = dim.x + dim.w - QH - 1;

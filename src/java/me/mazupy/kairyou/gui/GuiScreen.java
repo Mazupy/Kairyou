@@ -28,12 +28,12 @@ public class GuiScreen extends Screen implements Listenable {
     public static final int MODULE_WIDTH = 57;
     public static final int MODULE_HEIGHT = 11;
 
-    private final Screen parentScreen;
     private final Map<String, Widget> widgets = new HashMap<>();
+
+    private Screen parentScreen;
 
     public GuiScreen() {
         super(LiteralText.EMPTY);
-        parentScreen = Kairyou.MC.currentScreen;
         Kairyou.EVENT_BUS.subscribe(this);
 
         // Add category dropdowns
@@ -53,6 +53,10 @@ public class GuiScreen extends Screen implements Listenable {
         }
 
         INSTANCE = this;
+    }
+
+    public void setParent() {
+        parentScreen = Kairyou.MC.currentScreen;
     }
 
     // @Override
