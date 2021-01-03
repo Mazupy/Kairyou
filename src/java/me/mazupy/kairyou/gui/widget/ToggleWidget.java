@@ -19,8 +19,8 @@ public class ToggleWidget extends Widget {
 
     @Override
     public boolean tryClick(int mX, int mY, int button) {
-        boolean clicked = super.tryClick(mX, mY, button);
-        if (clicked && button == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
+        boolean clicked = super.tryClick(mX, mY, button) && button == GLFW.GLFW_MOUSE_BUTTON_LEFT;
+        if (clicked) {
             toggled = !toggled;
             action.run();
         }

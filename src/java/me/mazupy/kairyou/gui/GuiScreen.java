@@ -3,7 +3,6 @@ package me.mazupy.kairyou.gui;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.zero.alpine.listener.Listenable;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.util.math.MatrixStack;
@@ -19,7 +18,7 @@ import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.utils.Rectangle;
 import me.mazupy.kairyou.utils.Utils;
 
-public class GuiScreen extends Screen implements Listenable {
+public class GuiScreen extends Screen {
 
     public static GuiScreen INSTANCE;
 
@@ -34,7 +33,6 @@ public class GuiScreen extends Screen implements Listenable {
 
     public GuiScreen() {
         super(LiteralText.EMPTY);
-        Kairyou.EVENT_BUS.subscribe(this);
 
         // Add category dropdowns
         int nextX = MARGIN;
@@ -112,9 +110,7 @@ public class GuiScreen extends Screen implements Listenable {
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         if (Utils.notInGame()) renderBackground(matrices);
 
-        for (Widget w : widgets.values()) {
-            w.render();
-        }
+        for (Widget w : widgets.values()) w.render();
     }
 
     @Override
@@ -124,7 +120,6 @@ public class GuiScreen extends Screen implements Listenable {
 
     @Override
     public void onClose() {
-        Kairyou.EVENT_BUS.unsubscribe(this);
         Kairyou.MC.openScreen(parentScreen);
     }
 
@@ -134,7 +129,7 @@ public class GuiScreen extends Screen implements Listenable {
     }
 
     private void playClickSound() {
-        Kairyou.MC.getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+        Kairyou.MC.getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1f));
     }
 
 }
