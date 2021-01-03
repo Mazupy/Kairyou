@@ -17,7 +17,7 @@ public class KeyManager implements Listenable {
 
     @EventHandler
     private final Listener<KeyEvent> onKey = new Listener<>(event -> {
-        if (event.type != GLFW.GLFW_PRESS || Utils.notInGame()) return;
+        if (event.type != GLFW.GLFW_PRESS) return;
 
         if (event.key == GLFW.GLFW_KEY_RIGHT_SHIFT) GuiManager.toggleGui(); // TODO: make modular
     });

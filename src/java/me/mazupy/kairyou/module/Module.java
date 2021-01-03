@@ -7,6 +7,7 @@ import me.zero.alpine.listener.Listenable;
 import net.minecraft.client.MinecraftClient;
 
 import me.mazupy.kairyou.Kairyou;
+import me.mazupy.kairyou.utils.Utils;
 
 public abstract class Module implements Listenable {
 
@@ -45,7 +46,8 @@ public abstract class Module implements Listenable {
 
     public void toggle() {
         enabled = !enabled;
-        toggleActive();
+        // Only apply toggle when in game. Yes, it's not not in game
+        if (!Utils.notInGame()) toggleActive();
     }
 
     public void toggleActive() {
@@ -85,10 +87,6 @@ public abstract class Module implements Listenable {
 
     public Category getCategory() {
         return category;
-    }
-
-    public boolean getActive() {
-        return active;
     }
 
     public boolean getEnabled() {

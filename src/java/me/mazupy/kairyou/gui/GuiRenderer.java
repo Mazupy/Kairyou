@@ -21,7 +21,7 @@ public class GuiRenderer implements Listenable {
 
         // Render modules
         for (Module mod : ModuleManager.INSTANCE.getModules()) {
-            final Color innerColor = mod.getActive() ? Color.DARK_BLUE : Color.GRAY;
+            final Color innerColor = mod.getEnabled() ? Color.DARK_BLUE : Color.GRAY;
 
             ShapeRenderer.rect(mod.getX(), mod.getY(), mod.w, mod.h, innerColor, Color.DARK_GRAY);
             ShapeRenderer.text(mod.getName(), mod.getX() + TEXT_INSET, mod.getY() + TEXT_INSET, Color.WHITE);

@@ -7,7 +7,6 @@ import org.lwjgl.glfw.GLFW;
 
 import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.KeyEvent;
-import me.mazupy.kairyou.utils.Utils;
 
 public class GuiManager implements Listenable {
 
@@ -18,14 +17,15 @@ public class GuiManager implements Listenable {
     }
 
     public static void toggleGui() {
+        if (guiVisible) Kairyou.MC.currentScreen.onClose();
+        else Kairyou.MC.openScreen(new GuiScreen());
+        
         guiVisible = !guiVisible;
-
-        Kairyou.MC.openScreen(guiVisible ? new GuiScreen() : null);
     }
     
     @EventHandler
     private final Listener<KeyEvent> onKey = new Listener<>(event -> {
-        if (event.type != GLFW.GLFW_PRESS || Utils.notInGame()) return;
+        if (event.type != GLFW.GLFW_PRESS) return;
 
         if (event.key == GLFW.GLFW_KEY_ESCAPE && guiVisible) GuiManager.toggleGui();
     });

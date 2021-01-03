@@ -15,9 +15,11 @@ import me.mazupy.kairyou.utils.Utils;
 public class GuiScreen extends Screen implements Listenable {
 
     private final GuiRenderer RENDERER = new GuiRenderer();
+    private final Screen parentScreen;
 
     public GuiScreen() {
         super(LiteralText.EMPTY);
+        parentScreen = Kairyou.MC.currentScreen;
     }
 
     @Override
@@ -83,11 +85,6 @@ public class GuiScreen extends Screen implements Listenable {
         RENDERER.render();
     }
 
-    // @Override
-    // public void resize(MinecraftClient client, int width, int height) {
-        
-    // }
-
     @Override
     public boolean shouldCloseOnEsc() { // GuiManager already handles esc
         return false;
@@ -96,7 +93,7 @@ public class GuiScreen extends Screen implements Listenable {
     @Override
     public void onClose() {
         Kairyou.EVENT_BUS.unsubscribe(this);
-        super.onClose();
+        Kairyou.MC.openScreen(parentScreen);
     }
 
     @Override
