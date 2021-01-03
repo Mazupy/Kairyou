@@ -27,11 +27,9 @@ public class OverlayProjector implements Listenable {
     }
 
     private static float cameraYaw() {
+        final float OFFSET = 180;
         final float rawYaw = Kairyou.MC.gameRenderer.getCamera().getYaw();
-        final float modYaw = Math.signum(rawYaw) * Math.abs(rawYaw) % 360;
-        if (modYaw > 180) return modYaw - 360;
-        if (modYaw <= -180) return modYaw + 360;
-        return modYaw;
+        return ((rawYaw + OFFSET) % 360 + 360) % 360 - OFFSET;
     }
 
     // TODO: clean up this mess when you don't have to trial and error OpenGL while figuring out projection math for over 26 hours

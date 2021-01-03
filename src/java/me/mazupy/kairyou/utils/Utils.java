@@ -1,10 +1,9 @@
 package me.mazupy.kairyou.utils;
 
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Items;
 
-import me.mazupy.kairyou.Kairyou;
+import static me.mazupy.kairyou.Kairyou.*;
 
 public abstract class Utils {
 
@@ -14,18 +13,16 @@ public abstract class Utils {
     public static final double PLAYER_GRAVITY = 0.08;
     public static final double PLAYER_DRAG = 0.02;
 
-    private static final MinecraftClient mc = Kairyou.MC;
-
     public static boolean notInGame() {
-        return mc.world == null || mc.player == null;
+        return MC.world == null || MC.player == null;
     }
 
     public static boolean isUsingElytra() {
-        return hasElyraEquipped() && mc.options.keyJump.isPressed() || mc.player.isFallFlying();
+        return hasElyraEquipped() && MC.options.keyJump.isPressed() || MC.player.isFallFlying();
     }
 
     public static boolean hasElyraEquipped() {
-        return mc.player.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA;
+        return MC.player.getEquippedStack(EquipmentSlot.CHEST).getItem() == Items.ELYTRA;
     }
 
     //! From old (broken) NoFall
