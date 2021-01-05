@@ -7,7 +7,7 @@ import me.mazupy.kairyou.setting.DoubleSetting;
 @Module.Info(name = "FullBright", description = "Increases block light", category = Category.RENDER)
 public class FullBright extends Module {
 
-    private DoubleSetting fullBrightGamma = new DoubleSetting("Gamma", 16d, 0d, 16d);
+    private DoubleSetting fullBrightGamma = new DoubleSetting("Gamma", 16, 0, 16);
     private double previousGamma;
 
     public FullBright() {
