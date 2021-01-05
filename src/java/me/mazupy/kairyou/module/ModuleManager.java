@@ -13,6 +13,7 @@ import me.zero.alpine.listener.Listener;
 import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.GameDisconnectedEvent;
 import me.mazupy.kairyou.event.GameJoinedEvent;
+import me.mazupy.kairyou.event.PlayerRespawnEvent;
 import me.mazupy.kairyou.module.movement.*;
 import me.mazupy.kairyou.module.render.*;
 
@@ -44,6 +45,11 @@ public class ModuleManager implements Listenable {
         for (Module module : getModules()) {
             if (module.getEnabled()) module.toggleActive();
         }
+    });
+
+    @EventHandler
+    private final Listener<PlayerRespawnEvent> onPlayerRespawn = new Listener<>(event -> {
+        for (Module module : activeModules) module.restart();
     });
 
     @EventHandler

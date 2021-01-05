@@ -18,22 +18,31 @@ public abstract class Widget {
     public Widget(String label, Rectangle dim) {
         this.label = label;
         this.dim = dim;
-	}
+    }
 
-    public boolean tryClick(int mX, int mY, int button) {
+    public int getHeight() {
+        return dim.h;
+    }
+    
+    public int correctY(int y) {
+        dim.y = y;
+        return dim.y + dim.h;
+    }
+
+    public boolean tryClick(double mX, double mY, int button) {
         return dim.isAt(mX, mY);
     }
 
-    public boolean tryClickChildren(List<Widget> children, int mX, int mY, int button) {
-        final int X = mX - dim.x;
-        final int Y = mY - dim.y;
+    public boolean tryClickChildren(List<Widget> children, double mX, double mY, int button) {
+        final double X = mX - dim.x;
+        final double Y = mY - dim.y;
         for (Widget w : children) {
             if (w.tryClick(X, Y, button)) return true;
         }
         return false;
     }
 
-	public void render() {
+    public void render() {
         ShapeRenderer.rect(dim, Color.WIDGET, Color.OUTLINE);
         ShapeRenderer.text(label, dim, Color.TEXT);
     }

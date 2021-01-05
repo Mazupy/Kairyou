@@ -13,6 +13,7 @@ public class EventProvider {
     private static final GameDisconnectedEvent gameDisconnectedEvent = new GameDisconnectedEvent();
     private static final Render2DEvent render2DEvent = new Render2DEvent();
     private static final WorldRenderEvent worldRenderEvent = new WorldRenderEvent();
+    private static final PlayerRespawnEvent playerRespawnEvent = new PlayerRespawnEvent();
 
     public static KeyEvent keyEvent(int key, int type) {
         keyEvent.key = key;
@@ -48,5 +49,9 @@ public class EventProvider {
         worldRenderEvent.tickDelta = tickDelta;
         worldRenderEvent.matrix = matrix;
         return worldRenderEvent;
+    }
+
+    public static PlayerRespawnEvent playerRespawnEvent() {
+        return playerRespawnEvent;
     }
 }

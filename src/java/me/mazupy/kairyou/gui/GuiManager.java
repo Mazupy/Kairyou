@@ -17,13 +17,16 @@ public class GuiManager implements Listenable {
     }
 
     public static void toggleGui() {
-        if (guiVisible) Kairyou.MC.currentScreen.onClose();
-        else {
+        if (guiVisible) {
+            if (Kairyou.MC.currentScreen instanceof GuiScreen) {
+                GuiScreen.INSTANCE.onClose();
+                guiVisible = false;
+            } else Kairyou.MC.currentScreen.onClose();
+        } else {
             GuiScreen.INSTANCE.setParent();
             Kairyou.MC.openScreen(GuiScreen.INSTANCE);
+            guiVisible = true;
         }
-        
-        guiVisible = !guiVisible;
     }
     
     @EventHandler

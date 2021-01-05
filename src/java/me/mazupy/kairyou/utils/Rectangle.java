@@ -11,11 +11,7 @@ public class Rectangle {
         this.h = h;
     }
 
-    public Rectangle copy() {
-        return new Rectangle(x, y, w, h);
-    }
-
-    public boolean isAt(int mX, int mY) {
+    public boolean isAt(double mX, double mY) {
         return mX >= x &&
                mX <= x + w &&
                mY >= y &&

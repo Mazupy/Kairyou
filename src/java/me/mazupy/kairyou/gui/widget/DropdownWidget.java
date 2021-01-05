@@ -15,12 +15,12 @@ public class DropdownWidget extends Widget {
 
     protected boolean dropped = false;
 
-	public DropdownWidget(String label, Rectangle dim) {
+    public DropdownWidget(String label, Rectangle dim) {
         super(label, dim);
     }
 
     @Override
-    public boolean tryClick(int mX, int mY, int button) {
+    public boolean tryClick(double mX, double mY, int button) {
         if (dropped && tryClickChildren(childWidgets, mX, mY, button)) return true;
         boolean clicked = super.tryClick(mX, mY, button) && button == GLFW.GLFW_MOUSE_BUTTON_LEFT;
         if (clicked) dropped = !dropped;

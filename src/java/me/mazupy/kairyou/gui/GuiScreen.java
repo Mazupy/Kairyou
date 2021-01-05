@@ -4,9 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 
 import me.mazupy.kairyou.Kairyou;
@@ -47,7 +45,14 @@ public class GuiScreen extends Screen {
             DropdownWidget parentWidget = (DropdownWidget) widgets.get(mod.getCategory().name());
             int y = (parentWidget.getChildrenCount() + 1) * MODULE_HEIGHT;
             Rectangle dim = new Rectangle(0, y, MODULE_WIDTH, MODULE_HEIGHT);
-            parentWidget.addWidget(new ToggleWidget(mod.getName(), dim, () -> mod.toggle()));
+            parentWidget.addWidget(
+                new ModuleWidget(
+                    mod.getName(), 
+                    dim, 
+                    () -> mod.toggle(), 
+                    () -> Kairyou.MC.openScreen(new ModuleSettingsScreen(this, mod))
+                )
+            );
         }
 
         INSTANCE = this;
@@ -64,12 +69,12 @@ public class GuiScreen extends Screen {
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        final int mX = ShapeRenderer.reverseConvert(mouseX);
-        final int mY = ShapeRenderer.reverseConvert(mouseY);
+        final double mX = ShapeRenderer.reverseConvert(mouseX);
+        final double mY = ShapeRenderer.reverseConvert(mouseY);
 
         for (Widget w : widgets.values()) {
             if (w.tryClick(mX, mY, button)) {
-                playClickSound();
+                Utils.playClickSound();
                 break;
             }
         }
@@ -126,10 +131,6 @@ public class GuiScreen extends Screen {
     @Override
     public boolean isPauseScreen() {
         return true;
-    }
-
-    private void playClickSound() {
-        Kairyou.MC.getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1f));
     }
 
 }

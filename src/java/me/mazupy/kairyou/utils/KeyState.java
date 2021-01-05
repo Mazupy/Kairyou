@@ -4,7 +4,7 @@ import org.lwjgl.glfw.GLFW;
 
 public abstract class KeyState { // TODO: unused
     
-    private static final boolean[] keyStates = new boolean[348]; // 348 is the hightest GLFW key code
+    private static final boolean[] keyStates = new boolean[maxKeyID()];
     
     public static void setPressed(int keyCode, boolean pressed) {
         if (validKey(keyCode)) keyStates[keyCode] = pressed;
@@ -16,6 +16,10 @@ public abstract class KeyState { // TODO: unused
 
     private static boolean validKey(int keyCode) {
         return keyCode > 0 && keyCode < keyStates.length && keyCode != GLFW.GLFW_KEY_UNKNOWN;
+    }
+
+    public static int maxKeyID() { // 348 is the hightest GLFW key code
+        return 348;
     }
 
 }

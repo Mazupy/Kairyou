@@ -2,11 +2,14 @@ package me.mazupy.kairyou.module;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
+import java.util.List;
 
 import me.zero.alpine.listener.Listenable;
 import net.minecraft.client.MinecraftClient;
 
 import me.mazupy.kairyou.Kairyou;
+import me.mazupy.kairyou.setting.Setting;
 import me.mazupy.kairyou.utils.Utils;
 
 public abstract class Module implements Listenable {
@@ -16,6 +19,7 @@ public abstract class Module implements Listenable {
     protected final String name;
     protected final String description;
     protected final Category category;
+    protected final List<Setting<?>> settings;
 
     private boolean active = false;
     private boolean enabled = false;
@@ -25,6 +29,14 @@ public abstract class Module implements Listenable {
         name = annotation.name();
         description = annotation.description();
         category = annotation.category();
+        settings = new ArrayList<>(1);
+    }
+
+    public void restart() {
+        if (enabled) {
+            onDeactivate();
+            onActivate();
+        }
     }
 
     public void toggle() {
@@ -74,6 +86,10 @@ public abstract class Module implements Listenable {
 
     public boolean getEnabled() {
         return enabled;
+    }
+
+    public List<Setting<?>> getSettings() {
+        return settings;
     }
 
     protected void onActivate() {}

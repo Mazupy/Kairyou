@@ -11,7 +11,7 @@ public abstract class MathUtils {
         return (int) Math.round(v);
     }
 
-	public static float tan(double radians) {
+    public static float tan(double radians) {
         return MathHelper.sin((float) radians) / MathHelper.cos((float) radians);
     }
     
@@ -26,5 +26,22 @@ public abstract class MathUtils {
     public static double length(double x, double z) {
         return MathHelper.sqrt(sq(x) + sq(z));
     }
+
+    public static int clamp(int v, int min, int max) {
+        return Math.max(min, Math.min(max, v));
+    }
+
+    public static double clamp(double v, double min, double max) {
+        return Math.max(min, Math.min(max, v));
+    }
+
+    public static double invLerp(double v, double min, double max) {
+        return clamp((v - min) / (max - min), 0, 1);
+    }
+
+    // TODO: unused
+    // public static double roundTo(double value, double roundTo) {
+    //     return Math.round(value / roundTo) * roundTo;
+    // }
 
 }

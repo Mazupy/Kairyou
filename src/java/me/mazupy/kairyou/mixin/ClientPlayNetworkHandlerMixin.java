@@ -23,4 +23,9 @@ public abstract class ClientPlayNetworkHandlerMixin {
         Kairyou.EVENT_BUS.post(EventProvider.gameJoinedEvent());
     }
 
+    @Inject(method = "onPlayerRespawn", at = @At("TAIL"))
+    private void onPlayerRespawn(CallbackInfo info) {
+        Kairyou.EVENT_BUS.post(EventProvider.playerRespawnEvent());
+    }
+
 }

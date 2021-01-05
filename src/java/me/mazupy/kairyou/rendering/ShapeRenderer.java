@@ -28,8 +28,8 @@ public class ShapeRenderer { // TODO: clean up entire file
         return n * conversion_factor;
     }
 
-    public static int reverseConvert(double n) {
-        return MathUtils.round(n / conversion_factor);
+    public static double reverseConvert(double n) {
+        return n / conversion_factor;
     }
 
     private static float aspectRatio() {
@@ -44,11 +44,11 @@ public class ShapeRenderer { // TODO: clean up entire file
         return MathUtils.round(VIRTUAL_HEIGHT / Kairyou.MC.getWindow().getScaleFactor());
     }
 
-	public static void text(String text, Rectangle dim, Color color) {
+    public static void text(String text, Rectangle dim, Color color) {
         final int X = dim.x + TEXT_INSET;
         final int Y = dim.y + (dim.h - Utils.height(text)) / 2 + TEXT_INSET;
         text(text, X, Y, color);
-	}
+    }
 
     public static void text(String text, int x, int y, Color color) {
         final float X = (float) convert(x + xOffset);
@@ -64,10 +64,34 @@ public class ShapeRenderer { // TODO: clean up entire file
         Kairyou.MC.textRenderer.drawWithShadow(new MatrixStack(), text, X, Y, color.asARGB());
     }
 
-	public static void rect(Rectangle dim, Color fillColor, Color edgeColor) {
+    public static void textAlign(String text, int x, int y, Color color, Alignment align, boolean shadowed) {
+        int w = -Utils.width(text);
+        int h = -Utils.height(text);
+        int wInset = TEXT_INSET;
+        int hInset = TEXT_INSET;
+
+        if (align == Alignment.TOP_MID || align == Alignment.CENTER || align == Alignment.BOTTOM_MID) {
+            w /= 2;
+            wInset = 0;
+        } else if (align == Alignment.TOP_RIGHT || align == Alignment.RIGHT || align == Alignment.BOTTOM_RIGHT) wInset *= -1;
+        else w = 0;
+
+        if (align == Alignment.LEFT || align == Alignment.CENTER || align == Alignment.RIGHT) {
+            h /= 2;
+            hInset = 0;
+        } else if (align == Alignment.BOTTOM_LEFT || align == Alignment.BOTTOM_MID || align == Alignment.BOTTOM_RIGHT) hInset *= -1;
+        else h = 0;
+
+        final int X = x + w + wInset;
+        final int Y = y + h + hInset;
+        if (shadowed) shadowedText(text, X, Y, color);
+        else text(text, X, Y, color);
+    }
+
+    public static void rect(Rectangle dim, Color fillColor, Color edgeColor) {
         quad(dim.x, dim.y, dim.w, dim.h, edgeColor);
         quad(dim.x + 1, dim.y + 1, dim.w - 2, dim.h - 2, fillColor);
-	}
+    }
 
     public static void quad(double x, double y, double w, double h, Color color) {
         mb.begin(GL11.GL_QUADS, VertexFormats.POSITION_COLOR);
@@ -117,6 +141,18 @@ public class ShapeRenderer { // TODO: clean up entire file
         mb.vertex(X1, Y1, 0).colorNext(color);
 
         mb.end(false);
+    }
+
+    public enum Alignment {
+        TOP_LEFT,
+        TOP_MID,
+        TOP_RIGHT,
+        LEFT,
+        CENTER,
+        RIGHT,
+        BOTTOM_LEFT,
+        BOTTOM_MID,
+        BOTTOM_RIGHT
     }
 
 }
