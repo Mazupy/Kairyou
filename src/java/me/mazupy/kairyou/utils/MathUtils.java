@@ -11,6 +11,10 @@ public abstract class MathUtils {
         return (int) Math.round(v);
     }
 
+    public static int ceil(double v) {
+        return (int) Math.ceil(v);
+    }
+
     public static float tan(double radians) {
         return MathHelper.sin((float) radians) / MathHelper.cos((float) radians);
     }
@@ -23,8 +27,12 @@ public abstract class MathUtils {
         return v * v;
     }
 
+    public static double cube(double v) {
+        return v * v * v;
+    }
+
     public static double length(double x, double z) {
-        return MathHelper.sqrt(sq(x) + sq(z));
+        return Math.sqrt(sq(x) + sq(z));
     }
 
     public static int clamp(int v, int min, int max) {

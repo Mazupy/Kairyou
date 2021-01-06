@@ -13,7 +13,7 @@ public class DropdownWidget extends Widget {
 
     protected final List<Widget> childWidgets = new ArrayList<>();
 
-    protected boolean dropped = false;
+    protected boolean dropped = true;
 
     public DropdownWidget(String label, Rectangle dim) {
         super(label, dim);

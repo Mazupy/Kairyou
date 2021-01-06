@@ -7,7 +7,7 @@ import org.lwjgl.glfw.GLFW;
 
 import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.KeyEvent;
-import me.mazupy.kairyou.gui.GuiManager;
+import me.mazupy.kairyou.gui.GuiScreen;
 
 public class KeyManager implements Listenable {
 
@@ -19,7 +19,7 @@ public class KeyManager implements Listenable {
     private final Listener<KeyEvent> onKey = new Listener<>(event -> {
         if (event.type != GLFW.GLFW_PRESS) return;
 
-        if (event.key == GLFW.GLFW_KEY_RIGHT_SHIFT) GuiManager.toggleGui(); // TODO: make modular
+        if (event.key == GLFW.GLFW_KEY_RIGHT_SHIFT) GuiScreen.toggleGui(); // TODO: make modular
     });
     
 }

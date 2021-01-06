@@ -93,6 +93,10 @@ public class ShapeRenderer { // TODO: clean up entire file
         quad(dim.x + 1, dim.y + 1, dim.w - 2, dim.h - 2, fillColor);
     }
 
+    public static void background(Color color) {
+        quad(0, 0, maxX(), maxY(), color);
+    }
+
     public static void quad(double x, double y, double w, double h, Color color) {
         mb.begin(GL11.GL_QUADS, VertexFormats.POSITION_COLOR);
 

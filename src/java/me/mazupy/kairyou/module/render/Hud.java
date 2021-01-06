@@ -5,7 +5,6 @@ import me.zero.alpine.listener.Listener;
 
 import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.Render2DEvent;
-import me.mazupy.kairyou.gui.GuiManager;
 import me.mazupy.kairyou.gui.GuiScreen;
 import me.mazupy.kairyou.module.Category;
 import me.mazupy.kairyou.module.Module;
@@ -19,7 +18,7 @@ public class Hud extends Module {
     
     @EventHandler
     private final Listener<Render2DEvent> on2DRender = new Listener<>(event -> {
-        if (Kairyou.MC.options.debugEnabled || GuiManager.guiVisible) return;
+        if (Kairyou.MC.options.debugEnabled || GuiScreen.guiVisible) return;
 
         textBottomLeft("Kairyou v" + Kairyou.VERSION, 0);
         final int activeModules = ModuleManager.INSTANCE.getActiveModules().size();

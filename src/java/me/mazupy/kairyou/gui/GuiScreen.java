@@ -19,6 +19,7 @@ import me.mazupy.kairyou.utils.Utils;
 public class GuiScreen extends Screen {
 
     public static GuiScreen INSTANCE;
+    public static boolean guiVisible = false;
 
     // Module positions
     public static final int MARGIN = 8;
@@ -58,8 +59,15 @@ public class GuiScreen extends Screen {
         INSTANCE = this;
     }
 
-    public void setParent() {
+    public static void toggleGui() {
+        if (guiVisible) Kairyou.MC.currentScreen.onClose(); // Closes child screens first
+        else INSTANCE.open();
+    }
+
+    public void open() {
         parentScreen = Kairyou.MC.currentScreen;
+        Kairyou.MC.openScreen(INSTANCE);
+        guiVisible = true;
     }
 
     // @Override
@@ -119,13 +127,14 @@ public class GuiScreen extends Screen {
     }
 
     @Override
-    public boolean shouldCloseOnEsc() { // GuiManager already handles esc
-        return false;
+    public boolean shouldCloseOnEsc() {
+        return true;
     }
 
     @Override
     public void onClose() {
         Kairyou.MC.openScreen(parentScreen);
+        guiVisible = false;
     }
 
     @Override

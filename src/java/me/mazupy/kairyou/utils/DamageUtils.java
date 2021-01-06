@@ -5,7 +5,6 @@ import net.minecraft.entity.DamageUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.WitchEntity;
-import net.minecraft.util.math.MathHelper;
 
 
 import static net.minecraft.entity.attribute.EntityAttributes.*;
@@ -18,7 +17,7 @@ public abstract class DamageUtils {
 
     public static float computeFallDamage(LivingEntity entity, float fallDistance, float damageMultiplier) {
         int jumpBoost = Utils.getPotionStrength(MC.player, JUMP_BOOST);
-        int fallDamage = MathHelper.ceil((fallDistance - FALL_TOLERANCE - jumpBoost) * damageMultiplier);
+        int fallDamage = MathUtils.ceil((fallDistance - FALL_TOLERANCE - jumpBoost) * damageMultiplier);
         return fallDamage > 0 ? appliedDamage(entity, fallDamage, DamageSource.FALL) : 0;
     }
 

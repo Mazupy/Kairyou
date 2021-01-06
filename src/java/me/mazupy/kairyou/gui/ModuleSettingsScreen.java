@@ -12,6 +12,7 @@ import me.mazupy.kairyou.gui.widget.*;
 import me.mazupy.kairyou.module.Module;
 import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.setting.Setting;
+import me.mazupy.kairyou.utils.Color;
 import me.mazupy.kairyou.utils.Rectangle;
 import me.mazupy.kairyou.utils.Utils;
 
@@ -92,7 +93,8 @@ public class ModuleSettingsScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        if (Utils.notInGame()) renderBackground(matrices);
+        GuiScreen.INSTANCE.render(matrices, mouseX, mouseY, delta);
+        ShapeRenderer.background(Color.BACKGROUND);
 
         for (Widget w : widgets) w.render();
     }
