@@ -2,6 +2,7 @@ package me.mazupy.kairyou.gui.widget;
 
 import org.lwjgl.glfw.GLFW;
 
+import me.mazupy.kairyou.gui.ModuleSettingsScreen;
 import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.setting.BooleanSetting;
 import me.mazupy.kairyou.utils.Color;
@@ -9,7 +10,6 @@ import me.mazupy.kairyou.utils.Rectangle;
 
 public class TickBoxWidget extends Widget {
 
-    private final int BOX_MARGIN = 2;
     private final BooleanSetting setting;
     private final Rectangle checkBox;
 
@@ -17,13 +17,12 @@ public class TickBoxWidget extends Widget {
         super(setting.label, dim);
         this.setting = setting;
 
-        int h = dim.h - 2 * BOX_MARGIN;
-        checkBox = new Rectangle(dim.x + dim.w - BOX_MARGIN - h, 0, h, h);
+        checkBox = ModuleSettingsScreen.settingBox(dim, 0, 1, false);
     }
     
     @Override
     public int correctY(int y) {
-        checkBox.y = y + BOX_MARGIN;
+        checkBox.y = y + ModuleSettingsScreen.BOX_MARGIN;
         return super.correctY(y);
     }
     

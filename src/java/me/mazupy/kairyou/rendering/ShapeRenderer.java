@@ -45,9 +45,67 @@ public class ShapeRenderer { // TODO: clean up entire file
     }
 
     public static void text(String text, Rectangle dim, Color color) {
-        final int X = dim.x + TEXT_INSET;
-        final int Y = dim.y + (dim.h - Utils.height(text)) / 2 + TEXT_INSET;
-        text(text, X, Y, color);
+        textAlign(text, dim, color, Alignment.LEFT, false);
+    }
+
+    public static void textAlign(String text, Rectangle dim, Color color, Alignment align, boolean shadowed) {
+        int wOff = 0;
+        int hOff = 0;
+        switch (align) {
+            case TOP_MID: case CENTER: case BOTTOM_MID:
+                wOff = dim.w / 2;
+                break;
+            case TOP_RIGHT: case RIGHT: case BOTTOM_RIGHT:
+                wOff = dim.w;
+                break;
+            default:
+                // nothing
+        }
+        switch (align) {
+            case LEFT: case CENTER: case RIGHT:
+                hOff = dim.h / 2;
+                break;
+            case BOTTOM_LEFT: case BOTTOM_MID: case BOTTOM_RIGHT:
+                hOff = dim.h;
+                break;
+            default:
+                // nothing
+        }
+        textAlign(text, dim.x + wOff, dim.y + hOff, color, align, shadowed);
+    }
+
+    public static void textAlign(String text, int x, int y, Color color, Alignment align, boolean shadowed) {
+        int w = -Utils.width(text);
+        int h = -Utils.height(text);
+        int wInset = TEXT_INSET;
+        int hInset = TEXT_INSET;
+
+        switch (align) {
+            case TOP_MID: case CENTER: case BOTTOM_MID:
+                w /= 2;
+                wInset = 0;
+                break;
+            case TOP_RIGHT: case RIGHT: case BOTTOM_RIGHT: 
+                wInset *= -1;
+                break;
+            default:
+                w = 0;
+        }
+        switch (align) {
+            case LEFT: case CENTER: case RIGHT:
+                h /= 2;
+                break; 
+            case BOTTOM_LEFT: case BOTTOM_MID: case BOTTOM_RIGHT:
+                hInset = 0;
+                break;
+            default:
+                h = 0;
+        }
+
+        final int X = x + w + wInset;
+        final int Y = y + h + hInset;
+        if (shadowed) shadowedText(text, X, Y, color);
+        else text(text, X, Y, color);
     }
 
     public static void text(String text, int x, int y, Color color) {
@@ -62,30 +120,6 @@ public class ShapeRenderer { // TODO: clean up entire file
         final float Y = (float) convert(y + yOffset);
 
         Kairyou.MC.textRenderer.drawWithShadow(new MatrixStack(), text, X, Y, color.asARGB());
-    }
-
-    public static void textAlign(String text, int x, int y, Color color, Alignment align, boolean shadowed) {
-        int w = -Utils.width(text);
-        int h = -Utils.height(text);
-        int wInset = TEXT_INSET;
-        int hInset = TEXT_INSET;
-
-        if (align == Alignment.TOP_MID || align == Alignment.CENTER || align == Alignment.BOTTOM_MID) {
-            w /= 2;
-            wInset = 0;
-        } else if (align == Alignment.TOP_RIGHT || align == Alignment.RIGHT || align == Alignment.BOTTOM_RIGHT) wInset *= -1;
-        else w = 0;
-
-        if (align == Alignment.LEFT || align == Alignment.CENTER || align == Alignment.RIGHT) {
-            h /= 2;
-            hInset = 0;
-        } else if (align == Alignment.BOTTOM_LEFT || align == Alignment.BOTTOM_MID || align == Alignment.BOTTOM_RIGHT) hInset *= -1;
-        else h = 0;
-
-        final int X = x + w + wInset;
-        final int Y = y + h + hInset;
-        if (shadowed) shadowedText(text, X, Y, color);
-        else text(text, X, Y, color);
     }
 
     public static void rect(Rectangle dim, Color fillColor, Color edgeColor) {

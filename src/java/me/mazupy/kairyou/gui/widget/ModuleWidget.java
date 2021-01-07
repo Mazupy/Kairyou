@@ -21,12 +21,12 @@ public class ModuleWidget extends Widget {
 
     @Override
     public boolean tryClick(double mX, double mY, int button) {
-        boolean clicked = super.tryClick(mX, mY, button);
-        if (clicked && button == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
-            toggled = !toggled;
-            action0.run();
-        } else if (clicked && button == GLFW.GLFW_MOUSE_BUTTON_RIGHT) {
-            action1.run();
+        boolean clicked = dim.isAt(mX, mY);
+        if (clicked) {
+            if (button == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
+                toggled = !toggled;
+                action0.run();
+            } else if (button == GLFW.GLFW_MOUSE_BUTTON_RIGHT) action1.run();
         }
         return clicked;
     }

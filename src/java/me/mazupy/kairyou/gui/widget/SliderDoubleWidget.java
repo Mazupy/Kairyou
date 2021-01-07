@@ -24,21 +24,29 @@ public class SliderDoubleWidget extends Widget {
 
     @Override
     public boolean tryClick(double mX, double mY, int button) {
-        boolean clicked = super.tryClick(mX, mY, button) && (button == GLFW.GLFW_MOUSE_BUTTON_LEFT || button == Utils.MOUSE_DRAG_FLAG);
+        boolean clicked = dim.isAt(mX, mY) && (button == GLFW.GLFW_MOUSE_BUTTON_LEFT || button == Utils.MOUSE_DRAG_FLAG);
         clicked &= mY >= minY();
         if (clicked) setting.setNormValue(MathUtils.invLerp(mX, minX(), maxX()));
         return clicked;
     }
 
     @Override
+    public boolean tryScroll(double mX, double mY, double amount) {
+        boolean scrolled = dim.isAt(mX, mY);
+        scrolled &= mY >= minY();
+        if (scrolled) setting.set(setting.get() + (amount < 0 ? 1d : -1d));
+        return scrolled;
+    }
+
+    @Override
     public void render() {
         // Label
         ShapeRenderer.rect(dim, Color.WIDGET, Color.OUTLINE);
-        ShapeRenderer.textAlign(label, dim.x, dim.y, Color.TEXT, Alignment.TOP_LEFT, false);
+        ShapeRenderer.textAlign(label, dim, Color.TEXT, Alignment.TOP_LEFT, false);
         
         // Value
         String value = String.format("%.3f", setting.getDouble());
-        ShapeRenderer.textAlign(value, dim.x + dim.w, dim.y, Color.TEXT, Alignment.TOP_RIGHT, false);
+        ShapeRenderer.textAlign(value, dim, Color.TEXT, Alignment.TOP_RIGHT, false);
 
         // Slide line
         ShapeRenderer.line(minX(), midY(), maxX(), midY(), Color.ACTIVE);

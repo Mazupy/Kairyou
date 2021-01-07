@@ -22,7 +22,7 @@ public class DropdownWidget extends Widget {
     @Override
     public boolean tryClick(double mX, double mY, int button) {
         if (dropped && tryClickChildren(childWidgets, mX, mY, button)) return true;
-        boolean clicked = super.tryClick(mX, mY, button) && button == GLFW.GLFW_MOUSE_BUTTON_LEFT;
+        boolean clicked = dim.isAt(mX, mY) && button == GLFW.GLFW_MOUSE_BUTTON_LEFT;
         if (clicked) dropped = !dropped;
         return clicked;
     }

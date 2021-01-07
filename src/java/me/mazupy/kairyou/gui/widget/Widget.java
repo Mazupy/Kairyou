@@ -29,9 +29,7 @@ public abstract class Widget {
         return dim.y + dim.h;
     }
 
-    public boolean tryClick(double mX, double mY, int button) {
-        return dim.isAt(mX, mY);
-    }
+    public abstract boolean tryClick(double mX, double mY, int button);
 
     public boolean tryClickChildren(List<Widget> children, double mX, double mY, int button) {
         final double X = mX - dim.x;
@@ -39,6 +37,10 @@ public abstract class Widget {
         for (Widget w : children) {
             if (w.tryClick(X, Y, button)) return true;
         }
+        return false;
+    }
+
+    public boolean tryScroll(double mX, double mY, double amount) {
         return false;
     }
 

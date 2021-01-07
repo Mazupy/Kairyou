@@ -13,10 +13,13 @@ import me.mazupy.kairyou.module.Module;
 import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.setting.Setting;
 import me.mazupy.kairyou.utils.Color;
+import me.mazupy.kairyou.utils.MathUtils;
 import me.mazupy.kairyou.utils.Rectangle;
 import me.mazupy.kairyou.utils.Utils;
 
 public class ModuleSettingsScreen extends Screen {
+
+    public static final int BOX_MARGIN = 2;
     
     private final List<Widget> widgets = new ArrayList<>();
 
@@ -67,10 +70,19 @@ public class ModuleSettingsScreen extends Screen {
         return super.mouseReleased(mouseX, mouseY, button);
     }
 
-    // @Override
-    // public boolean mouseScrolled(double d, double e, double amount) {
-        
-    // }
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
+        final double mX = ShapeRenderer.reverseConvert(mouseX);
+        final double mY = ShapeRenderer.reverseConvert(mouseY);
+
+        for (Widget w : widgets) {
+            if (w.tryScroll(mX, mY, amount)) {
+                Utils.playClickSound();
+                break;
+            }
+        }
+        return true;
+    }
 
     // @Override
     // public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
@@ -118,6 +130,13 @@ public class ModuleSettingsScreen extends Screen {
     public static Rectangle defaultDim(int rowHeight) {
         final int w = ModuleSettingsScreen.width();
         return new Rectangle((ShapeRenderer.maxX() - w) / 2, 0, w, rowHeight * GuiScreen.MODULE_HEIGHT);
+    }
+
+    public static Rectangle settingBox(Rectangle parentDim, double relativeWidth, int rows, boolean forText) {
+        final int h = rows * GuiScreen.MODULE_HEIGHT - (forText ? 0 : 2 * BOX_MARGIN);
+        int w = h;
+        if (relativeWidth != 0) w = MathUtils.round(relativeWidth * (parentDim.w - 2 * BOX_MARGIN));
+        return new Rectangle(parentDim.x + parentDim.w - BOX_MARGIN - w, 0, w, h);
     }
 
     private static int width() { // TODO: make modular

@@ -6,7 +6,7 @@ public enum Color {
     OUTLINE(120), 
     WIDGET(80), 
     ACTIVE(0, 0, 84), 
-    BLUE(0, 0, 150),
+    BLUE(0, 0, 150), 
     BACKGROUND(0, 104);
 
     public int r, g, b, a = 255;
