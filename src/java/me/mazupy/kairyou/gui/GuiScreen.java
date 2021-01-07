@@ -7,7 +7,6 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 
-import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.gui.widget.*;
 import me.mazupy.kairyou.module.Category;
 import me.mazupy.kairyou.module.Module;
@@ -15,6 +14,8 @@ import me.mazupy.kairyou.module.ModuleManager;
 import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.utils.Rectangle;
 import me.mazupy.kairyou.utils.Utils;
+
+import static me.mazupy.kairyou.Kairyou.*;
 
 public class GuiScreen extends Screen {
 
@@ -51,7 +52,7 @@ public class GuiScreen extends Screen {
                     mod.getName(), 
                     dim, 
                     () -> mod.toggle(), 
-                    () -> Kairyou.MC.openScreen(new ModuleSettingsScreen(this, mod))
+                    () -> MC.openScreen(new ModuleSettingsScreen(this, mod))
                 )
             );
         }
@@ -60,13 +61,13 @@ public class GuiScreen extends Screen {
     }
 
     public static void toggleGui() {
-        if (guiVisible) Kairyou.MC.currentScreen.onClose(); // Closes child screens first
+        if (guiVisible) MC.currentScreen.onClose(); // Closes child screens first
         else INSTANCE.open();
     }
 
     public void open() {
-        parentScreen = Kairyou.MC.currentScreen;
-        Kairyou.MC.openScreen(INSTANCE);
+        parentScreen = MC.currentScreen;
+        MC.openScreen(INSTANCE);
         guiVisible = true;
     }
 
@@ -133,7 +134,7 @@ public class GuiScreen extends Screen {
 
     @Override
     public void onClose() {
-        Kairyou.MC.openScreen(parentScreen);
+        MC.openScreen(parentScreen);
         guiVisible = false;
     }
 

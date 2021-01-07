@@ -3,11 +3,11 @@ package me.mazupy.kairyou.gui.widget;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.glfw.GLFW;
-
 import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.utils.Color;
 import me.mazupy.kairyou.utils.Rectangle;
+
+import static org.lwjgl.glfw.GLFW.*;
 
 public class DropdownWidget extends Widget {
 
@@ -22,7 +22,7 @@ public class DropdownWidget extends Widget {
     @Override
     public boolean tryClick(double mX, double mY, int button) {
         if (dropped && tryClickChildren(childWidgets, mX, mY, button)) return true;
-        boolean clicked = dim.isAt(mX, mY) && button == GLFW.GLFW_MOUSE_BUTTON_LEFT;
+        boolean clicked = dim.isAt(mX, mY) && button == GLFW_MOUSE_BUTTON_LEFT;
         if (clicked) dropped = !dropped;
         return clicked;
     }

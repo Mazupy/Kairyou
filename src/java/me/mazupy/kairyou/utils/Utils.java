@@ -18,6 +18,8 @@ public abstract class Utils {
     public static final double PLAYER_GRAVITY = -0.08;
     public static final double PLAYER_DRAG = 0.98;
 
+    private static long lastUIsound = 0;
+
     public static boolean notInGame() {
         return MC.world == null || MC.player == null;
     }
@@ -39,7 +41,10 @@ public abstract class Utils {
     }
 
     public static void playClickSound() {
-        MC.getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1f));
+        if (System.currentTimeMillis() - lastUIsound > 40) {
+            lastUIsound = System.currentTimeMillis();
+            MC.getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1f));
+        }
     }
 
     public static int getPotionStrength(LivingEntity entity, StatusEffect effect) {

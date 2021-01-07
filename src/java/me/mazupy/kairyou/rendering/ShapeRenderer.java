@@ -4,11 +4,12 @@ import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
 import org.lwjgl.opengl.GL11;
 
-import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.utils.Color;
 import me.mazupy.kairyou.utils.MathUtils;
 import me.mazupy.kairyou.utils.Rectangle;
 import me.mazupy.kairyou.utils.Utils;
+
+import static me.mazupy.kairyou.Kairyou.*;
 
 public class ShapeRenderer { // TODO: clean up entire file
     
@@ -21,7 +22,7 @@ public class ShapeRenderer { // TODO: clean up entire file
     public static int xOffset = 0, yOffset = 0;
 
     public static void updateConversion() {
-        conversion_factor = Kairyou.MC.getWindow().getFramebufferHeight() / VIRTUAL_HEIGHT;
+        conversion_factor = MC.getWindow().getFramebufferHeight() / VIRTUAL_HEIGHT;
     }
 
     private static double convert(double n) { // Uses 1920x1080 scaled by height
@@ -33,15 +34,15 @@ public class ShapeRenderer { // TODO: clean up entire file
     }
 
     private static float aspectRatio() {
-        return Kairyou.MC.getWindow().getScaledWidth() / (float) Kairyou.MC.getWindow().getScaledHeight();
+        return MC.getWindow().getScaledWidth() / (float) MC.getWindow().getScaledHeight();
     }
 
     public static int maxX() {
-        return MathUtils.round(aspectRatio() * VIRTUAL_HEIGHT / Kairyou.MC.getWindow().getScaleFactor());
+        return MathUtils.round(aspectRatio() * VIRTUAL_HEIGHT / MC.getWindow().getScaleFactor());
     }
 
     public static int maxY() {
-        return MathUtils.round(VIRTUAL_HEIGHT / Kairyou.MC.getWindow().getScaleFactor());
+        return MathUtils.round(VIRTUAL_HEIGHT / MC.getWindow().getScaleFactor());
     }
 
     public static void text(String text, Rectangle dim, Color color) {
@@ -112,14 +113,14 @@ public class ShapeRenderer { // TODO: clean up entire file
         final float X = (float) convert(x + xOffset);
         final float Y = (float) convert(y + yOffset);
 
-        Kairyou.MC.textRenderer.draw(new MatrixStack(), text, X, Y, color.asARGB());
+        MC.textRenderer.draw(new MatrixStack(), text, X, Y, color.asARGB());
     }
 
     public static void shadowedText(String text, int x, int y, Color color) {
         final float X = (float) convert(x + xOffset);
         final float Y = (float) convert(y + yOffset);
 
-        Kairyou.MC.textRenderer.drawWithShadow(new MatrixStack(), text, X, Y, color.asARGB());
+        MC.textRenderer.drawWithShadow(new MatrixStack(), text, X, Y, color.asARGB());
     }
 
     public static void rect(Rectangle dim, Color fillColor, Color edgeColor) {

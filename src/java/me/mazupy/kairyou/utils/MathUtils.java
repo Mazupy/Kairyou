@@ -15,8 +15,16 @@ public abstract class MathUtils {
         return (int) Math.ceil(v);
     }
 
+    public static double sin(double radians) {
+        return MathHelper.sin((float) radians);
+    }
+
+    public static double cos(double radians) {
+        return MathHelper.cos((float) radians);
+    }
+
     public static float tan(double radians) {
-        return MathHelper.sin((float) radians) / MathHelper.cos((float) radians);
+        return (float) (sin(radians) / cos(radians));
     }
     
     public static float degTan(double degrees) {

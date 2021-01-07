@@ -33,7 +33,7 @@ public abstract class Module implements Listenable {
     }
 
     public void restart() {
-        if (enabled) {
+        if (enabled && active) {
             onDeactivate();
             onActivate();
         }

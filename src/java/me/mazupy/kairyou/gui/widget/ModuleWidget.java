@@ -1,10 +1,10 @@
 package me.mazupy.kairyou.gui.widget;
 
-import org.lwjgl.glfw.GLFW;
-
 import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.utils.Color;
 import me.mazupy.kairyou.utils.Rectangle;
+
+import static org.lwjgl.glfw.GLFW.*;
 
 public class ModuleWidget extends Widget {
     
@@ -23,10 +23,10 @@ public class ModuleWidget extends Widget {
     public boolean tryClick(double mX, double mY, int button) {
         boolean clicked = dim.isAt(mX, mY);
         if (clicked) {
-            if (button == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
+            if (button == GLFW_MOUSE_BUTTON_LEFT) {
                 toggled = !toggled;
                 action0.run();
-            } else if (button == GLFW.GLFW_MOUSE_BUTTON_RIGHT) action1.run();
+            } else if (button == GLFW_MOUSE_BUTTON_RIGHT) action1.run();
         }
         return clicked;
     }

@@ -1,13 +1,14 @@
 package me.mazupy.kairyou.rendering;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.BufferRenderer;
 import net.minecraft.client.render.VertexFormat;
-import org.lwjgl.opengl.GL11;
 
 import me.mazupy.kairyou.utils.Color;
+
+import static com.mojang.blaze3d.systems.RenderSystem.*;
+import static org.lwjgl.opengl.GL11.*;
 
 public class MeshBuilder {
 
@@ -47,30 +48,30 @@ public class MeshBuilder {
     }
 
     public void end(boolean hasTexture) {
-        GL11.glPushMatrix();
+        glPushMatrix();
 
-        RenderSystem.disableAlphaTest();
-        RenderSystem.enableBlend();
-        RenderSystem.blendFunc(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA);
-        RenderSystem.disableCull();
-        RenderSystem.disableDepthTest();
-        RenderSystem.disableLighting();
-        if (hasTexture) RenderSystem.enableTexture();
-        else RenderSystem.disableTexture();
-        RenderSystem.color4f(1, 1, 1, 1);
-        RenderSystem.lineWidth(1);
-        GL11.glEnable(GL11.GL_LINE_SMOOTH);
-        GlStateManager.shadeModel(GL11.GL_SMOOTH);
+        disableAlphaTest();
+        enableBlend();
+        blendFunc(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA);
+        disableCull();
+        disableDepthTest();
+        disableLighting();
+        if (hasTexture) enableTexture();
+        else disableTexture();
+        color4f(1, 1, 1, 1);
+        lineWidth(1);
+        glEnable(GL_LINE_SMOOTH);
+        GlStateManager.shadeModel(GL_SMOOTH);
 
         buffer.end();
         BufferRenderer.draw(buffer);
 
-        GL11.glDisable(GL11.GL_LINE_SMOOTH);
-        RenderSystem.enableTexture();
-        RenderSystem.enableDepthTest();
-        RenderSystem.enableAlphaTest();
+        glDisable(GL_LINE_SMOOTH);
+        enableTexture();
+        enableDepthTest();
+        enableAlphaTest();
 
-        GL11.glPopMatrix();
+        glPopMatrix();
     }
     
 }

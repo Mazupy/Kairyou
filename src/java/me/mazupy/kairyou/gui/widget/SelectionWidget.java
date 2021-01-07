@@ -1,13 +1,14 @@
 package me.mazupy.kairyou.gui.widget;
 
-import org.lwjgl.glfw.GLFW;
-
-import me.mazupy.kairyou.gui.ModuleSettingsScreen;
 import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.rendering.ShapeRenderer.Alignment;
 import me.mazupy.kairyou.setting.EnumSetting;
 import me.mazupy.kairyou.utils.Color;
 import me.mazupy.kairyou.utils.Rectangle;
+
+
+import static org.lwjgl.glfw.GLFW.*;
+import static me.mazupy.kairyou.gui.ModuleSettingsScreen.*;
 
 public class SelectionWidget<T extends Enum<T>> extends Widget {
 
@@ -18,12 +19,12 @@ public class SelectionWidget<T extends Enum<T>> extends Widget {
         super(setting.label, dim);
         this.setting = setting;
 
-        optionBox = ModuleSettingsScreen.settingBox(dim, 1.0, 1, true);
+        optionBox = settingBox(dim, 1.0, 1, true);
     }
     
     @Override
     public int correctY(int y) {
-        optionBox.y = y + dim.h - ModuleSettingsScreen.BOX_MARGIN - optionBox.h;
+        optionBox.y = y + dim.h - BOX_MARGIN - optionBox.h;
         return super.correctY(y);
     }
     
@@ -31,8 +32,8 @@ public class SelectionWidget<T extends Enum<T>> extends Widget {
     public boolean tryClick(double mX, double mY, int button) {
         boolean clicked = optionBox.isAt(mX, mY);
         if (clicked) {
-            if (button == GLFW.GLFW_MOUSE_BUTTON_LEFT) setting.next();
-            else if (button == GLFW.GLFW_MOUSE_BUTTON_RIGHT) setting.previous();
+            if (button == GLFW_MOUSE_BUTTON_LEFT) setting.next();
+            else if (button == GLFW_MOUSE_BUTTON_RIGHT) setting.previous();
         }
         return clicked;
     }

@@ -6,14 +6,13 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.WitchEntity;
 
-
 import static net.minecraft.entity.attribute.EntityAttributes.*;
 import static net.minecraft.entity.effect.StatusEffects.*;
 import static me.mazupy.kairyou.Kairyou.*;
 
 public abstract class DamageUtils {
     
-    public static final float FALL_TOLERANCE = 3;
+    private static final float FALL_TOLERANCE = 3;
 
     public static float computeFallDamage(LivingEntity entity, float fallDistance, float damageMultiplier) {
         int jumpBoost = Utils.getPotionStrength(MC.player, JUMP_BOOST);

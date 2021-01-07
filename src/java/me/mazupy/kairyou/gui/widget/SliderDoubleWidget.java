@@ -1,7 +1,6 @@
 package me.mazupy.kairyou.gui.widget;
 
 import net.minecraft.util.math.MathHelper;
-import org.lwjgl.glfw.GLFW;
 
 import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.rendering.ShapeRenderer.Alignment;
@@ -10,6 +9,8 @@ import me.mazupy.kairyou.utils.Color;
 import me.mazupy.kairyou.utils.MathUtils;
 import me.mazupy.kairyou.utils.Rectangle;
 import me.mazupy.kairyou.utils.Utils;
+
+import static org.lwjgl.glfw.GLFW.*;
 
 public class SliderDoubleWidget extends Widget {
 
@@ -24,7 +25,7 @@ public class SliderDoubleWidget extends Widget {
 
     @Override
     public boolean tryClick(double mX, double mY, int button) {
-        boolean clicked = dim.isAt(mX, mY) && (button == GLFW.GLFW_MOUSE_BUTTON_LEFT || button == Utils.MOUSE_DRAG_FLAG);
+        boolean clicked = dim.isAt(mX, mY) && (button == GLFW_MOUSE_BUTTON_LEFT || button == Utils.MOUSE_DRAG_FLAG);
         clicked &= mY >= minY();
         if (clicked) setting.setNormValue(MathUtils.invLerp(mX, minX(), maxX()));
         return clicked;

@@ -5,15 +5,16 @@ import me.zero.alpine.listener.Listener;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.math.Vec3d;
 
-import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.SendPacketEvent;
 import me.mazupy.kairyou.mixin.interfaces.IPlayerMoveC2SPacket;
 import me.mazupy.kairyou.module.Category;
 import me.mazupy.kairyou.module.Module;
 import me.mazupy.kairyou.setting.BooleanSetting;
 import me.mazupy.kairyou.setting.IntSetting;
-import me.mazupy.kairyou.utils.DamageUtils;
 import me.mazupy.kairyou.utils.Utils;
+
+import static me.mazupy.kairyou.Kairyou.*;
+import static me.mazupy.kairyou.utils.DamageUtils.*;
 
 @Module.Info(name = "NoFall", description = "Mitigates fall damage", category = Category.MOVEMENT)
 public class NoFall extends Module {
@@ -42,25 +43,25 @@ public class NoFall extends Module {
         final double nextFallDistance = mc.player.fallDistance - mc.player.getVelocity().y;
         final float damageMultiplier = 1f; //Assume solid block (!1.17)
 
-        final float currentFallDamage = DamageUtils.computeFallDamage(mc.player, mc.player.fallDistance, damageMultiplier);
-        final float nextFallDamage = DamageUtils.computeFallDamage(mc.player, (float) nextFallDistance, damageMultiplier);
+        final float currentFallDamage = computeFallDamage(mc.player, mc.player.fallDistance, damageMultiplier);
+        final float nextFallDamage = computeFallDamage(mc.player, (float) nextFallDistance, damageMultiplier);
 
-        if (DamageUtils.isFatal(currentFallDamage)) return;
-        if (nextFallDamage > damageTolerance.getInt() || DamageUtils.isFatal(nextFallDamage)) {
+        if (isFatal(currentFallDamage)) return;
+        if (nextFallDamage > damageTolerance.getInt() || isFatal(nextFallDamage)) {
             ((IPlayerMoveC2SPacket) event.packet).setOnGround(true);
-            Kairyou.MC.player.fallDistance = 0;
+            MC.player.fallDistance = 0;
             
             if (cancelVelocity.getBool()) {
-                Kairyou.MC.getNetworkHandler().sendPacket(
+                MC.getNetworkHandler().sendPacket(
                     new PlayerMoveC2SPacket.PositionOnly(
-                        Kairyou.MC.player.getX(), 
-                        Kairyou.MC.player.getY(), 
-                        Kairyou.MC.player.getZ(), 
+                        MC.player.getX(), 
+                        MC.player.getY(), 
+                        MC.player.getZ(), 
                         false
                     )
                 );
-                Vec3d vel = Kairyou.MC.player.getVelocity();
-                Kairyou.MC.player.setVelocity(vel.x, 0, vel.z);
+                Vec3d vel = MC.player.getVelocity();
+                MC.player.setVelocity(vel.x, 0, vel.z);
             }
         }
     });

@@ -9,10 +9,11 @@ import me.zero.alpine.listener.Listener;
 import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.util.math.Vec2f;
 
-import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.Render2DEvent;
 import me.mazupy.kairyou.utils.Color;
-import me.mazupy.kairyou.utils.MathUtils;
+
+import static me.mazupy.kairyou.Kairyou.*;
+import static me.mazupy.kairyou.utils.MathUtils.*;
 
 public class OverlayProjector implements Listenable {
 
@@ -23,12 +24,12 @@ public class OverlayProjector implements Listenable {
      */
 
     public OverlayProjector() {
-        Kairyou.EVENT_BUS.subscribe(this);
+        EVENT_BUS.subscribe(this);
     }
 
     private static float cameraYaw() {
         final float OFFSET = 180;
-        final float rawYaw = Kairyou.MC.gameRenderer.getCamera().getYaw();
+        final float rawYaw = MC.gameRenderer.getCamera().getYaw();
         return ((rawYaw + OFFSET) % 360 + 360) % 360 - OFFSET;
     }
 
@@ -86,20 +87,20 @@ public class OverlayProjector implements Listenable {
     });
 
     private static Vec2f projection(Vector3f pos) {
-        double x = pos.getX() - Kairyou.MC.gameRenderer.getCamera().getPos().x;
-        double y = pos.getY() - Kairyou.MC.gameRenderer.getCamera().getPos().y;
-        double z = pos.getZ() - Kairyou.MC.gameRenderer.getCamera().getPos().z;
+        double x = pos.getX() - MC.gameRenderer.getCamera().getPos().x;
+        double y = pos.getY() - MC.gameRenderer.getCamera().getPos().y;
+        double z = pos.getZ() - MC.gameRenderer.getCamera().getPos().z;
         z *= -1; // WTF? I checked the formulas 5 times on Wikipedia and found no errors, why is this necessary?
         // https://en.wikipedia.org/wiki/3D_projection#Mathematical_formula (also where the following is derived from)
-        double thetaX = -Kairyou.MC.gameRenderer.getCamera().getPitch() * MathUtils.DEG2RAD;
-        double thetaY = cameraYaw() * MathUtils.DEG2RAD;
+        double thetaX = -MC.gameRenderer.getCamera().getPitch() * DEG2RAD;
+        double thetaY = cameraYaw() * DEG2RAD;
         double eX = ShapeRenderer.maxX() / 2;
         double eY = ShapeRenderer.maxY() / 2;
-        double eZ = ShapeRenderer.maxY() / 2 * MathUtils.degTan(90 - Kairyou.MC.options.fov / 2);
-        double sX = Math.sin(thetaX);
-        double sY = Math.sin(thetaY);
-        double cX = Math.cos(thetaX);
-        double cY = Math.cos(thetaY);
+        double eZ = ShapeRenderer.maxY() / 2 * degTan(90 - MC.options.fov / 2);
+        double sX = sin(thetaX);
+        double sY = sin(thetaY);
+        double cX = cos(thetaX);
+        double cY = cos(thetaY);
         double dX = cY * x - sY * z;
         double dY = sX * (cY * z + sY * x) + cX * y;
         double dZ = cX * (cY * z + sY * x) - sX * y;

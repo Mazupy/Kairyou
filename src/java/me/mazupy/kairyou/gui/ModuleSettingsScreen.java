@@ -8,14 +8,15 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 
 import me.mazupy.kairyou.Kairyou;
-import me.mazupy.kairyou.gui.widget.*;
+import me.mazupy.kairyou.gui.widget.Widget;
 import me.mazupy.kairyou.module.Module;
 import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.setting.Setting;
 import me.mazupy.kairyou.utils.Color;
 import me.mazupy.kairyou.utils.MathUtils;
 import me.mazupy.kairyou.utils.Rectangle;
-import me.mazupy.kairyou.utils.Utils;
+
+import static me.mazupy.kairyou.utils.Utils.*;
 
 public class ModuleSettingsScreen extends Screen {
 
@@ -44,7 +45,7 @@ public class ModuleSettingsScreen extends Screen {
     @Override
     public void mouseMoved(double mouseX, double mouseY) {
         if (mouseDown) {
-            mouseClicked(mouseX, mouseY, Utils.MOUSE_DRAG_FLAG);
+            mouseClicked(mouseX, mouseY, MOUSE_DRAG_FLAG);
         }
     }
 
@@ -55,7 +56,7 @@ public class ModuleSettingsScreen extends Screen {
 
         for (Widget w : widgets) {
             if (w.tryClick(mX, mY, button)) {
-                if (button != Utils.MOUSE_DRAG_FLAG) Utils.playClickSound();
+                if (button != MOUSE_DRAG_FLAG) playClickSound();
                 break;
             }
         }
@@ -77,7 +78,7 @@ public class ModuleSettingsScreen extends Screen {
 
         for (Widget w : widgets) {
             if (w.tryScroll(mX, mY, amount)) {
-                Utils.playClickSound();
+                playClickSound();
                 break;
             }
         }
@@ -128,7 +129,7 @@ public class ModuleSettingsScreen extends Screen {
     }
 
     public static Rectangle defaultDim(int rowHeight) {
-        final int w = ModuleSettingsScreen.width();
+        final int w = width();
         return new Rectangle((ShapeRenderer.maxX() - w) / 2, 0, w, rowHeight * GuiScreen.MODULE_HEIGHT);
     }
 
