@@ -45,8 +45,8 @@ public abstract class Widget {
     }
 
     public void render() {
-        ShapeRenderer.rect(dim, Color.WIDGET, Color.OUTLINE);
-        ShapeRenderer.text(label, dim, Color.TEXT);
+        ShapeRenderer.rect(dim, Color.Widget, Color.Outline);
+        ShapeRenderer.text(label, dim, Color.Text);
     }
 
     public void renderChildren(List<Widget> children) {

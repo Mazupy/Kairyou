@@ -2,12 +2,12 @@ package me.mazupy.kairyou.utils;
 
 public enum Color {
 
-    TEXT(255), 
-    OUTLINE(120), 
-    WIDGET(80), 
-    ACTIVE(0, 0, 84), 
-    BLUE(0, 0, 150), 
-    BACKGROUND(0, 104);
+    Text(255), 
+    Outline(120), 
+    Widget(80), 
+    Active(0, 0, 84), 
+    Blue(0, 0, 150), 
+    Background(0, 104);
 
     public int r, g, b, a = 255;
 

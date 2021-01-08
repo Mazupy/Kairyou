@@ -13,7 +13,7 @@ import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.rendering.ShapeRenderer.Alignment;
 import me.mazupy.kairyou.utils.Color;
 
-@Module.Info(name = "HUD", description = "Shows HUD", category = Category.RENDER)
+@Module.Info(name = "HUD", description = "Shows HUD", category = Category.Render)
 public class Hud extends Module {
     
     @EventHandler
@@ -28,7 +28,7 @@ public class Hud extends Module {
     
     private void textBottomLeft(String text, int index) {
         int y = ShapeRenderer.maxY() - GuiScreen.MARGIN - index * Kairyou.MC.textRenderer.fontHeight;
-        ShapeRenderer.textAlign(text, GuiScreen.MARGIN, y, Color.TEXT, Alignment.BOTTOM_LEFT, true);
+        ShapeRenderer.textAlign(text, GuiScreen.MARGIN, y, Color.Text, Alignment.BottomLeft, true);
     }
 
 }

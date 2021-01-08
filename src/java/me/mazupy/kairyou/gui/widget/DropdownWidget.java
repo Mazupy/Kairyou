@@ -35,15 +35,15 @@ public class DropdownWidget extends Widget {
         final int QY = dim.y + 1;
         final int QH = dim.h - 2;
         final int QX = dim.x + dim.w - QH - 1;
-        ShapeRenderer.quad(QX, QY, QH, QH, Color.WIDGET);
+        ShapeRenderer.quad(QX, QY, QH, QH, Color.Widget);
         final int LX = QX + 1;
         final int LY = QY + 1;
         final double LH = QH - 2;
-        ShapeRenderer.line(LX, LY + LH / 2, LX + LH / 2, LY + LH, Color.OUTLINE);
+        ShapeRenderer.line(LX, LY + LH / 2, LX + LH / 2, LY + LH, Color.Outline);
         if (dropped) {
-            ShapeRenderer.line(LX + LH / 2, LY + LH, LX + LH, LY + LH / 2, Color.OUTLINE);
+            ShapeRenderer.line(LX + LH / 2, LY + LH, LX + LH, LY + LH / 2, Color.Outline);
             renderChildren(childWidgets);
-        } else ShapeRenderer.line(LX, LY + LH / 2, LX + LH / 2, LY, Color.OUTLINE);
+        } else ShapeRenderer.line(LX, LY + LH / 2, LX + LH / 2, LY, Color.Outline);
     }
     
     public void addWidget(Widget w) {

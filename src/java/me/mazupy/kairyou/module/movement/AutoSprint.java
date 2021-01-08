@@ -7,7 +7,7 @@ import me.mazupy.kairyou.event.TickEvent;
 import me.mazupy.kairyou.module.Category;
 import me.mazupy.kairyou.module.Module;
 
-@Module.Info(name = "AutoSprint", description = "Automatically makes the player sprint", category = Category.MOVEMENT)
+@Module.Info(name = "AutoSprint", description = "Automatically makes the player sprint", category = Category.Movement)
 public class AutoSprint extends Module {
 
     @EventHandler

@@ -46,27 +46,27 @@ public class ShapeRenderer { // TODO: clean up entire file
     }
 
     public static void text(String text, Rectangle dim, Color color) {
-        textAlign(text, dim, color, Alignment.LEFT, false);
+        textAlign(text, dim, color, Alignment.Left, false);
     }
 
     public static void textAlign(String text, Rectangle dim, Color color, Alignment align, boolean shadowed) {
         int wOff = 0;
         int hOff = 0;
         switch (align) {
-            case TOP_MID: case CENTER: case BOTTOM_MID:
+            case TopMid: case Center: case BottomMid:
                 wOff = dim.w / 2;
                 break;
-            case TOP_RIGHT: case RIGHT: case BOTTOM_RIGHT:
+            case TopRight: case Right: case BottomRight:
                 wOff = dim.w;
                 break;
             default:
                 // nothing
         }
         switch (align) {
-            case LEFT: case CENTER: case RIGHT:
+            case Left: case Center: case Right:
                 hOff = dim.h / 2;
                 break;
-            case BOTTOM_LEFT: case BOTTOM_MID: case BOTTOM_RIGHT:
+            case BottomLeft: case BottomMid: case BottomRight:
                 hOff = dim.h;
                 break;
             default:
@@ -82,21 +82,21 @@ public class ShapeRenderer { // TODO: clean up entire file
         int hInset = TEXT_INSET;
 
         switch (align) {
-            case TOP_MID: case CENTER: case BOTTOM_MID:
+            case TopMid: case Center: case BottomMid:
                 w /= 2;
                 wInset = 0;
                 break;
-            case TOP_RIGHT: case RIGHT: case BOTTOM_RIGHT: 
+            case TopRight: case Right: case BottomRight: 
                 wInset *= -1;
                 break;
             default:
                 w = 0;
         }
         switch (align) {
-            case LEFT: case CENTER: case RIGHT:
+            case Left: case Center: case Right:
                 h /= 2;
                 break; 
-            case BOTTOM_LEFT: case BOTTOM_MID: case BOTTOM_RIGHT:
+            case BottomLeft: case BottomMid: case BottomRight:
                 hInset = 0;
                 break;
             default:
@@ -183,15 +183,15 @@ public class ShapeRenderer { // TODO: clean up entire file
     }
 
     public enum Alignment {
-        TOP_LEFT,
-        TOP_MID,
-        TOP_RIGHT,
-        LEFT,
-        CENTER,
-        RIGHT,
-        BOTTOM_LEFT,
-        BOTTOM_MID,
-        BOTTOM_RIGHT
+        TopLeft,
+        TopMid,
+        TopRight,
+        Left,
+        Center,
+        Right,
+        BottomLeft,
+        BottomMid,
+        BottomRight
     }
 
 }

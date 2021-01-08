@@ -1,12 +1,12 @@
 package me.mazupy.kairyou.module;
 
 public enum Category {
-    AUTOMATION,
-    COMBAT,
-    EXPLOIT,
-    MISC,
-    MOVEMENT,
-    PLAYER,
-    RENDER,
-    SERVER
+    Automation,
+    Combat,
+    Exploit,
+    Misc,
+    Movement,
+    Player,
+    Render,
+    Server
 }

@@ -42,20 +42,20 @@ public class SliderDoubleWidget extends Widget {
     @Override
     public void render() {
         // Label
-        ShapeRenderer.rect(dim, Color.WIDGET, Color.OUTLINE);
-        ShapeRenderer.textAlign(label, dim, Color.TEXT, Alignment.TOP_LEFT, false);
+        ShapeRenderer.rect(dim, Color.Widget, Color.Outline);
+        ShapeRenderer.textAlign(label, dim, Color.Text, Alignment.TopLeft, false);
         
         // Value
         String value = String.format("%.3f", setting.getDouble());
-        ShapeRenderer.textAlign(value, dim, Color.TEXT, Alignment.TOP_RIGHT, false);
+        ShapeRenderer.textAlign(value, dim, Color.Text, Alignment.TopRight, false);
 
         // Slide line
-        ShapeRenderer.line(minX(), midY(), maxX(), midY(), Color.ACTIVE);
+        ShapeRenderer.line(minX(), midY(), maxX(), midY(), Color.Active);
 
         // Handle
         double normValue = setting.normValue();
         double x = MathHelper.lerp(normValue, minX(), maxX()) - HANDLE_WIDTH / 2;
-        ShapeRenderer.quad(x, minY(), HANDLE_WIDTH, maxY() - minY(), Color.TEXT);
+        ShapeRenderer.quad(x, minY(), HANDLE_WIDTH, maxY() - minY(), Color.Text);
     }
 
     private double minX() {

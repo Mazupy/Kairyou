@@ -27,7 +27,7 @@ public class DoubleSetting extends Setting<Double> {
         
         this.min = min;
         this.max = max;
-        scale = Scale.LINIAR;
+        scale = Scale.Liniar;
     }
 
     public double getMin() {
@@ -66,8 +66,8 @@ public class DoubleSetting extends Setting<Double> {
     }
 
     public enum Scale {
-        LINIAR(v -> v, v -> v),
-        CUBE_PLUS(Scale::cubePlus, Scale::cubePlusInv);
+        Liniar(v -> v, v -> v),
+        CubePlus(Scale::cubePlus, Scale::cubePlusInv);
 
         private static final double CUBE_PLUS_STIFFNESS = 0.25;
         Function<Double, Double> transform;

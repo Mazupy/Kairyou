@@ -16,7 +16,7 @@ import me.mazupy.kairyou.utils.Utils;
 import static me.mazupy.kairyou.Kairyou.*;
 import static me.mazupy.kairyou.utils.DamageUtils.*;
 
-@Module.Info(name = "NoFall", description = "Mitigates fall damage", category = Category.MOVEMENT)
+@Module.Info(name = "NoFall", description = "Mitigates fall damage", category = Category.Movement)
 public class NoFall extends Module {
 
     private static final IntSetting damageTolerance = new IntSetting("Fall damage tolerance", 0, 0, 35);

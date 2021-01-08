@@ -38,7 +38,7 @@ public class TickBoxWidget extends Widget {
     public void render() {
         super.render();
 
-        ShapeRenderer.rect(checkBox, setting.getBool() ? Color.ACTIVE : Color.WIDGET, Color.OUTLINE);
+        ShapeRenderer.rect(checkBox, setting.getBool() ? Color.Active : Color.Widget, Color.Outline);
     }
 
 }

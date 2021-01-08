@@ -5,10 +5,10 @@ import me.mazupy.kairyou.module.Module;
 import me.mazupy.kairyou.setting.DoubleSetting;
 import me.mazupy.kairyou.setting.DoubleSetting.Scale;
 
-@Module.Info(name = "Step", description = "Step up higher blocks", category = Category.MOVEMENT)
+@Module.Info(name = "Step", description = "Step up higher blocks", category = Category.Movement)
 public class Step extends Module {
 
-    private final DoubleSetting stepHeight = new DoubleSetting("Step height", 1, 0, 256, Scale.CUBE_PLUS);
+    private final DoubleSetting stepHeight = new DoubleSetting("Step height", 1, 0, 256, Scale.CubePlus);
 
     private float previousStepHeight;
 

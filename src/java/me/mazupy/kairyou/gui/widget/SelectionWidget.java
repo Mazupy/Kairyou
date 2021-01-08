@@ -6,7 +6,6 @@ import me.mazupy.kairyou.setting.EnumSetting;
 import me.mazupy.kairyou.utils.Color;
 import me.mazupy.kairyou.utils.Rectangle;
 
-
 import static org.lwjgl.glfw.GLFW.*;
 import static me.mazupy.kairyou.gui.ModuleSettingsScreen.*;
 
@@ -50,11 +49,11 @@ public class SelectionWidget<T extends Enum<T>> extends Widget {
 
     @Override
     public void render() {
-        ShapeRenderer.rect(dim, Color.WIDGET, Color.OUTLINE);
-        ShapeRenderer.textAlign(label, dim, Color.TEXT, Alignment.TOP_LEFT, false);
+        ShapeRenderer.rect(dim, Color.Widget, Color.Outline);
+        ShapeRenderer.textAlign(label, dim, Color.Text, Alignment.TopLeft, false);
 
-        ShapeRenderer.rect(optionBox, Color.WIDGET, Color.OUTLINE);
-        ShapeRenderer.textAlign(setting.get().toString(), optionBox, Color.TEXT, Alignment.LEFT, false);
+        ShapeRenderer.rect(optionBox, Color.Widget, Color.Outline);
+        ShapeRenderer.textAlign(setting.get().toString(), optionBox, Color.Text, Alignment.Left, false);
     }
 
 }

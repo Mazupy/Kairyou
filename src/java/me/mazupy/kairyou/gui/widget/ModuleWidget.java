@@ -33,8 +33,8 @@ public class ModuleWidget extends Widget {
 
     @Override
     public void render() {
-        ShapeRenderer.rect(dim, toggled ? Color.ACTIVE : Color.WIDGET, Color.OUTLINE);
-        ShapeRenderer.text(label, dim, Color.TEXT);
+        ShapeRenderer.rect(dim, toggled ? Color.Active : Color.Widget, Color.Outline);
+        ShapeRenderer.text(label, dim, Color.Text);
     }
 
 }

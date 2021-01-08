@@ -107,7 +107,7 @@ public class ModuleSettingsScreen extends Screen {
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         GuiScreen.INSTANCE.render(matrices, mouseX, mouseY, delta);
-        ShapeRenderer.background(Color.BACKGROUND);
+        ShapeRenderer.background(Color.Background);
 
         for (Widget w : widgets) w.render();
     }

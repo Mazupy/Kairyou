@@ -26,9 +26,9 @@ public class GameRendererMixin {
     public void onRenderWorld(float tickDelta, long timeLimit, MatrixStack matrices, CallbackInfo info) {
         Kairyou.EVENT_BUS.post(EventProvider.worldRenderEvent(tickDelta, matrices.peek().getModel()));
 
-        OverlayProjector.line(52, 75, 35, 54, 72, 35, Color.BLUE); // TODO: testing
-        OverlayProjector.quad(52, 71, 34, 53, 71, 34, 53, 71, 35, 52, 71, 35, Color.BLUE);
-        OverlayProjector.box(51, 73, 34, Color.BLUE);
+        OverlayProjector.line(52, 75, 35, 54, 72, 35, Color.Blue); // TODO: testing
+        OverlayProjector.quad(52, 71, 34, 53, 71, 34, 53, 71, 35, 52, 71, 35, Color.Blue);
+        OverlayProjector.box(51, 73, 34, Color.Blue);
     }
 
 }
