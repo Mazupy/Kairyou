@@ -59,6 +59,7 @@ public class Keybind {
             if (!KeyState.isPressed(key) && key != lastKey) return false;
         }
         if (KeyState.isPressed(lastKey) != keyDown) return false;
+        if (trigger == Toggle) return keys.contains(lastKey);
         return true;
     }
 
