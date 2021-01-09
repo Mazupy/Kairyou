@@ -6,7 +6,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.Matrix4f;
 
 public class EventProvider {
-    private static final KeyEvent keyEvent = new KeyEvent();
     private static final TickEvent tickEvent = new TickEvent();
     private static final SendPacketEvent sendPacketEvent = new SendPacketEvent();
     private static final GameJoinedEvent gameJoinedEvent = new GameJoinedEvent();
@@ -14,12 +13,7 @@ public class EventProvider {
     private static final Render2DEvent render2DEvent = new Render2DEvent();
     private static final WorldRenderEvent worldRenderEvent = new WorldRenderEvent();
     private static final PlayerRespawnEvent playerRespawnEvent = new PlayerRespawnEvent();
-
-    public static KeyEvent keyEvent(int key, int type) {
-        keyEvent.key = key;
-        keyEvent.type = type;
-        return keyEvent;
-    }
+    private static final InputEvent inputEvent = new InputEvent();
 
     public static TickEvent tickEvent() {
         return tickEvent;
@@ -53,5 +47,12 @@ public class EventProvider {
 
     public static PlayerRespawnEvent playerRespawnEvent() {
         return playerRespawnEvent;
+    }
+
+    public static InputEvent inputEvent(int modifier, int key, int type) {
+        inputEvent.modifier = modifier;
+        inputEvent.key = key;
+        inputEvent.type = type;
+        return inputEvent;
     }
 }

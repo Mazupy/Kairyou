@@ -9,7 +9,9 @@ import me.zero.alpine.listener.Listenable;
 import net.minecraft.client.MinecraftClient;
 
 import me.mazupy.kairyou.Kairyou;
+import me.mazupy.kairyou.setting.KeybindSetting;
 import me.mazupy.kairyou.setting.Setting;
+import me.mazupy.kairyou.setting.input.Keybind;
 import me.mazupy.kairyou.utils.Utils;
 
 public abstract class Module implements Listenable {
@@ -21,8 +23,11 @@ public abstract class Module implements Listenable {
     protected final Category category;
     protected final List<Setting<?>> settings;
 
+    protected boolean independent = false;
+    protected boolean enabled = false;
     private boolean active = false;
-    private boolean enabled = false;
+
+    protected final KeybindSetting bind = new KeybindSetting("Keybind", new Keybind(this::toggle));
 
     protected Module() {
         final Info annotation = getAnnotation();
@@ -30,6 +35,7 @@ public abstract class Module implements Listenable {
         description = annotation.description();
         category = annotation.category();
         settings = new ArrayList<>(1);
+        settings.add(bind);
     }
 
     public void restart() {
@@ -42,7 +48,7 @@ public abstract class Module implements Listenable {
     public void toggle() {
         enabled = !enabled;
         // Only apply toggle when in game. Yes, it's not not in game
-        if (!Utils.notInGame()) toggleActive();
+        if (independent || !Utils.notInGame()) toggleActive();
     }
 
     public void toggleActive() {
@@ -86,6 +92,10 @@ public abstract class Module implements Listenable {
 
     public boolean getEnabled() {
         return enabled;
+    }
+
+    public boolean getActive() {
+        return active;
     }
 
     public List<Setting<?>> getSettings() {

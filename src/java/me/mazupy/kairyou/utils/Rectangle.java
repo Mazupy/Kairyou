@@ -17,5 +17,9 @@ public class Rectangle {
                mY >= y &&
                mY <= y + h;
     }
+
+    public Rectangle inset(int i) {
+        return new Rectangle(x + i, y + i, w - 2 * i, h - 2 * i);
+    }
     
 }

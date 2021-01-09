@@ -12,7 +12,7 @@ import net.minecraft.client.MinecraftClient;
 import me.mazupy.kairyou.gui.GuiScreen;
 import me.mazupy.kairyou.module.ModuleManager;
 import me.mazupy.kairyou.rendering.OverlayProjector;
-import me.mazupy.kairyou.utils.KeyManager;
+import me.mazupy.kairyou.setting.input.BindManager;
 
 public class Kairyou implements ClientModInitializer {
 
@@ -28,9 +28,9 @@ public class Kairyou implements ClientModInitializer {
 
         System.out.println("Kairyou client v" + VERSION + " init");
 
+        new BindManager(); // needs to be in front of the module manager
         new ModuleManager();
         new OverlayProjector();
-        new KeyManager();
         new GuiScreen();
 
         Runtime.getRuntime().addShutdownHook(new Thread(this::stop));

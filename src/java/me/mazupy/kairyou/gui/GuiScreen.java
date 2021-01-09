@@ -47,14 +47,8 @@ public class GuiScreen extends Screen {
             DropdownWidget parentWidget = (DropdownWidget) widgets.get(mod.getCategory().name());
             int y = (parentWidget.getChildrenCount() + 1) * MODULE_HEIGHT;
             Rectangle dim = new Rectangle(0, y, MODULE_WIDTH, MODULE_HEIGHT);
-            parentWidget.addWidget(
-                new ModuleWidget(
-                    mod.getName(), 
-                    dim, 
-                    () -> mod.toggle(), 
-                    () -> MC.openScreen(new ModuleSettingsScreen(this, mod))
-                )
-            );
+            ModuleWidget modWidget = new ModuleWidget(mod, dim, this);
+            parentWidget.addWidget(modWidget);
         }
 
         INSTANCE = this;

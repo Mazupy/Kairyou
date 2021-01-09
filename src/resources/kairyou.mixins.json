@@ -10,7 +10,8 @@
         "interfaces.IPlayerMoveC2SPacket",
         "ClientConnectionMixin",
         "InGameHudMixin",
-        "GameRendererMixin"
+        "GameRendererMixin",
+        "MouseMixin"
     ],
     "injectors": {
         "defaultRequire": 1

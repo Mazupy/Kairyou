@@ -14,6 +14,7 @@ import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.GameDisconnectedEvent;
 import me.mazupy.kairyou.event.GameJoinedEvent;
 import me.mazupy.kairyou.event.PlayerRespawnEvent;
+import me.mazupy.kairyou.module.misc.*;
 import me.mazupy.kairyou.module.movement.*;
 import me.mazupy.kairyou.module.render.*;
 
@@ -43,7 +44,7 @@ public class ModuleManager implements Listenable {
     @EventHandler
     private final Listener<GameJoinedEvent> onGameJoin = new Listener<>(event -> {
         for (Module module : getModules()) {
-            if (module.getEnabled()) module.toggleActive();
+            if (module.getEnabled() && !module.getActive()) module.toggleActive();
         }
     });
 
@@ -69,6 +70,7 @@ public class ModuleManager implements Listenable {
         addModule(new Step());
         addModule(new Hud());
         addModule(new FullBright());
+        addModule(new Gui());
     }
 
     private void addModule(Module module) {

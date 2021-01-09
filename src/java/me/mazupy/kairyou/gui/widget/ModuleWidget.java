@@ -1,22 +1,25 @@
 package me.mazupy.kairyou.gui.widget;
 
+import net.minecraft.client.gui.screen.Screen;
+
+import me.mazupy.kairyou.gui.ModuleSettingsScreen;
+import me.mazupy.kairyou.module.Module;
 import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.utils.Color;
 import me.mazupy.kairyou.utils.Rectangle;
 
 import static org.lwjgl.glfw.GLFW.*;
+import static me.mazupy.kairyou.Kairyou.*;
 
 public class ModuleWidget extends Widget {
-    
-    protected final Runnable action0;
-    protected final Runnable action1;
 
-    protected boolean toggled;
+    protected final Module mod;
+    protected final Screen screen;
 
-    public ModuleWidget(String label, Rectangle dim, Runnable action0, Runnable action1) {
-        super(label, dim);
-        this.action0 = action0;
-        this.action1 = action1;
+    public ModuleWidget(Module mod, Rectangle dim, Screen screen) {
+        super(mod.getName(), dim);
+        this.mod = mod;
+        this.screen = screen;
     }
 
     @Override
@@ -24,16 +27,15 @@ public class ModuleWidget extends Widget {
         boolean clicked = dim.isAt(mX, mY);
         if (clicked) {
             if (button == GLFW_MOUSE_BUTTON_LEFT) {
-                toggled = !toggled;
-                action0.run();
-            } else if (button == GLFW_MOUSE_BUTTON_RIGHT) action1.run();
+                mod.toggle();
+            } else if (button == GLFW_MOUSE_BUTTON_RIGHT) MC.openScreen(new ModuleSettingsScreen(screen, mod));
         }
         return clicked;
     }
 
     @Override
     public void render() {
-        ShapeRenderer.rect(dim, toggled ? Color.Active : Color.Widget, Color.Outline);
+        ShapeRenderer.rect(dim, mod.getEnabled() ? Color.Active : Color.Widget, Color.Outline);
         ShapeRenderer.text(label, dim, Color.Text);
     }
 

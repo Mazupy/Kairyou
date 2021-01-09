@@ -21,6 +21,8 @@ import static me.mazupy.kairyou.utils.Utils.*;
 public class ModuleSettingsScreen extends Screen {
 
     public static final int BOX_MARGIN = 2;
+
+    public static boolean locked = false;
     
     private final List<Widget> widgets = new ArrayList<>();
 
@@ -119,6 +121,7 @@ public class ModuleSettingsScreen extends Screen {
 
     @Override
     public void onClose() {
+        if (locked) return;
         module.restart();
         Kairyou.MC.openScreen(parentScreen);
     }
