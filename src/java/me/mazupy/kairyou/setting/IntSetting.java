@@ -1,10 +1,12 @@
 package me.mazupy.kairyou.setting;
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.math.MathHelper;
+
 import me.mazupy.kairyou.gui.ModuleSettingsScreen;
 import me.mazupy.kairyou.gui.widget.SliderIntWidget;
 import me.mazupy.kairyou.gui.widget.Widget;
 import me.mazupy.kairyou.utils.MathUtils;
-import net.minecraft.util.math.MathHelper;
 
 public class IntSetting extends Setting<Integer> {
     
@@ -46,6 +48,18 @@ public class IntSetting extends Setting<Integer> {
     public Widget getWidget() {
         if (widget == null) widget = new SliderIntWidget(this, ModuleSettingsScreen.defaultDim(2));
         return widget;
+    }
+
+    public CompoundTag toTag() {
+        CompoundTag tag = new CompoundTag();
+
+        tag.putInt("value", getInt());
+
+        return tag;
+    }
+
+    public void fromTag(CompoundTag tag) {
+        set(tag.getInt("value"));
     }
 
 }

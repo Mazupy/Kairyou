@@ -53,6 +53,31 @@ public abstract class Utils {
         return strength;
     }
 
+    public static <T extends Enum<T>> T closestMatch(String stringValue, T[] options) {
+        if (options.length < 1) return null;
+        int bestIndex = 0;
+        int bestScore = Integer.MAX_VALUE;
+        for (int i = 0; i < options.length; i++) {
+            int score = Utils.levensheinDist(options[i].name(), stringValue);
+            if (score < bestScore) {
+                bestScore = score;
+                bestIndex = i;
+            }
+        }
+        return options[bestIndex];
+    }
+
+	public static int levensheinDist(String s0, String s1) {
+		if (s0.isEmpty()) return s1.length();
+        if (s1.isEmpty()) return s0.length();
+        
+        int sub = levensheinDist(s0.substring(1), s1.substring(1)) + (s0.charAt(0) == s1.charAt(0) ? 0 : 1);
+        int insert = levensheinDist(s0, s1.substring(1)) + 1;
+        int del = levensheinDist(s0.substring(1), s1) + 1;
+
+        return MathUtils.min(sub, insert, del);
+	}
+
     // TODO: unused
     // public static double getTrueEyeY() {
     //     return MC.player.getY() + MC.player.getEyeHeight(MC.player.getPose());

@@ -12,6 +12,7 @@ import me.mazupy.kairyou.module.Category;
 import me.mazupy.kairyou.module.Module;
 import me.mazupy.kairyou.module.ModuleManager;
 import me.mazupy.kairyou.rendering.ShapeRenderer;
+import me.mazupy.kairyou.setting.storage.StorageManager;
 import me.mazupy.kairyou.utils.Rectangle;
 import me.mazupy.kairyou.utils.Utils;
 
@@ -55,6 +56,7 @@ public class GuiScreen extends Screen {
     }
 
     public static void toggleGui() {
+        if (MC.currentScreen == null) guiVisible = false;
         if (guiVisible) MC.currentScreen.onClose(); // Closes child screens first
         else INSTANCE.open();
     }
@@ -130,6 +132,8 @@ public class GuiScreen extends Screen {
     public void onClose() {
         MC.openScreen(parentScreen);
         guiVisible = false;
+        
+        StorageManager.save();
     }
 
     @Override

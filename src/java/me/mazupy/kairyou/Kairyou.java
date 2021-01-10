@@ -13,6 +13,7 @@ import me.mazupy.kairyou.gui.GuiScreen;
 import me.mazupy.kairyou.module.ModuleManager;
 import me.mazupy.kairyou.rendering.OverlayProjector;
 import me.mazupy.kairyou.setting.input.BindManager;
+import me.mazupy.kairyou.setting.storage.StorageManager;
 
 public class Kairyou implements ClientModInitializer {
 
@@ -33,11 +34,14 @@ public class Kairyou implements ClientModInitializer {
         new OverlayProjector();
         new GuiScreen();
 
+        StorageManager.load();
+
         Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
     }
 
     private void stop() {
         ModuleManager.INSTANCE.deactivateAll();
+        StorageManager.save();
     }
 
     private static String getVersion() {

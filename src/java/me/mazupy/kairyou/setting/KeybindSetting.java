@@ -4,6 +4,7 @@ import me.mazupy.kairyou.gui.ModuleSettingsScreen;
 import me.mazupy.kairyou.gui.widget.KeybindWidget;
 import me.mazupy.kairyou.gui.widget.Widget;
 import me.mazupy.kairyou.setting.input.Keybind;
+import net.minecraft.nbt.CompoundTag;
 
 public class KeybindSetting extends Setting<Keybind> {
 
@@ -27,6 +28,18 @@ public class KeybindSetting extends Setting<Keybind> {
     public void updateBind() {
         double timeLeft = bindSetTime - System.currentTimeMillis() + KeybindWidget.BIND_TIME;
         if (timeLeft > 0) value.set(timeLeft);
+    }
+
+    public CompoundTag toTag() {
+        CompoundTag tag = new CompoundTag();
+
+        tag.put("bind", value.toTag());
+
+        return tag;
+    }
+
+    public void fromTag(CompoundTag tag) {
+        get().fromTag((CompoundTag) tag.get("bind"));
     }
 
 }

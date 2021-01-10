@@ -2,14 +2,20 @@ package me.mazupy.kairyou.setting.input;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import net.minecraft.nbt.CompoundTag;
 
 import me.mazupy.kairyou.event.InputEvent;
+import me.mazupy.kairyou.setting.storage.ISavable;
 import me.mazupy.kairyou.utils.HumanReadable;
+import me.mazupy.kairyou.utils.Utils;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static me.mazupy.kairyou.setting.input.Trigger.*;
 
-public class Keybind {
+public class Keybind implements ISavable {
 
     public String readableString;
     
@@ -127,6 +133,31 @@ public class Keybind {
         }
         
         readableString = builder.toString();
+    }
+
+    public String tagName() {
+        return "none";
+    }
+
+    public CompoundTag toTag() {
+        CompoundTag tag = new CompoundTag();
+
+        tag.putInt("modifier", modifier);
+        tag.putIntArray("keys", keys);
+        tag.putInt("defaultKey", defaultKey);
+        tag.putString("trigger", trigger.name());
+        tag.putBoolean("active", active);
+
+        return tag;
+    }
+
+    public void fromTag(CompoundTag tag) {
+        modifier = tag.getInt("modifier");
+        keys = IntStream.of(tag.getIntArray("keys")).boxed().collect(Collectors.toList());
+        defaultKey = tag.getInt("defaultKey");
+        trigger = Utils.closestMatch(tag.getString("trigger"), Trigger.values());
+        active = tag.getBoolean("active");
+        updateString();
     }
 
     private boolean needMod(int mod) {

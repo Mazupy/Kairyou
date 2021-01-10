@@ -2,6 +2,7 @@ package me.mazupy.kairyou.setting;
 
 import java.util.function.Function;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.math.MathHelper;
 
 import me.mazupy.kairyou.gui.ModuleSettingsScreen;
@@ -63,6 +64,18 @@ public class DoubleSetting extends Setting<Double> {
     public Widget getWidget() {
         if (widget == null) widget = new SliderDoubleWidget(this, ModuleSettingsScreen.defaultDim(2));
         return widget;
+    }
+
+    public CompoundTag toTag() {
+        CompoundTag tag = new CompoundTag();
+
+        tag.putDouble("value", getDouble());
+
+        return tag;
+    }
+
+    public void fromTag(CompoundTag tag) {
+        set(tag.getDouble("value"));
     }
 
     public enum Scale {
