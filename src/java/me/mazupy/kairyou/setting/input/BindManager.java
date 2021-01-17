@@ -20,7 +20,7 @@ public class BindManager implements Listenable {
     private static final List<Keybind> binds = new ArrayList<>();
     
     public BindManager() {
-        if (INSTANCE == null) INSTANCE = this;
+        INSTANCE = this;
         
         Kairyou.EVENT_BUS.subscribe(this);
     }

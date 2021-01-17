@@ -11,6 +11,7 @@ import me.mazupy.kairyou.gui.widget.*;
 import me.mazupy.kairyou.module.Category;
 import me.mazupy.kairyou.module.Module;
 import me.mazupy.kairyou.module.ModuleManager;
+import me.mazupy.kairyou.module.misc.Gui;
 import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.setting.storage.StorageManager;
 import me.mazupy.kairyou.utils.Rectangle;
@@ -65,6 +66,8 @@ public class GuiScreen extends Screen {
         parentScreen = MC.currentScreen;
         MC.openScreen(INSTANCE);
         guiVisible = true;
+
+        Gui.update();
     }
 
     // @Override
@@ -133,6 +136,7 @@ public class GuiScreen extends Screen {
         MC.openScreen(parentScreen);
         guiVisible = false;
         
+        Gui.update();
         StorageManager.save();
     }
 

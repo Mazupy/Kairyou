@@ -26,7 +26,7 @@ public class ModuleManager implements Listenable {
     private final List<Module> activeModules = new ArrayList<>();
 
     public ModuleManager() {
-        if (INSTANCE == null) INSTANCE = this;
+        INSTANCE = this;
 
         addModules();
 

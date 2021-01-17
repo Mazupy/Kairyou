@@ -3,10 +3,10 @@ For Minecraft 1.16.4
 
 ### Progress
 * Client: _6/12_
-* Modules: _6/127+_
-* Fixes: _396/∞_
+* Modules: _6/129+_
+* Fixes: _399/∞_
 
-Time spent: 130h  
+Time spent: 147h  
 Expected the client to reach a mature state till September 2021
 
 ## Setup
@@ -28,10 +28,12 @@ cd kairyou
 gradle build
 # Build the jar (Linux)
 ./gradle build
+# Build the jar (Windows/Linux with gradle wrapper)
+./gradlew build
 ```
 ### Installing
 In the directory `build/libs/` you will find `kairyou-#.#.#-alpha.jar`, _ignore any `-all.jar`, `-sources.jar` or `-dev.jar`_.  
-Install the fabric loader and put the `fabric-api-[...].jar` and the `kairyou-#.#.#.jar` into the mods folder.
+Install the fabric loader and put the `fabric-api-[...].jar` and the `kairyou-#.#.#-alpha.jar` into the mods folder.
 
 ## **Plea**
 > When using this mod on a server, make sure any modules you use are compliant with the rules.

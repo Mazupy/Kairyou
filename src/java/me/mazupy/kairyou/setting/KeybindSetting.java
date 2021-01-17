@@ -1,10 +1,11 @@
 package me.mazupy.kairyou.setting;
 
+import net.minecraft.nbt.CompoundTag;
+
 import me.mazupy.kairyou.gui.ModuleSettingsScreen;
 import me.mazupy.kairyou.gui.widget.KeybindWidget;
 import me.mazupy.kairyou.gui.widget.Widget;
 import me.mazupy.kairyou.setting.input.Keybind;
-import net.minecraft.nbt.CompoundTag;
 
 public class KeybindSetting extends Setting<Keybind> {
 
