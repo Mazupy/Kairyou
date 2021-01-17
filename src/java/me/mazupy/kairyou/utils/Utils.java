@@ -11,9 +11,10 @@ import static me.mazupy.kairyou.Kairyou.*;
 
 public abstract class Utils {
 
-    public static final int TPS = 20; // TODO: unused
     public static final double EPSILON = 1e-7;
     public static final int MOUSE_DRAG_FLAG = -1;
+    public static final int ITEM_SIZE = 16;
+    public static final int TPS = 20; // TODO: unused
     // 2 constants taken from https://minecraft.gamepedia.com/Entity#Motion_of_entities
     public static final double PLAYER_GRAVITY = -0.08;
     public static final double PLAYER_DRAG = 0.98;
@@ -67,8 +68,8 @@ public abstract class Utils {
         return options[bestIndex];
     }
 
-	public static int levensheinDist(String s0, String s1) {
-		if (s0.isEmpty()) return s1.length();
+    public static int levensheinDist(String s0, String s1) {
+        if (s0.isEmpty()) return s1.length();
         if (s1.isEmpty()) return s0.length();
         
         int sub = levensheinDist(s0.substring(1), s1.substring(1)) + (s0.charAt(0) == s1.charAt(0) ? 0 : 1);
@@ -76,7 +77,7 @@ public abstract class Utils {
         int del = levensheinDist(s0.substring(1), s1) + 1;
 
         return MathUtils.min(sub, insert, del);
-	}
+    }
 
     // TODO: unused
     // public static double getTrueEyeY() {

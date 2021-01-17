@@ -57,9 +57,9 @@ public abstract class MathUtils {
         return clamp((v - min) / (max - min), 0, 1);
     }
 
-	public static int min(int... values) {
-		return IntStream.of(values).min().getAsInt();
-	}
+    public static int min(int... values) {
+        return IntStream.of(values).min().getAsInt();
+    }
 
     // TODO: unused
     // public static double roundTo(double value, double roundTo) {

@@ -12,6 +12,7 @@ import me.mazupy.kairyou.module.ModuleManager;
 import me.mazupy.kairyou.rendering.ShapeRenderer;
 import me.mazupy.kairyou.rendering.ShapeRenderer.Alignment;
 import me.mazupy.kairyou.utils.Color;
+import me.mazupy.kairyou.utils.Utils;
 
 @Module.Info(name = "HUD", description = "Shows HUD", category = Category.Render)
 public class Hud extends Module {
@@ -22,8 +23,12 @@ public class Hud extends Module {
 
         textBottomLeft("Kairyou v" + Kairyou.VERSION, 0);
         final int activeModules = ModuleManager.INSTANCE.getActiveModules().size();
-        final int moduleCount = ModuleManager.INSTANCE.getModules().size();
+        final int moduleCount = ModuleManager.INSTANCE.getModules().size() - 1; // -1 because the Gui module shouldn't count
         textBottomLeft("Active modules: " + activeModules + "/" + moduleCount, 1);
+
+        // TODO: testing
+        if (Utils.notInGame()) return;
+        ShapeRenderer.item(mc.player.inventory.getMainHandStack(), ShapeRenderer.maxX() / 2, ShapeRenderer.maxY() / 2 + 12, Alignment.TopMid);
     });
     
     private void textBottomLeft(String text, int index) {

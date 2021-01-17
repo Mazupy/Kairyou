@@ -2,6 +2,7 @@ package me.mazupy.kairyou.rendering;
 
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
 import me.mazupy.kairyou.utils.Color;
@@ -76,35 +77,9 @@ public class ShapeRenderer { // TODO: clean up entire file
     }
 
     public static void textAlign(String text, int x, int y, Color color, Alignment align, boolean shadowed) {
-        int w = -Utils.width(text);
-        int h = -Utils.height(text);
-        int wInset = TEXT_INSET;
-        int hInset = TEXT_INSET;
+        final int X = x + alignX(align, Utils.width(text), TEXT_INSET);
+        final int Y = y + alignY(align, Utils.height(text), TEXT_INSET);
 
-        switch (align) {
-            case TopMid: case Center: case BottomMid:
-                w /= 2;
-                wInset = 0;
-                break;
-            case TopRight: case Right: case BottomRight: 
-                wInset *= -1;
-                break;
-            default:
-                w = 0;
-        }
-        switch (align) {
-            case Left: case Center: case Right:
-                h /= 2;
-                break; 
-            case BottomLeft: case BottomMid: case BottomRight:
-                hInset = 0;
-                break;
-            default:
-                h = 0;
-        }
-
-        final int X = x + w + wInset;
-        final int Y = y + h + hInset;
         if (shadowed) shadowedText(text, X, Y, color);
         else text(text, X, Y, color);
     }
@@ -180,6 +155,44 @@ public class ShapeRenderer { // TODO: clean up entire file
         mb.vertex(X1, Y1, 0).colorNext(color);
 
         mb.end(false);
+    }
+
+    public static void item(ItemStack item, int x, int y, Alignment align) {
+        final int X = MathUtils.round(convert(x + xOffset)) + alignX(align, Utils.ITEM_SIZE);
+        final int Y = MathUtils.round(convert(y + yOffset)) + alignY(align, Utils.ITEM_SIZE);
+
+        MC.getItemRenderer().renderInGuiWithOverrides(item, X, Y);
+        MC.getItemRenderer().renderGuiItemOverlay(MC.textRenderer, item, X, Y);
+    }
+
+    private static int alignX(Alignment align, int w) {
+        return alignX(align, w, 0);
+    }
+
+    private static int alignX(Alignment align, int w, int inset) {
+        switch (align) {
+            case TopMid: case Center: case BottomMid:
+                return -w / 2;
+            case TopRight: case Right: case BottomRight: 
+                return -w - inset;
+            default:
+                return inset;
+        }
+    }
+
+    private static int alignY(Alignment align, int h) {
+        return alignY(align, h, 0);
+    }
+
+    private static int alignY(Alignment align, int h, int inset) {
+        switch (align) {
+            case Left: case Center: case Right:
+                return -h / 2 + inset;
+            case BottomLeft: case BottomMid: case BottomRight:
+                return -h;
+            default:
+                return inset;
+        }
     }
 
     public enum Alignment {
