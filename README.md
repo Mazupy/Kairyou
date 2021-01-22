@@ -1,9 +1,9 @@
 # Kairyō client
-For Minecraft 1.16.4
+For Minecraft 1.16.4 / 1.16.5
 
 ### Progress
 * Client: _6/12_
-* Modules: _6/129+_
+* Modules: _6/134+_
 * Fixes: _400/∞_
 
 Time spent: 149h  
