@@ -27,7 +27,7 @@ public class AutoSprint extends Module {
         Always
     }
 
-    private static final EnumSetting<Mode> mode = new EnumSetting<>("Mode", Mode.Legit);
+    private final EnumSetting<Mode> mode = new EnumSetting<>("Mode", Mode.Legit);
 
     public AutoSprint() {
         settings.add(mode);

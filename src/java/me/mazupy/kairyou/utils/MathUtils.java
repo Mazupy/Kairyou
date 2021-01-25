@@ -17,8 +17,16 @@ public abstract class MathUtils {
         return (int) Math.ceil(v);
     }
 
+    public static double sinDeg(float degrees) {
+        return sin(degrees * DEG2RAD);
+    }
+
     public static double sin(double radians) {
         return MathHelper.sin((float) radians);
+    }
+
+    public static double cosDeg(float degrees) {
+        return cos(degrees * DEG2RAD);
     }
 
     public static double cos(double radians) {
@@ -41,8 +49,16 @@ public abstract class MathUtils {
         return v * v * v;
     }
 
+    public static float cube(float v) {
+        return v * v * v;
+    }
+
+    public static double lengthSq(double x, double z) {
+        return sq(x) + sq(z);
+    }
+
     public static double length(double x, double z) {
-        return Math.sqrt(sq(x) + sq(z));
+        return Math.sqrt(lengthSq(x, z));
     }
 
     public static int clamp(int v, int min, int max) {

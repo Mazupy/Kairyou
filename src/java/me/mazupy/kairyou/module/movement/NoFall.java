@@ -19,8 +19,8 @@ import static me.mazupy.kairyou.utils.DamageUtils.*;
 @Module.Info(name = "NoFall", description = "Mitigates fall damage", category = Category.Movement)
 public class NoFall extends Module {
 
-    private static final IntSetting damageTolerance = new IntSetting("Fall damage tolerance", 0, 0, 35);
-    private static final BooleanSetting cancelVelocity = new BooleanSetting("Cancel vertical velocity", false);
+    private final IntSetting damageTolerance = new IntSetting("Fall damage tolerance", 0, 0, 35);
+    private final BooleanSetting cancelVelocity = new BooleanSetting("Cancel vertical velocity", false);
 
     public NoFall() {
         settings.add(damageTolerance);

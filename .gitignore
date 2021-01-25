@@ -16,8 +16,7 @@ bin/
 run/
 
 # notes
-Notes.txt
-Feature implementation plan.txt
+notes/
 
 # test
 test/

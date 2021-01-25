@@ -26,11 +26,17 @@ public abstract class MinecraftClientMixin {
         return false;
     }
 
-    @Inject(method = "tick", at = @At("TAIL"))
-    private void onTick(CallbackInfo info) {
+    @Inject(method = "tick", at = @At("HEAD"))
+    private void onPreTick(CallbackInfo info) {
         // The conversion doesn't need to be updated every render call. Every tick should be enough
         ShapeRenderer.updateConversion();
 
+        if (Utils.notInGame()) return;
+        Kairyou.EVENT_BUS.post(EventProvider.preTickEvent());
+    }
+
+    @Inject(method = "tick", at = @At("TAIL"))
+    private void onTick(CallbackInfo info) {
         if (Utils.notInGame()) return;
         Kairyou.EVENT_BUS.post(EventProvider.tickEvent());
     }

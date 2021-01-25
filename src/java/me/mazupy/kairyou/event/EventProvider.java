@@ -14,6 +14,7 @@ public class EventProvider {
     private static final WorldRenderEvent worldRenderEvent = new WorldRenderEvent();
     private static final PlayerRespawnEvent playerRespawnEvent = new PlayerRespawnEvent();
     private static final InputEvent inputEvent = new InputEvent();
+    private static final PreTickEvent preTickEvent = new PreTickEvent();
 
     public static TickEvent tickEvent() {
         return tickEvent;
@@ -54,5 +55,9 @@ public class EventProvider {
         inputEvent.key = key;
         inputEvent.type = type;
         return inputEvent;
+    }
+
+    public static PreTickEvent preTickEvent() {
+        return preTickEvent;
     }
 }

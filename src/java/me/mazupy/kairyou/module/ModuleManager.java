@@ -71,6 +71,7 @@ public class ModuleManager implements Listenable {
         addModule(new Hud());
         addModule(new FullBright());
         addModule(new Gui());
+        addModule(new MovementSpoofer());
     }
 
     private void addModule(Module module) {

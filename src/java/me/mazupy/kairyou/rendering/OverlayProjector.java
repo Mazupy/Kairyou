@@ -63,6 +63,30 @@ public class OverlayProjector implements Listenable {
         quadRenderQueue.add(new QuadRenderTask(x, y, z + 1, x + 1, y, z + 1, x + 1, y + 1, z + 1, x, y + 1, z + 1, color));
     }
 
+    public static void lineBox(double x, double y, double z, float w, float h, Color color) {
+        final double MIN_X = x - w / 2;
+        final double MIN_Z = z - w / 2;
+        final double MAX_X = x + w / 2;
+        final double MAX_Z = z + w / 2;
+        final double MAX_Y = y + h;
+
+        line(MIN_X, y, MIN_Z, MAX_X, y, MIN_Z, color);
+        line(MIN_X, y, MIN_Z, MIN_X, y, MAX_Z, color);
+        line(MIN_X, y, MIN_Z, MIN_X, MAX_Y, MIN_Z, color);
+
+        line(MAX_X, MAX_Y, MIN_Z, MAX_X, y, MIN_Z, color);
+        line(MAX_X, MAX_Y, MIN_Z, MIN_X, MAX_Y, MIN_Z, color);
+        line(MAX_X, MAX_Y, MIN_Z, MAX_X, MAX_Y, MAX_Z, color);
+        
+        line(MIN_X, MAX_Y, MAX_Z, MIN_X, y, MAX_Z, color);
+        line(MIN_X, MAX_Y, MAX_Z, MIN_X, MAX_Y, MIN_Z, color);
+        line(MIN_X, MAX_Y, MAX_Z, MAX_X, MAX_Y, MAX_Z, color);
+
+        line(MAX_X, y, MAX_Z, MAX_X, y, MIN_Z, color);
+        line(MAX_X, y, MAX_Z, MIN_X, y, MAX_Z, color);
+        line(MAX_X, y, MAX_Z, MAX_X, MAX_Y, MAX_Z, color);
+    }
+
     @EventHandler
     private final Listener<Render2DEvent> on2DRender = new Listener<>(event -> {
         for (LineRenderTask task : lineRenderQueue) {

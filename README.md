@@ -4,9 +4,9 @@ For Minecraft 1.16.4 / 1.16.5
 ### Progress
 * Client: _6/12_
 * Modules: _6/134+_
-* Fixes: _400/∞_
+* Fixes: _416/∞_
 
-Time spent: 149h  
+Time spent: 164h  
 Expected the client to reach a mature state till September 2021
 
 ## Setup
@@ -24,13 +24,18 @@ Start Git bash where you want to try it:
 git clone https://github.com/Mazupy/kairyou.git
 # Go into the repository
 cd kairyou
-# Build the jar (Windows)
-gradle build
-# Build the jar (Linux)
-./gradle build
-# Build the jar (Windows/Linux with gradle wrapper)
-./gradlew build
+# Build the jar
+gradle build # Windows
+./gradle build # Linux
+./gradlew build # Windows/Linux with gradle wrapper
+# Generate source files (recommended if you want to modify it)
+gradle genSources # Windows
+./gradle genSources # Linux
+./gradlew genSources # Windows/Linux with gradle wrapper
 ```
+You may need to refresh the java project, for VS Code this is done pressing `Shift + Alt + U` while having `build.gradle` open. 
+([more info](https://fabricmc.net/wiki/tutorial:setup))  
+
 ### Installing
 In the directory `build/libs/` you will find `kairyou-#.#.#-alpha.jar`, _ignore any `-all.jar`, `-sources.jar` or `-dev.jar`_.  
 Install the fabric loader and put the `fabric-api-[...].jar` and the `kairyou-#.#.#-alpha.jar` into the mods folder.
