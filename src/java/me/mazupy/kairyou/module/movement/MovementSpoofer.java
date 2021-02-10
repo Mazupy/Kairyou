@@ -37,6 +37,7 @@ public class MovementSpoofer extends Module { // TODO: test module
     private double pY = y;
     private double pZ = z;
     private boolean onGround = true;
+    private int jumpingCooldown = 0;
 
     public MovementSpoofer() {
         settings.add(reset);
@@ -77,15 +78,18 @@ public class MovementSpoofer extends Module { // TODO: test module
         if (Math.abs(vY) < 0.003) vY = 0;
         if (Math.abs(vZ) < 0.003) vZ = 0;
         // Jumping
-        if (mc.player.input.jumping && onGround) {
-            float jumpMult = getBlock().getJumpVelocityMultiplier();
-            if (jumpMult == 1f) jumpMult = getBlockBelow(0.5 + Utils.EPSILON).getJumpVelocityMultiplier();
-            vY = 0.42f * jumpMult;
-            if (mc.player.isSprinting()) {
-                vX -= MathUtils.sinDeg(mc.player.yaw) * 0.2f;
-                vZ += MathUtils.cosDeg(mc.player.yaw) * 0.2f;
+        if (mc.player.input.jumping) {
+            if (--jumpingCooldown < 1 && onGround) {
+                jumpingCooldown = 10;
+                float jumpMult = getBlock().getJumpVelocityMultiplier();
+                if (jumpMult == 1f) jumpMult = getBlockBelow(0.5 + Utils.EPSILON).getJumpVelocityMultiplier();
+                vY = 0.42f * jumpMult;
+                if (mc.player.isSprinting()) {
+                    vX -= MathUtils.sinDeg(mc.player.yaw) * 0.2f;
+                    vZ += MathUtils.cosDeg(mc.player.yaw) * 0.2f;
+                }
             }
-        }
+        } else jumpingCooldown = 0;
         // Get speed modifiers
         final float slipperiness = getBlockBelow(0.5 + Utils.EPSILON).getSlipperiness();
         final float horizontalMult = onGround ? slipperiness * 0.91f : 0.91f;
@@ -143,8 +147,7 @@ public class MovementSpoofer extends Module { // TODO: test module
     });
 
     private Block getBlockBelow(double yOffset) {
-        BlockPos pos = mc.player.getBlockPos();
-        pos.add(0, -yOffset, 0);
+        BlockPos pos = new BlockPos(x, y - yOffset, z);
         return mc.world.getBlockState(pos).getBlock();
     }
 
