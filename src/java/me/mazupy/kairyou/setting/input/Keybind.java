@@ -155,7 +155,8 @@ public class Keybind implements ISavable {
         modifier = tag.getInt("modifier");
         keys = IntStream.of(tag.getIntArray("keys")).boxed().collect(Collectors.toList());
         defaultKey = tag.getInt("defaultKey");
-        trigger = Utils.match(tag.getString("trigger"), Trigger.values());
+        Trigger match = Utils.match(tag.getString("trigger"), Trigger.values());
+        if (match != null) trigger = match;
         active = tag.getBoolean("active");
         updateString();
     }
