@@ -1,7 +1,5 @@
 package me.mazupy.kairyou.utils;
 
-import java.util.stream.IntStream;
-
 import net.minecraft.util.math.MathHelper;
 
 public abstract class MathUtils {
@@ -73,11 +71,13 @@ public abstract class MathUtils {
         return clamp((v - min) / (max - min), 0, 1);
     }
 
-    public static int min(int... values) {
-        return IntStream.of(values).min().getAsInt();
-    }
-
     // TODO: unused
+    // public static int min(int... values) {
+    //     int lowest = Integer.MAX_VALUE;
+    //     for (int v : values) lowest = Math.min(lowest, v);
+    //     return lowest;
+    // }
+
     // public static double roundTo(double value, double roundTo) {
     //     return Math.round(value / roundTo) * roundTo;
     // }

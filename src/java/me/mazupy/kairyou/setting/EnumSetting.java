@@ -48,7 +48,8 @@ public class EnumSetting<T extends Enum<T>> extends Setting<T> {
     }
 
     public void fromTag(CompoundTag tag) {
-        set(Utils.closestMatch(tag.getString("value"), options));
+        T match = Utils.match(tag.getString("value"), options);
+        if (match != null) set(match);
     }
 
 }
