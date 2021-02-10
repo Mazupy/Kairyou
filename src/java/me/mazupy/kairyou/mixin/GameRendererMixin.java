@@ -14,6 +14,11 @@ import me.mazupy.kairyou.utils.Color;
 
 @Mixin(GameRenderer.class)
 public class GameRendererMixin {
+
+    @Inject(method = "renderWorld", at = @At("HEAD"))
+    public void onPreRenderWorld(float tickDelta, long timeLimit, MatrixStack matrices, CallbackInfo info) {
+        Kairyou.EVENT_BUS.post(EventProvider.preWorldRenderEvent(tickDelta));
+    }
     
     @Inject( // WorldRenderer.render(MatrixStack matrices, float tickDelta, long timeLimit, boolean renderBlockOutline, Camera camera, GameRenderer this, LightmapTextureManager lightmapTextureManager, Matrix4f matrix)
         method = "renderWorld", 

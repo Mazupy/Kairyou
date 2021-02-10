@@ -14,6 +14,7 @@ import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.event.GameDisconnectedEvent;
 import me.mazupy.kairyou.event.GameJoinedEvent;
 import me.mazupy.kairyou.event.PlayerRespawnEvent;
+import me.mazupy.kairyou.module.combat.*;
 import me.mazupy.kairyou.module.misc.*;
 import me.mazupy.kairyou.module.movement.*;
 import me.mazupy.kairyou.module.render.*;
@@ -72,6 +73,7 @@ public class ModuleManager implements Listenable {
         addModule(new FullBright());
         addModule(new Gui());
         addModule(new MovementSpoofer());
+        addModule(new AimAssist());
     }
 
     private void addModule(Module module) {

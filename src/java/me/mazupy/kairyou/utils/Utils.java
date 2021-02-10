@@ -1,11 +1,14 @@
 package me.mazupy.kairyou.utils;
 
 import net.minecraft.client.sound.PositionedSoundInstance;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 import static me.mazupy.kairyou.Kairyou.*;
 
@@ -52,6 +55,22 @@ public abstract class Utils {
         int strength = 0;
         if (entity.getActiveStatusEffects().containsKey(effect)) strength = entity.getStatusEffect(effect).getAmplifier() + 1;
         return strength;
+    }
+
+    public static Vec3d getRenderPos() {
+        return getRenderPos(MC.player);
+    }
+
+    public static Vec3d getRenderPos(Entity entity) {
+        double x = MathHelper.lerp(MC.getTickDelta(), entity.prevX, entity.getX());
+        double y = MathHelper.lerp(MC.getTickDelta(), entity.prevY, entity.getY());
+        double z = MathHelper.lerp(MC.getTickDelta(), entity.prevZ, entity.getZ());
+        return new Vec3d(x, y, z);
+    }
+    
+    public static double getTrueEyeY(float tickDelta) {
+        double y = MathHelper.lerp(tickDelta, MC.player.prevY, MC.player.getY());
+        return y + MC.player.getEyeHeight(MC.player.getPose());
     }
 
 	public static <T extends Enum<T>> T match(String string, T[] values) {

@@ -15,6 +15,7 @@ public class EventProvider {
     private static final PlayerRespawnEvent playerRespawnEvent = new PlayerRespawnEvent();
     private static final InputEvent inputEvent = new InputEvent();
     private static final PreTickEvent preTickEvent = new PreTickEvent();
+    private static final PreWorldRenderEvent preWorldRenderEvent = new PreWorldRenderEvent();
 
     public static TickEvent tickEvent() {
         return tickEvent;
@@ -59,5 +60,10 @@ public class EventProvider {
 
     public static PreTickEvent preTickEvent() {
         return preTickEvent;
+    }
+
+    public static PreWorldRenderEvent preWorldRenderEvent(float tickDelta) {
+        preWorldRenderEvent.tickDelta = tickDelta;
+        return preWorldRenderEvent;
     }
 }
