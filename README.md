@@ -7,7 +7,7 @@ For Minecraft 1.16.4 / 1.16.5
 * Fixes: _456/∞_
 
 Time spent: 181h  
-Expected the client to reach a mature state till September 2021
+Expected the client to reach a mature state till Late 2022
 
 ## Setup
 
