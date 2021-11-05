@@ -28,7 +28,7 @@ cd kairyou
 gradle build # Windows
 ./gradle build # Linux
 ./gradlew build # Windows/Linux with gradle wrapper
-# Generate source files (recommended if you want to modify it)
+# Generate source files (recommended if you want to modify them)
 gradle genSources # Windows
 ./gradle genSources # Linux
 ./gradlew genSources # Windows/Linux with gradle wrapper

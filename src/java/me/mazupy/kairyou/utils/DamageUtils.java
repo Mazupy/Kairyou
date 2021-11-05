@@ -27,6 +27,8 @@ public abstract class DamageUtils {
     // Overload
     public static float appliedDamage(LivingEntity entity, float damage, DamageSource source) {
         if (source.isOutOfWorld()) return damage;
+        
+        if (source.isFire() && entity.getActiveStatusEffects().containsKey(FIRE_RESISTANCE)) return 0;
 
         if (source.isScaledWithDifficulty()) {
             damage = getDifficultyDamage(damage);
@@ -37,7 +39,6 @@ public abstract class DamageUtils {
             damage = DamageUtil.getDamageLeft(damage, entity.getArmor(), toughness);
         }
 
-        if (source.isFire() && entity.getActiveStatusEffects().containsKey(FIRE_RESISTANCE)) return 0;
         if (source.getMagic() && entity instanceof WitchEntity) damage *= 0.15;
         if (!source.isUnblockable()) {
             damage = resistanceReduction(entity, damage);
