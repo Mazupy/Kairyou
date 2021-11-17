@@ -7,7 +7,7 @@ import java.util.List;
 
 import me.zero.alpine.listener.Listenable;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 
 import me.mazupy.kairyou.Kairyou;
 import me.mazupy.kairyou.setting.KeybindSetting;
@@ -85,8 +85,8 @@ public abstract class Module implements Listenable, ISavable {
         return name;
     }
 
-    public CompoundTag toTag() {
-        CompoundTag tag = new CompoundTag();
+    public NbtCompound toTag() {
+        NbtCompound tag = new NbtCompound();
 
         tag.put("settings", StorageUtils.toTag(settings));
         if (!independent) tag.putBoolean("enabled", enabled);
@@ -94,7 +94,7 @@ public abstract class Module implements Listenable, ISavable {
         return tag;
     }
 
-    public void fromTag(CompoundTag tag) {
+    public void fromTag(NbtCompound tag) {
         StorageUtils.fromTag(tag.get("settings"), settings);
         if (!independent) enabled = tag.getBoolean("enabled");
     }

@@ -1,6 +1,6 @@
 package me.mazupy.kairyou.setting;
 
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 
 import me.mazupy.kairyou.gui.ModuleSettingsScreen;
 import me.mazupy.kairyou.gui.widget.SelectionWidget;
@@ -39,15 +39,15 @@ public class EnumSetting<T extends Enum<T>> extends Setting<T> {
         return widget;
     }
 
-    public CompoundTag toTag() {
-        CompoundTag tag = new CompoundTag();
+    public NbtCompound toTag() {
+        NbtCompound tag = new NbtCompound();
 
         tag.putString("value", value.name());
 
         return tag;
     }
 
-    public void fromTag(CompoundTag tag) {
+    public void fromTag(NbtCompound tag) {
         T match = Utils.match(tag.getString("value"), options);
         if (match != null) set(match);
     }

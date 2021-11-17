@@ -2,7 +2,7 @@ package me.mazupy.kairyou.setting;
 
 import java.util.function.Function;
 
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.MathHelper;
 
 import me.mazupy.kairyou.gui.ModuleSettingsScreen;
@@ -66,15 +66,15 @@ public class DoubleSetting extends Setting<Double> {
         return widget;
     }
 
-    public CompoundTag toTag() {
-        CompoundTag tag = new CompoundTag();
+    public NbtCompound toTag() {
+        NbtCompound tag = new NbtCompound();
 
         tag.putDouble("value", getDouble());
 
         return tag;
     }
 
-    public void fromTag(CompoundTag tag) {
+    public void fromTag(NbtCompound tag) {
         set(tag.getDouble("value"));
     }
 

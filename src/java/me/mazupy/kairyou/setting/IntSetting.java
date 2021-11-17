@@ -1,6 +1,6 @@
 package me.mazupy.kairyou.setting;
 
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.MathHelper;
 
 import me.mazupy.kairyou.gui.ModuleSettingsScreen;
@@ -50,15 +50,15 @@ public class IntSetting extends Setting<Integer> {
         return widget;
     }
 
-    public CompoundTag toTag() {
-        CompoundTag tag = new CompoundTag();
+    public NbtCompound toTag() {
+        NbtCompound tag = new NbtCompound();
 
         tag.putInt("value", getInt());
 
         return tag;
     }
 
-    public void fromTag(CompoundTag tag) {
+    public void fromTag(NbtCompound tag) {
         set(tag.getInt("value"));
     }
 

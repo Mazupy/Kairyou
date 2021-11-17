@@ -6,7 +6,7 @@ import java.util.List;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listenable;
 import me.zero.alpine.listener.Listener;
-import net.minecraft.client.util.math.Vector3f;
+import net.minecraft.client.util.math.Vector3d;
 import net.minecraft.util.math.Vec2f;
 
 import me.mazupy.kairyou.event.Render2DEvent;
@@ -110,10 +110,10 @@ public class OverlayProjector implements Listenable {
         quadRenderQueue.clear();
     });
 
-    private static Vec2f projection(Vector3f pos) {
-        double x = pos.getX() - MC.gameRenderer.getCamera().getPos().x;
-        double y = pos.getY() - MC.gameRenderer.getCamera().getPos().y;
-        double z = pos.getZ() - MC.gameRenderer.getCamera().getPos().z;
+    private static Vec2f projection(Vector3d pos) {
+        double x = pos.x - MC.gameRenderer.getCamera().getPos().x;
+        double y = pos.y - MC.gameRenderer.getCamera().getPos().y;
+        double z = pos.z - MC.gameRenderer.getCamera().getPos().z;
         z *= -1; // WTF? I checked the formulas 5 times on Wikipedia and found no errors, why is this necessary?
         // https://en.wikipedia.org/wiki/3D_projection#Mathematical_formula (also where the following is derived from)
         double thetaX = -MC.gameRenderer.getCamera().getPitch() * DEG2RAD;
@@ -136,28 +136,28 @@ public class OverlayProjector implements Listenable {
 
     protected static class LineRenderTask {
         Color color;
-        Vector3f pos0;
-        Vector3f pos1;
+        Vector3d pos0;
+        Vector3d pos1;
 
         LineRenderTask(double x0, double y0, double z0, double x1, double y1, double z1, Color c) {
-            pos0 = new Vector3f((float) x0, (float) y0, (float) z0);
-            pos1 = new Vector3f((float) x1, (float) y1, (float) z1);
+            pos0 = new Vector3d(x0, y0, z0);
+            pos1 = new Vector3d(x1, y1, z1);
             color = c;
         }
     }
 
     protected static class QuadRenderTask {
         Color color;
-        Vector3f pos0;
-        Vector3f pos1;
-        Vector3f pos2;
-        Vector3f pos3;
+        Vector3d pos0;
+        Vector3d pos1;
+        Vector3d pos2;
+        Vector3d pos3;
 
         QuadRenderTask(double x0, double y0, double z0, double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3, Color c) {
-            pos0 = new Vector3f((float) x0, (float) y0, (float) z0);
-            pos1 = new Vector3f((float) x1, (float) y1, (float) z1);
-            pos2 = new Vector3f((float) x2, (float) y2, (float) z2);
-            pos3 = new Vector3f((float) x3, (float) y3, (float) z3);
+            pos0 = new Vector3d(x0, y0, z0);
+            pos1 = new Vector3d(x1, y1, z1);
+            pos2 = new Vector3d(x2, y2, z2);
+            pos3 = new Vector3d(x3, y3, z3);
             color = c;
         }
     }

@@ -1,6 +1,6 @@
 package me.mazupy.kairyou.setting;
 
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 
 import me.mazupy.kairyou.gui.ModuleSettingsScreen;
 import me.mazupy.kairyou.gui.widget.KeybindWidget;
@@ -31,16 +31,16 @@ public class KeybindSetting extends Setting<Keybind> {
         if (timeLeft > 0) value.set(timeLeft);
     }
 
-    public CompoundTag toTag() {
-        CompoundTag tag = new CompoundTag();
+    public NbtCompound toTag() {
+        NbtCompound tag = new NbtCompound();
 
         tag.put("bind", value.toTag());
 
         return tag;
     }
 
-    public void fromTag(CompoundTag tag) {
-        get().fromTag((CompoundTag) tag.get("bind"));
+    public void fromTag(NbtCompound tag) {
+        get().fromTag((NbtCompound) tag.get("bind"));
     }
 
 }

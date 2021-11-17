@@ -1,13 +1,13 @@
 package me.mazupy.kairyou.setting.storage;
 
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 
 public interface ISavable {
 
     String tagName();
 
-    CompoundTag toTag();
+    NbtCompound toTag();
     
-    void fromTag(CompoundTag tag);
+    void fromTag(NbtCompound tag);
 
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 
 import me.mazupy.kairyou.event.InputEvent;
 import me.mazupy.kairyou.setting.storage.ISavable;
@@ -139,8 +139,8 @@ public class Keybind implements ISavable {
         return "none";
     }
 
-    public CompoundTag toTag() {
-        CompoundTag tag = new CompoundTag();
+    public NbtCompound toTag() {
+        NbtCompound tag = new NbtCompound();
 
         tag.putInt("modifier", modifier);
         tag.putIntArray("keys", keys);
@@ -151,7 +151,7 @@ public class Keybind implements ISavable {
         return tag;
     }
 
-    public void fromTag(CompoundTag tag) {
+    public void fromTag(NbtCompound tag) {
         modifier = tag.getInt("modifier");
         keys = IntStream.of(tag.getIntArray("keys")).boxed().collect(Collectors.toList());
         defaultKey = tag.getInt("defaultKey");

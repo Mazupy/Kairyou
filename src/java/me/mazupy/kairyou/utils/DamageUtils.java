@@ -39,7 +39,7 @@ public abstract class DamageUtils {
             damage = DamageUtil.getDamageLeft(damage, entity.getArmor(), toughness);
         }
 
-        if (source.getMagic() && entity instanceof WitchEntity) damage *= 0.15;
+        if (source.isMagic() && entity instanceof WitchEntity) damage *= 0.15;
         if (!source.isUnblockable()) {
             damage = resistanceReduction(entity, damage);
             damage = protectionReduction(entity, damage, source);

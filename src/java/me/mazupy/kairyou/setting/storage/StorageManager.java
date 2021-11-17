@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtIo;
 
 import me.mazupy.kairyou.Kairyou;
@@ -32,7 +32,7 @@ public abstract class StorageManager {
     }
 
     private static <T extends ISavable> boolean save(Collection<T> savables, String fileName) {
-        CompoundTag tag = new CompoundTag();
+        NbtCompound tag = new NbtCompound();
         for (T savable : savables) tag.put(savable.tagName(), savable.toTag());
         
         File folder = getKairyouFolder();
@@ -53,12 +53,12 @@ public abstract class StorageManager {
         if (nbtFile.isDirectory()) return false;
         if (!nbtFile.exists()) return true;
 
-        CompoundTag tag = loadCompoundTag(nbtFile);
+        NbtCompound tag = loadCompoundTag(nbtFile);
         if (tag == null) return false;
 
         try {
             for (T loadable : loadables) {
-                loadable.fromTag((CompoundTag) tag.get(loadable.tagName()));
+                loadable.fromTag((NbtCompound) tag.get(loadable.tagName()));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,7 +73,7 @@ public abstract class StorageManager {
         return kairyouFolder;
     }
 
-    private static boolean saveCompoundTag(CompoundTag tag, File file) {
+    private static boolean saveCompoundTag(NbtCompound tag, File file) {
         try {
             NbtIo.writeCompressed(tag, file);
         } catch (IOException e) {
@@ -83,9 +83,9 @@ public abstract class StorageManager {
         return true;
     }
 
-    private static CompoundTag loadCompoundTag(File file) {
+    private static NbtCompound loadCompoundTag(File file) {
         try {
-            CompoundTag tag = NbtIo.readCompressed(file);
+            NbtCompound tag = NbtIo.readCompressed(file);
             return tag;
         } catch (IOException e) {
             e.printStackTrace();
