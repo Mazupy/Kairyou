@@ -43,9 +43,8 @@ shadowJar {
 processResources {
     inputs.property "version", project.version
 
-    // Include fabric.mod.json (with the version dynamicly ajusted)[not working]
-    from(sourceSets.main.resources.srcDirs) {
-        include "fabric.mod.json"
+    // Include fabric.mod.json (with the version dynamicly ajusted)
+    filesMatching("fabric.mod.json") {
         expand "version": project.version
     }
 
