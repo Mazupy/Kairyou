@@ -6,14 +6,14 @@ For Minecraft 1.16.4 / 1.16.5
 * Modules: _6/136+_
 * Fixes: _457/∞_
 
-Time spent: 181h  
+Time spent: 182h  
 Expected the client to reach a mature state till Late 2022
 
 ## Setup
 
 ### Prerequisites
 * [Git](https://git-scm.com/downloads)
-* [Gradle](https://gradle.org/releases/)
+* [Gradle](https://gradle.org/releases/) (4.4 is too old, 6.5 works)
 * [Fabric Loader](https://fabricmc.net/use/)
 * [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
 
@@ -21,17 +21,13 @@ Expected the client to reach a mature state till Late 2022
 Start Git bash where you want to try it:
 ```bash
 # Clone this repository (creates a kairyou directory containing everything)
-git clone https://github.com/Mazupy/kairyou.git
+git clone https://github.com/Mazupy/Kairyou.git
 # Go into the repository
-cd kairyou
+cd Kairyou
 # Build the jar
-gradle build # Windows
-./gradle build # Linux
-./gradlew build # Windows/Linux with gradle wrapper
+gradle build
 # Generate source files (recommended if you want to modify them)
-gradle genSources # Windows
-./gradle genSources # Linux
-./gradlew genSources # Windows/Linux with gradle wrapper
+gradle genSources
 ```
 You may need to refresh the java project, for VS Code this is done pressing `Shift + Alt + U` while having `build.gradle` open. 
 ([more info](https://fabricmc.net/wiki/tutorial:setup))  
