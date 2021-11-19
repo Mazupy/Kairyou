@@ -36,8 +36,8 @@ public class OverlayProjector implements Listenable {
     // TODO: clean up this mess when you don't have to trial and error OpenGL while figuring out projection math for over 26 hours
     // If anyone is sucessful in using simpler math / projection matrices, please do a PR
 
-    private static List<LineRenderTask> lineRenderQueue = new ArrayList<>(1024);
-    private static List<QuadRenderTask> quadRenderQueue = new ArrayList<>(1024);
+    private static List<LineRenderTask> lineRenderQueue = new ArrayList<>(10240);
+    private static List<QuadRenderTask> quadRenderQueue = new ArrayList<>(10240);
 
     public static void line(double x0, double y0, double z0, double x1, double y1, double z1, Color color) {
         lineRenderQueue.add(new LineRenderTask(x0, y0, z0, x1, y1, z1, color));

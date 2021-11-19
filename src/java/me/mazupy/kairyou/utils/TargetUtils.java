@@ -30,11 +30,7 @@ public class TargetUtils {
         return attackFriends || FriendManager.shouldAttack(player); */
     }
 
-    public static boolean inExplosionRange(Entity entity, float explosionStrength) {
-        return inRange(entity, 2 * explosionStrength);
-    }
-
     public static boolean inRange(Entity entity, double range) {
-        return MC.player.squaredDistanceTo(entity) <= MathUtils.sq(range);
+        return MC.player.squaredDistanceTo(entity) <= MathUtils.sq(range) && entity != MC.player;
     }
 }

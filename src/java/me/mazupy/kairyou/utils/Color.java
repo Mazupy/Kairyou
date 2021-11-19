@@ -7,7 +7,8 @@ public enum Color {
     Widget(80),
     Active(0, 0, 84),
     Blue(0, 0, 150),
-    Background(0, 104);
+    Background(0, 104),
+    ESP(255, 0, 0);
 
     public int r, g, b, a = 255;
 

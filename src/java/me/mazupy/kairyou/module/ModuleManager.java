@@ -74,6 +74,7 @@ public class ModuleManager implements Listenable {
         addModule(new Gui());
         addModule(new MovementSpoofer());
         addModule(new AimAssist());
+        addModule(new ESP());
     }
 
     private void addModule(Module module) {
