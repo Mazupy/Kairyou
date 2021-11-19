@@ -10,6 +10,10 @@ public abstract class MathUtils {
     public static int round(double v) {
         return (int) Math.round(v);
     }
+    
+    public static int floor(double v) {
+        return (int) Math.floor(v);
+    }
 
     public static int ceil(double v) {
         return (int) Math.ceil(v);

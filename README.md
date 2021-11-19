@@ -4,9 +4,9 @@ For Minecraft 1.16.4 / 1.16.5
 ### Progress
 * Client: _7/13_
 * Modules: _6/136+_
-* Fixes: _457/∞_
+* Fixes: _481/∞_
 
-Time spent: 182h  
+Time spent: 199h  
 Expected the client to reach a mature state till Late 2022
 
 ## Setup

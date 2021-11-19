@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
@@ -21,7 +22,7 @@ import me.mazupy.kairyou.utils.MathUtils;
 import me.mazupy.kairyou.utils.Utils;
 
 @Module.Info(name = "MovementSpoofer", description = "Tries to predict and simulate movement patterns", category = Category.Movement)
-public class MovementSpoofer extends Module { // TODO: test module
+public class MovementSpoofer extends Module { // TODO: test module further, has serveral issues (landing / acceleration while falling / bugged x collision?)
 
     private final KeybindSetting reset = new KeybindSetting("Reset ghost", new Keybind(this::reset));
 
@@ -30,6 +31,7 @@ public class MovementSpoofer extends Module { // TODO: test module
     private double z = 8;
     private float width = 0.6f;
     private float height = 1.8f;
+    private float flyingSpeed = 0.05f;
     private double vX = 0;
     private double vY = 0;
     private double vZ = 0;
@@ -46,11 +48,11 @@ public class MovementSpoofer extends Module { // TODO: test module
     @EventHandler
     private final Listener<TickEvent> onTick = new Listener<>(event -> {
         // Get acceleration speeds
-        float flyingSpeed = 0.02f;
+        float airSpeed = 0.02f;
         float movementSpeed = 0.1f;
         if (mc.player.isSprinting()) {
-            flyingSpeed *= 1.3f;
-            movementSpeed *= 1.3;
+            airSpeed *= 1.3f;
+            movementSpeed *= 1.3f;
         }
         // Get movement from input
         final Input input = mc.player.input;
@@ -78,7 +80,7 @@ public class MovementSpoofer extends Module { // TODO: test module
         if (Math.abs(vY) < 0.003) vY = 0;
         if (Math.abs(vZ) < 0.003) vZ = 0;
         // Jumping
-        if (mc.player.input.jumping) {
+        if (input.jumping) {
             if (--jumpingCooldown < 1 && onGround) {
                 jumpingCooldown = 10;
                 float jumpMult = getBlock().getJumpVelocityMultiplier();
@@ -90,10 +92,14 @@ public class MovementSpoofer extends Module { // TODO: test module
                 }
             }
         } else jumpingCooldown = 0;
+        // Flying
+        final double savedVY = vY;
+        final float savedFlyingSpeed = airSpeed;
+        if (mc.player.abilities.flying) airSpeed = flyingSpeed * (mc.player.isSprinting() ? 2 : 1);
         // Get speed modifiers
         final float slipperiness = getBlockBelow(0.5 + Utils.EPSILON).getSlipperiness();
         final float horizontalMult = onGround ? slipperiness * 0.91f : 0.91f;
-        final float speed = onGround ? movementSpeed * MathUtils.cube(0.6f / slipperiness) : flyingSpeed;
+        final float speed = onGround ? movementSpeed * MathUtils.cube(0.6f / slipperiness) : airSpeed;
         // Convert input movement to velocity
         double forwardsD = forwards * Utils.PLAYER_DRAG;
         double sidewaysD = sideways * Utils.PLAYER_DRAG;
@@ -109,41 +115,55 @@ public class MovementSpoofer extends Module { // TODO: test module
         double aZ = forwardsD * zAxis + sidewaysD * xAxis;
         vX += aX * speed;
         vZ += aZ * speed;
+        Vec3d movement = new Vec3d(vX, vY, vZ);
         ClientPlayerEntity playerReplica = new ClientPlayerEntity(mc, mc.world, mc.getNetworkHandler(), mc.player.getStatHandler(), mc.player.getRecipeBook(), mc.player.isSneaking(), mc.player.isSprinting());
         playerReplica.copyFrom(mc.player);
         playerReplica.updatePosition(x, y, z);
-        playerReplica.setOnGround(onGround);
-        Vec3d movement = new Vec3d(vX, vY, vZ);
         // Sneaking
-        if (playerReplica.isSneaking() && !playerReplica.abilities.flying)
+        if (mc.player.isSneaking() && !mc.player.abilities.flying && (onGround || CollisionReplica.canClip(mc.player)))
             movement = CollisionReplica.adjustMovementForSneaking(playerReplica, movement);
         // Collision
-        Vec3d collisionMovement = CollisionReplica.adjustMovementForCollisions(playerReplica, movement);
+        double x1 = x - width / 2;
+        double x2 = x1 + width;
+        double y2 = y + mc.player.getHeight();
+        double z1 = z - width / 2;
+        double z2 = z1 + width;
+        Box bb = new Box(x1, y, z1, x2, y2, z2);
+        Vec3d collisionMovement = CollisionReplica.adjustMovementForCollisions(playerReplica, bb, movement);
         // Apply velocity
         pX = x;
         pY = y;
         pZ = z;
-        x += collisionMovement.x;
-        y += collisionMovement.y;
-        z += collisionMovement.z;
-        if (Math.abs(vX - collisionMovement.x) > Utils.EPSILON) vX = 0;
-        onGround = false;
-        if (Math.abs(vY - collisionMovement.y) > Utils.EPSILON) {
-            if (vY < 0) onGround = true;
-            vY = 0;
+        if (collisionMovement.lengthSquared() > Utils.EPSILON) {
+            x += collisionMovement.x;
+            y += collisionMovement.y;
+            z += collisionMovement.z;
         }
-        if (Math.abs(vZ - collisionMovement.z) > Utils.EPSILON) vZ = 0;
+        if (vX != collisionMovement.x) {
+            if (vZ != collisionMovement.z || (mc.player.yaw == 90 || mc.player.yaw == 180) && aX != 0 && aZ == 0); // TODO: figure out why this is necessary
+            else vX = 0;
+        }
+        if (vZ != collisionMovement.z) vZ = 0;
+        if (vY != collisionMovement.y) {
+            onGround = vY < 0;
+            vY = 0;
+        } else onGround = false;
         // Block movement multiplier
         float mult = getBlock().getVelocityMultiplier();
         if (mult == 1f) mult = getBlockBelow(0.5 + Utils.EPSILON).getVelocityMultiplier();
         vX *= mult;
         vZ *= mult;
         // Gravity
-        vY += Utils.PLAYER_GRAVITY;
+        if (!mc.player.abilities.flying) vY += Utils.PLAYER_GRAVITY;
         // Global movement multiplier
         vX *= horizontalMult;
         vZ *= horizontalMult;
         vY *= Utils.PLAYER_DRAG;
+        // Fly reset
+        if (mc.player.abilities.flying) {
+            vY = savedVY * 0.6;
+            airSpeed = savedFlyingSpeed;
+        }
     });
 
     private Block getBlockBelow(double yOffset) {
@@ -170,9 +190,9 @@ public class MovementSpoofer extends Module { // TODO: test module
 
     private void reset() {
         if (Utils.notInGame()) return;
-        x = mc.player.getX() + 2;
+        x = mc.player.getX();
         y = mc.player.getY();
-        z = mc.player.getZ() + 2;
+        z = mc.player.getZ();
         width = mc.player.getWidth();
         height = mc.player.getHeight();
         vX = mc.player.getVelocity().x;
