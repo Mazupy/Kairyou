@@ -29,13 +29,16 @@
     ],
 
     "depends": {
-        "fabricloader": ">=0.11.1",
-        "fabric": ">=0.29.3",
+        "fabricloader": ">=0.12.5",
+        "fabric": ">=0.42.0",
         "minecraft": ["1.16.4", "1.16.5"]
     },
     "breaks": {},
     "suggests": {
-        "phosphor-fabric": ">=0.7.0",
-        "sodium-fabric": ">=0.1.1"
+        "phosphor-fabric": ">=0.7.2",
+        "sodium-fabric": ">=0.2.0",
+        "lithium-fabric": ">=0.6.6",
+        "lazydfu": ">=0.1.2",
+        "modmenu": ">=1.14.13"
     }
 }

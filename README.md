@@ -1,5 +1,5 @@
 # Kairyō client
-For Minecraft 1.16.4 / 1.16.5
+For Minecraft 1.16.5
 
 ### Progress
 * Client: _7/13_
