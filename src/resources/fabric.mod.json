@@ -2,7 +2,6 @@
     "schemaVersion": 1,
     "id": "kairyou",
     "version": "${version}",
-
     "name": "Kairyō",
     "description": "Kairyō [改良], a Minecraft utility client",
     "authors": [
@@ -14,10 +13,8 @@
         "sources": "https://github.com/Mazupy/Kairyou.git",
         "issues": "https://github.com/Mazupy/Kairyou/issues"
     },
-
     "license": "MIT",
     "icon": "assets/icon.png",
-
     "environment": "client",
     "entrypoints": {
         "client": [
@@ -27,7 +24,7 @@
     "mixins": [
         "kairyou.mixins.json"
     ],
-
+    "accessWidener": "kairyou.accesswidener",
     "depends": {
         "fabricloader": ">=0.12.5",
         "fabric": ">=0.42.0",
@@ -39,6 +36,6 @@
         "sodium-fabric": ">=0.2.0",
         "lithium-fabric": ">=0.6.6",
         "lazydfu": ">=0.1.2",
-        "modmenu": ">=1.14.13"
+        "modmenu": ">=1.22.16"
     }
 }

@@ -1,0 +1,5 @@
+accessWidener	v1	named
+# These are comments!
+# accessible field net/minecraft/network/packet/c2s/play/PlayerMoveC2SPacket onGround Z
+# accessible field net/minecraft/client/network/ClientPlayerEntity autoJumpEnabled Z
+# accessible field net/minecraft/network/ClientConnection channel Lio/netty/channel/Channel;

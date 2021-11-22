@@ -36,6 +36,10 @@ dependencies {
     dependency "com.github.ZeroMemes:Alpine:1.9"
 }
 
+loom {
+    accessWidener = file("src/resources/kairyou.accesswidener") // is called accessWidenerPath for loom 0.9+
+}
+
 shadowJar {
     configurations = [ project.configurations.shadow ]
 }
