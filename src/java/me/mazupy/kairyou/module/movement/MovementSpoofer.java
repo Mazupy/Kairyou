@@ -41,7 +41,8 @@ public class MovementSpoofer extends Module {
 
     @EventHandler
     private final Listener<WorldRenderEvent> onRender = new Listener<> (event -> {
-        Vec3d pos = Utils.getRenderPos(fakePlayer);
+        Vec3d pos = Utils.getRenderPos(fakePlayer); // Smooth
+        // Vec3d pos = fakePlayer.getPos(); // Descreet
         OverlayProjector.lineBox(pos.x, pos.y, pos.z, fakePlayer.getWidth(), fakePlayer.getHeight(), Color.Blue);
     });
 

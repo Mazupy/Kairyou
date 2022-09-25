@@ -6,8 +6,8 @@ For Minecraft 1.16.5
 * Modules: _8/137+_
 * Fixes: _487/∞_
 
-Time spent: 209h  
-Expected the client to reach a mature state till Late 2022
+Time spent: 210h  
+Expected the client to reach a mature state till 2024 (maybe)
 
 ## Setup
 
